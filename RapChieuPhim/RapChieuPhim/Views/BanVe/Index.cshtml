@@ -1,0 +1,49 @@
+﻿@model List<RapChieuPhim.Models.BanVe.JoinTable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        <br />
+        <h2 style="color:navy; font-size:xx-large " class="text-center">
+            Danh sách lịch chiếu phim
+        </h2>
+        <br />
+    </div>
+
+    <div class="x_content">
+        <table id="datatable" class="table table-striped table-bordered ">
+            <thead>
+                <tr>
+
+                    <th style="font-size :medium;" class="text-center"> </th>
+                    <th style="font-size :medium; width:300px;" class="sorting_asc dataTable" aria-sort="ascending">Tên phim</th>
+                    <th style="font-size :medium;" class="text-center">Phiên bản</th>
+                    <th style="font-size :medium;" class="text-center">Ngày chiếu</th>
+                    <th style="font-size :medium;" class="text-center">Giờ bắt đầu</th>
+                    <th style="font-size :medium;" class="text-center">Giờ kết thúc</th>
+                    <th style="font-size :medium;" class="text-center">Phòng chiếu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> <a href="@Url.Action("LoadGhe", "BanVe")" class="btn btn-success">Chọn</a> </td>
+                        <td style="font-size:large;" class="text-center">@item.TENPHIM</td>
+                        <td style="font-size:large;" class="text-center">@item.PHIENBAN</td>
+                        <td style="font-size:large;" class="text-center">@string.Format("{0:dd/MM/yyyy}", @item.NGAYCHIEU)</td>
+                        <td style="font-size:large;" class="text-center">@item.GIOBATDAU</td>
+                        <td style="font-size:large;" class="text-center">@item.GIOKETTHUC</td>
+                        <td style="font-size:large;" class="text-center">@item.TENPHONGCHIEU</td>
+                    </tr>
+                }
+            <tbody>
+        </table>
+    </div>
+    
+}

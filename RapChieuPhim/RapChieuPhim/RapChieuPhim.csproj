@@ -186,6 +186,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BanVeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,6 +195,7 @@
     <Compile Include="Models\BANGLUONG.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BanVe\JoinTable.cs" />
     <Compile Include="Models\CALAM.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>
@@ -468,6 +470,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Home\LoginTextPartial.cshtml" />
+    <Content Include="Views\BanVe\Index.cshtml" />
+    <Content Include="Views\BanVe\LoadGhe.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
