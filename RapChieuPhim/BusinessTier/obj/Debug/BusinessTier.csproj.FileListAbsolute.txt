@@ -17,3 +17,22 @@ C:\Users\Hoai\documents\visual studio 2013\Projects\RapChieuPhim\BusinessTier\bi
 C:\Users\Hoai\documents\visual studio 2013\Projects\RapChieuPhim\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
 C:\Users\Hoai\documents\visual studio 2013\Projects\RapChieuPhim\BusinessTier\obj\Debug\BusinessTier.dll
 C:\Users\Hoai\documents\visual studio 2013\Projects\RapChieuPhim\BusinessTier\obj\Debug\BusinessTier.pdb
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\BusinessTier.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\BusinessTier.pdb
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\DataTier.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\RapChieuPhim.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\EntityFramework.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\System.Web.Optimization.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\System.Web.Http.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\System.Web.Http.WebHost.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\System.Net.Http.Formatting.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\Newtonsoft.Json.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\DataTier.pdb
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\RapChieuPhim.pdb
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\System.Web.Http.xml
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\System.Web.Http.WebHost.xml
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\System.Net.Http.Formatting.xml
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\bin\Debug\Newtonsoft.Json.xml
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\obj\Debug\BusinessTier.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\BusinessTier\obj\Debug\BusinessTier.pdb
