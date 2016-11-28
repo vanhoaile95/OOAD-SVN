@@ -3,6 +3,7 @@
 
 bin/*
 obj/*
+Debug/*
 # User-specific files
 *.suo
 *.user
