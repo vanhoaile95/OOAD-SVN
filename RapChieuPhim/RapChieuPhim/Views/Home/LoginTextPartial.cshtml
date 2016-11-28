@@ -1,0 +1,78 @@
+﻿<style>
+    ul.dropdownlogin {
+        min-width: 30%; /* Set width of the dropdown */
+        display: none;
+        position: absolute;
+        z-index: 999;
+        right: auto;
+    }
+
+    li:hover ul.dropdownlogin {
+        display: block; /* Display the dropdown */
+    }
+
+    li ul.dropdownlogin li {
+        display: block;
+    }
+
+    ul.dropdownlogin li {
+        background: #ffffff;
+    }
+
+    #dropdownitem {
+        background: #ffffff;
+        color: black;
+        text-transform: none;
+    }
+
+
+        #dropdownitem:hover {
+            color: #ff0000;
+        }
+</style>
+
+
+@{
+    HttpCookie ck = Request.Cookies["TenDangNhap"];
+    var nv = Session["User"] as RapChieuPhim.Models.NHANVIEN;
+
+    //Nếu đã có cookie
+    if (nv != null && ck != null)
+    {
+        //Load thông tin User
+        string[] names = nv.HOTEN.Split(' ');
+        <li>@names.Last()</li>
+
+        //Load ảnh từ database dạng byte , convert sang định dạng string ảnh
+        if (nv.AVARTA != null)
+        {
+            var base64 = Convert.ToBase64String(nv.AVARTA);
+            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+
+            <li><img class="img-circle" src="@imgsrc" height="40" width="40" /></li>
+        }
+        <li>
+            <a href="@Url.Action("Index", new {delete = "Yes" })">Logout <b class="caret"></b></a>
+            <ul class="dropdownlogin">
+                <li><a href="#" id="dropdownitem">Thông tin chi tiết</a></li>
+                <li><a href="@Url.Action("ChangePassword","Home")" id="dropdownitem">Đổi mật khẩu</a></li>
+            </ul>
+
+        </li>
+
+
+
+
+
+
+
+    }// Load default
+    else
+    {
+        <li><i class="fa fa-phone" aria-hidden="true"></i> (08) 080 808 08</li>
+        <li><a data-toggle="modal" data-target="#myModal" id="loginbutton">Login</a></li>
+
+
+    }
+}
