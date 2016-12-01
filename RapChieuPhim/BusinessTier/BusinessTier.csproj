@@ -47,6 +47,10 @@
       <Project>{f95a862d-06a6-4796-bc45-7f8d5babc9ba}</Project>
       <Name>DataTier</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RapChieuPhim\RapChieuPhim.csproj">
+      <Project>{0e2a115e-4f58-40e1-a0a8-a98503bd50d9}</Project>
+      <Name>RapChieuPhim</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -44,29 +44,39 @@ namespace RapChieuPhim.Controllers
 
         }
 
-        public ActionResult ChangePassword(string current_password, string new_password)
+      
+          public ActionResult ChangePassword(string current_password, string new_password)
         {
-            if (current_password != null && new_password != null)
-            {
-                NHANVIEN nv = Session["User"] as NHANVIEN;
-                if (current_password == nv.PASSWORD)
+           
+                if (current_password != null && new_password != null)
                 {
+                    var nv = Session["User"] as NHANVIEN;
 
-                    return RedirectToAction("Index");
+
+                    if (current_password == nv.PASSWORD)
+                    {
+
+                        nv.PASSWORD = new_password;
+                        Session["User"] = nv;
+                        new HomeBS().DoiMatKhauUser(nv);
+                        
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Mật khẩu hiện tại không đúng !");
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Mật khẩu hiện tại không đúng !");
-                }
-            }
-            else
-            {
-                foreach (var modelValue in ModelState.Values)
+                    foreach (var modelValue in ModelState.Values)
                         modelValue.Errors.Clear();
 
-            }
-            return View();
+                }
             
+
+            return View();
         }
 
 

@@ -32,3 +32,5 @@ E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\Gi
 E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
 E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\DataTier\obj\Debug\DataTier.dll
 E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\DataTier\obj\Debug\DataTier.pdb
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\DataTier\bin\Debug\BusinessTier.dll
+E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\DataTier\bin\Debug\BusinessTier.pdb

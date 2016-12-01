@@ -396,14 +396,22 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
-    <EntityDeploy Include="Models\Cinema.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Cinema.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\easing.js" />
     <Content Include="js\jquery-2.1.4.min.js" />
     <Content Include="js\move-top.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <EntityDeploy Include="Models\Cinema.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Cinema.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <Content Include="Models\Cinema.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Cinema.edmx</DependentUpon>
@@ -417,14 +425,6 @@
       <DependentUpon>Cinema.edmx</DependentUpon>
       <LastGenOutput>Cinema.cs</LastGenOutput>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

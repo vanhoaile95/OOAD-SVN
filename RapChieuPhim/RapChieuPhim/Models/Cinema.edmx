@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QuanLyCinemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyCinemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANGLUONG">
           <Key>
             <PropertyRef Name="MABANGLUONG" />
@@ -160,6 +160,12 @@
           <Property Name="SOGHE" Type="int" />
           <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="THAMSO">
+          <Property Name="TIENVON" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="GIAVE" Type="int" />
+        </EntityType>-->
         <EntityType Name="VE">
           <Key>
             <PropertyRef Name="MAVE" />
@@ -168,7 +174,7 @@
           <Property Name="MALICHCHIEU" Type="varchar" MaxLength="20" />
           <Property Name="STTGHE" Type="int" />
         </EntityType>
-        <Association Name="FK__CT_BANGLU__MABAN__37A5467C">
+        <Association Name="FK__CT_BANGLU__MABAN__2C3393D0">
           <End Role="BANGLUONG" Type="Self.BANGLUONG" Multiplicity="1" />
           <End Role="CT_BANGLUONG" Type="Self.CT_BANGLUONG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_BANGLUO__MANV__38996AB5">
+        <Association Name="FK__CT_BANGLUO__MANV__2D27B809">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="CT_BANGLUONG" Type="Self.CT_BANGLUONG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_HOADON__MAHD__31EC6D26">
+        <Association Name="FK__CT_HOADON__MAHD__2E1BDC42">
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
           <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,7 +210,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_HOADON__MAVE__32E0915F">
+        <Association Name="FK__CT_HOADON__MAVE__2F10007B">
           <End Role="VE" Type="Self.VE" Multiplicity="1" />
           <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -216,7 +222,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_PHIM__MAPHIM__145C0A3F">
+        <Association Name="FK__CT_PHIM__MAPHIM__300424B4">
           <End Role="PHIM" Type="Self.PHIM" Multiplicity="1" />
           <End Role="CT_PHIM" Type="Self.CT_PHIM" Multiplicity="*" />
           <ReferentialConstraint>
@@ -228,7 +234,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOADON__MAKH__2F10007B">
+        <Association Name="FK__HOADON__MAKH__30F848ED">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -240,7 +246,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOADON__MANV__2E1BDC42">
+        <Association Name="FK__HOADON__MANV__31EC6D26">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -252,7 +258,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KHACHHANG__MALOA__2B3F6F97">
+        <Association Name="FK__KHACHHANG__MALOA__32E0915F">
           <End Role="LOAIKH" Type="Self.LOAIKH" Multiplicity="0..1" />
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -264,7 +270,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHCHIEU__173876EA">
+        <Association Name="FK__LICHCHIEU__33D4B598">
           <End Role="CT_PHIM" Type="Self.CT_PHIM" Multiplicity="0..1" />
           <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -278,7 +284,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHCHIEU__MAPHO__182C9B23">
+        <Association Name="FK__LICHCHIEU__MAPHO__34C8D9D1">
           <End Role="PHONGCHIEU" Type="Self.PHONGCHIEU" Multiplicity="0..1" />
           <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -290,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHLAMVI__MANGS__267ABA7A">
+        <Association Name="FK__LICHLAMVI__MANGS__35BCFE0A">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -302,7 +308,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHLAMVIE__MACA__25869641">
+        <Association Name="FK__LICHLAMVIE__MACA__36B12243">
           <End Role="CALAM" Type="Self.CALAM" Multiplicity="0..1" />
           <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -314,7 +320,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHLAMVIE__MANV__24927208">
+        <Association Name="FK__LICHLAMVIE__MANV__37A5467C">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -326,7 +332,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NHANVIEN__MACHUC__1FCDBCEB">
+        <Association Name="FK__NHANVIEN__MACHUC__38996AB5">
           <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="0..1" />
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -338,7 +344,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VE__MALICHCHIEU__1B0907CE">
+        <Association Name="FK__VE__MALICHCHIEU__398D8EEE">
           <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="0..1" />
           <End Role="VE" Type="Self.VE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -366,68 +372,69 @@
           <EntitySet Name="PHIM" EntityType="Self.PHIM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONGCHIEU" EntityType="Self.PHONGCHIEU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VE" EntityType="Self.VE" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CT_BANGLU__MABAN__37A5467C" Association="Self.FK__CT_BANGLU__MABAN__37A5467C">
+          <AssociationSet Name="FK__CT_BANGLU__MABAN__2C3393D0" Association="Self.FK__CT_BANGLU__MABAN__2C3393D0">
             <End Role="BANGLUONG" EntitySet="BANGLUONG" />
             <End Role="CT_BANGLUONG" EntitySet="CT_BANGLUONG" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_BANGLUO__MANV__38996AB5" Association="Self.FK__CT_BANGLUO__MANV__38996AB5">
+          <AssociationSet Name="FK__CT_BANGLUO__MANV__2D27B809" Association="Self.FK__CT_BANGLUO__MANV__2D27B809">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="CT_BANGLUONG" EntitySet="CT_BANGLUONG" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_HOADON__MAHD__31EC6D26" Association="Self.FK__CT_HOADON__MAHD__31EC6D26">
+          <AssociationSet Name="FK__CT_HOADON__MAHD__2E1BDC42" Association="Self.FK__CT_HOADON__MAHD__2E1BDC42">
             <End Role="HOADON" EntitySet="HOADON" />
             <End Role="CT_HOADON" EntitySet="CT_HOADON" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_HOADON__MAVE__32E0915F" Association="Self.FK__CT_HOADON__MAVE__32E0915F">
+          <AssociationSet Name="FK__CT_HOADON__MAVE__2F10007B" Association="Self.FK__CT_HOADON__MAVE__2F10007B">
             <End Role="VE" EntitySet="VE" />
             <End Role="CT_HOADON" EntitySet="CT_HOADON" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_PHIM__MAPHIM__145C0A3F" Association="Self.FK__CT_PHIM__MAPHIM__145C0A3F">
+          <AssociationSet Name="FK__CT_PHIM__MAPHIM__300424B4" Association="Self.FK__CT_PHIM__MAPHIM__300424B4">
             <End Role="PHIM" EntitySet="PHIM" />
             <End Role="CT_PHIM" EntitySet="CT_PHIM" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOADON__MAKH__2F10007B" Association="Self.FK__HOADON__MAKH__2F10007B">
+          <AssociationSet Name="FK__HOADON__MAKH__30F848ED" Association="Self.FK__HOADON__MAKH__30F848ED">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOADON__MANV__2E1BDC42" Association="Self.FK__HOADON__MANV__2E1BDC42">
+          <AssociationSet Name="FK__HOADON__MANV__31EC6D26" Association="Self.FK__HOADON__MANV__31EC6D26">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
-          <AssociationSet Name="FK__KHACHHANG__MALOA__2B3F6F97" Association="Self.FK__KHACHHANG__MALOA__2B3F6F97">
+          <AssociationSet Name="FK__KHACHHANG__MALOA__32E0915F" Association="Self.FK__KHACHHANG__MALOA__32E0915F">
             <End Role="LOAIKH" EntitySet="LOAIKH" />
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHCHIEU__173876EA" Association="Self.FK__LICHCHIEU__173876EA">
+          <AssociationSet Name="FK__LICHCHIEU__33D4B598" Association="Self.FK__LICHCHIEU__33D4B598">
             <End Role="CT_PHIM" EntitySet="CT_PHIM" />
             <End Role="LICHCHIEU" EntitySet="LICHCHIEU" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHCHIEU__MAPHO__182C9B23" Association="Self.FK__LICHCHIEU__MAPHO__182C9B23">
+          <AssociationSet Name="FK__LICHCHIEU__MAPHO__34C8D9D1" Association="Self.FK__LICHCHIEU__MAPHO__34C8D9D1">
             <End Role="PHONGCHIEU" EntitySet="PHONGCHIEU" />
             <End Role="LICHCHIEU" EntitySet="LICHCHIEU" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHLAMVI__MANGS__267ABA7A" Association="Self.FK__LICHLAMVI__MANGS__267ABA7A">
+          <AssociationSet Name="FK__LICHLAMVI__MANGS__35BCFE0A" Association="Self.FK__LICHLAMVI__MANGS__35BCFE0A">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIEC" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHLAMVIE__MACA__25869641" Association="Self.FK__LICHLAMVIE__MACA__25869641">
+          <AssociationSet Name="FK__LICHLAMVIE__MACA__36B12243" Association="Self.FK__LICHLAMVIE__MACA__36B12243">
             <End Role="CALAM" EntitySet="CALAM" />
             <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIEC" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHLAMVIE__MANV__24927208" Association="Self.FK__LICHLAMVIE__MANV__24927208">
+          <AssociationSet Name="FK__LICHLAMVIE__MANV__37A5467C" Association="Self.FK__LICHLAMVIE__MANV__37A5467C">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIEC" />
           </AssociationSet>
-          <AssociationSet Name="FK__NHANVIEN__MACHUC__1FCDBCEB" Association="Self.FK__NHANVIEN__MACHUC__1FCDBCEB">
+          <AssociationSet Name="FK__NHANVIEN__MACHUC__38996AB5" Association="Self.FK__NHANVIEN__MACHUC__38996AB5">
             <End Role="CHUCVU" EntitySet="CHUCVU" />
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
           </AssociationSet>
-          <AssociationSet Name="FK__VE__MALICHCHIEU__1B0907CE" Association="Self.FK__VE__MALICHCHIEU__1B0907CE">
+          <AssociationSet Name="FK__VE__MALICHCHIEU__398D8EEE" Association="Self.FK__VE__MALICHCHIEU__398D8EEE">
             <End Role="LICHCHIEU" EntitySet="LICHCHIEU" />
             <End Role="VE" EntitySet="VE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyCinemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -439,7 +446,7 @@
           <Property Name="THANG" Type="Int32" />
           <Property Name="NAM" Type="Int32" />
           <Property Name="TONG" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="CT_BANGLUONG" Relationship="Self.FK__CT_BANGLU__MABAN__37A5467C" FromRole="BANGLUONG" ToRole="CT_BANGLUONG" />
+          <NavigationProperty Name="CT_BANGLUONG" Relationship="Self.FK__CT_BANGLU__MABAN__2C3393D0" FromRole="BANGLUONG" ToRole="CT_BANGLUONG" />
         </EntityType>
         <EntityType Name="CALAM">
           <Key>
@@ -448,7 +455,7 @@
           <Property Name="MACA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="THOIGIAN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SOTIENG" Type="Int32" />
-          <NavigationProperty Name="LICHLAMVIECs" Relationship="Self.FK__LICHLAMVIE__MACA__25869641" FromRole="CALAM" ToRole="LICHLAMVIEC" />
+          <NavigationProperty Name="LICHLAMVIECs" Relationship="Self.FK__LICHLAMVIE__MACA__36B12243" FromRole="CALAM" ToRole="LICHLAMVIEC" />
         </EntityType>
         <EntityType Name="CHUCVU">
           <Key>
@@ -457,7 +464,7 @@
           <Property Name="MACHUCVU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TENCHUCVU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LUONG" Type="Int32" />
-          <NavigationProperty Name="NHANVIENs" Relationship="Self.FK__NHANVIEN__MACHUC__1FCDBCEB" FromRole="CHUCVU" ToRole="NHANVIEN" />
+          <NavigationProperty Name="NHANVIENs" Relationship="Self.FK__NHANVIEN__MACHUC__38996AB5" FromRole="CHUCVU" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="CT_BANGLUONG">
           <Key>
@@ -471,8 +478,8 @@
           <Property Name="HESOLUONG" Type="Int32" />
           <Property Name="TONGTIEN" Type="Int32" />
           <Property Name="TINHTRANG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BANGLUONG" Relationship="Self.FK__CT_BANGLU__MABAN__37A5467C" FromRole="CT_BANGLUONG" ToRole="BANGLUONG" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__CT_BANGLUO__MANV__38996AB5" FromRole="CT_BANGLUONG" ToRole="NHANVIEN" />
+          <NavigationProperty Name="BANGLUONG" Relationship="Self.FK__CT_BANGLU__MABAN__2C3393D0" FromRole="CT_BANGLUONG" ToRole="BANGLUONG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__CT_BANGLUO__MANV__2D27B809" FromRole="CT_BANGLUONG" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="CT_PHIM">
           <Key>
@@ -481,8 +488,8 @@
           </Key>
           <Property Name="MAPHIM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PHIENBAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PHIM" Relationship="Self.FK__CT_PHIM__MAPHIM__145C0A3F" FromRole="CT_PHIM" ToRole="PHIM" />
-          <NavigationProperty Name="LICHCHIEUx" Relationship="Self.FK__LICHCHIEU__173876EA" FromRole="CT_PHIM" ToRole="LICHCHIEU" />
+          <NavigationProperty Name="PHIM" Relationship="Self.FK__CT_PHIM__MAPHIM__300424B4" FromRole="CT_PHIM" ToRole="PHIM" />
+          <NavigationProperty Name="LICHCHIEUx" Relationship="Self.FK__LICHCHIEU__33D4B598" FromRole="CT_PHIM" ToRole="LICHCHIEU" />
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
@@ -495,8 +502,8 @@
           <Property Name="GIAVE" Type="Int32" />
           <Property Name="SOLUONG" Type="Int32" />
           <Property Name="GIATIEN" Type="Int32" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__HOADON__MAKH__2F10007B" FromRole="HOADON" ToRole="KHACHHANG" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__HOADON__MANV__2E1BDC42" FromRole="HOADON" ToRole="NHANVIEN" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__HOADON__MAKH__30F848ED" FromRole="HOADON" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__HOADON__MANV__31EC6D26" FromRole="HOADON" ToRole="NHANVIEN" />
           <NavigationProperty Name="VEs" Relationship="Self.CT_HOADON" FromRole="HOADON" ToRole="VE" />
         </EntityType>
         <EntityType Name="KHACHHANG">
@@ -512,8 +519,8 @@
           <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DIACHI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__MAKH__2F10007B" FromRole="KHACHHANG" ToRole="HOADON" />
-          <NavigationProperty Name="LOAIKH" Relationship="Self.FK__KHACHHANG__MALOA__2B3F6F97" FromRole="KHACHHANG" ToRole="LOAIKH" />
+          <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__MAKH__30F848ED" FromRole="KHACHHANG" ToRole="HOADON" />
+          <NavigationProperty Name="LOAIKH" Relationship="Self.FK__KHACHHANG__MALOA__32E0915F" FromRole="KHACHHANG" ToRole="LOAIKH" />
         </EntityType>
         <EntityType Name="LICHCHIEU">
           <Key>
@@ -527,9 +534,9 @@
           <Property Name="GIOBATDAU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="GIOKETTHUC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CT_PHIM" Relationship="Self.FK__LICHCHIEU__173876EA" FromRole="LICHCHIEU" ToRole="CT_PHIM" />
-          <NavigationProperty Name="PHONGCHIEU" Relationship="Self.FK__LICHCHIEU__MAPHO__182C9B23" FromRole="LICHCHIEU" ToRole="PHONGCHIEU" />
-          <NavigationProperty Name="VEs" Relationship="Self.FK__VE__MALICHCHIEU__1B0907CE" FromRole="LICHCHIEU" ToRole="VE" />
+          <NavigationProperty Name="CT_PHIM" Relationship="Self.FK__LICHCHIEU__33D4B598" FromRole="LICHCHIEU" ToRole="CT_PHIM" />
+          <NavigationProperty Name="PHONGCHIEU" Relationship="Self.FK__LICHCHIEU__MAPHO__34C8D9D1" FromRole="LICHCHIEU" ToRole="PHONGCHIEU" />
+          <NavigationProperty Name="VEs" Relationship="Self.FK__VE__MALICHCHIEU__398D8EEE" FromRole="LICHCHIEU" ToRole="VE" />
         </EntityType>
         <EntityType Name="LICHLAMVIEC">
           <Key>
@@ -543,9 +550,9 @@
           <Property Name="MACA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="MANGS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TINHTRANG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CALAM" Relationship="Self.FK__LICHLAMVIE__MACA__25869641" FromRole="LICHLAMVIEC" ToRole="CALAM" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__LICHLAMVI__MANGS__267ABA7A" FromRole="LICHLAMVIEC" ToRole="NHANVIEN" />
-          <NavigationProperty Name="NHANVIEN1" Relationship="Self.FK__LICHLAMVIE__MANV__24927208" FromRole="LICHLAMVIEC" ToRole="NHANVIEN" />
+          <NavigationProperty Name="CALAM" Relationship="Self.FK__LICHLAMVIE__MACA__36B12243" FromRole="LICHLAMVIEC" ToRole="CALAM" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__LICHLAMVI__MANGS__35BCFE0A" FromRole="LICHLAMVIEC" ToRole="NHANVIEN" />
+          <NavigationProperty Name="NHANVIEN1" Relationship="Self.FK__LICHLAMVIE__MANV__37A5467C" FromRole="LICHLAMVIEC" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="LOAIKH">
           <Key>
@@ -553,7 +560,7 @@
           </Key>
           <Property Name="MALOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DIEM" Type="Int32" />
-          <NavigationProperty Name="KHACHHANGs" Relationship="Self.FK__KHACHHANG__MALOA__2B3F6F97" FromRole="LOAIKH" ToRole="KHACHHANG" />
+          <NavigationProperty Name="KHACHHANGs" Relationship="Self.FK__KHACHHANG__MALOA__32E0915F" FromRole="LOAIKH" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
@@ -571,12 +578,12 @@
           <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DIACHI" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="TINHTRANG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CHUCVU" Relationship="Self.FK__NHANVIEN__MACHUC__1FCDBCEB" FromRole="NHANVIEN" ToRole="CHUCVU" />
-          <NavigationProperty Name="CT_BANGLUONG" Relationship="Self.FK__CT_BANGLUO__MANV__38996AB5" FromRole="NHANVIEN" ToRole="CT_BANGLUONG" />
-          <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__MANV__2E1BDC42" FromRole="NHANVIEN" ToRole="HOADON" />
-          <NavigationProperty Name="LICHLAMVIECs" Relationship="Self.FK__LICHLAMVI__MANGS__267ABA7A" FromRole="NHANVIEN" ToRole="LICHLAMVIEC" />
-          <NavigationProperty Name="LICHLAMVIECs1" Relationship="Self.FK__LICHLAMVIE__MANV__24927208" FromRole="NHANVIEN" ToRole="LICHLAMVIEC" />
           <Property Name="AVARTA" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CHUCVU" Relationship="Self.FK__NHANVIEN__MACHUC__38996AB5" FromRole="NHANVIEN" ToRole="CHUCVU" />
+          <NavigationProperty Name="CT_BANGLUONG" Relationship="Self.FK__CT_BANGLUO__MANV__2D27B809" FromRole="NHANVIEN" ToRole="CT_BANGLUONG" />
+          <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__MANV__31EC6D26" FromRole="NHANVIEN" ToRole="HOADON" />
+          <NavigationProperty Name="LICHLAMVIECs" Relationship="Self.FK__LICHLAMVI__MANGS__35BCFE0A" FromRole="NHANVIEN" ToRole="LICHLAMVIEC" />
+          <NavigationProperty Name="LICHLAMVIECs1" Relationship="Self.FK__LICHLAMVIE__MANV__37A5467C" FromRole="NHANVIEN" ToRole="LICHLAMVIEC" />
         </EntityType>
         <EntityType Name="PHIM">
           <Key>
@@ -592,7 +599,7 @@
           <Property Name="DIENVIEN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CHITIET" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CT_PHIM" Relationship="Self.FK__CT_PHIM__MAPHIM__145C0A3F" FromRole="PHIM" ToRole="CT_PHIM" />
+          <NavigationProperty Name="CT_PHIM" Relationship="Self.FK__CT_PHIM__MAPHIM__300424B4" FromRole="PHIM" ToRole="CT_PHIM" />
         </EntityType>
         <EntityType Name="PHONGCHIEU">
           <Key>
@@ -602,7 +609,7 @@
           <Property Name="TENPHONGCHIEU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SOGHE" Type="Int32" />
           <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LICHCHIEUx" Relationship="Self.FK__LICHCHIEU__MAPHO__182C9B23" FromRole="PHONGCHIEU" ToRole="LICHCHIEU" />
+          <NavigationProperty Name="LICHCHIEUx" Relationship="Self.FK__LICHCHIEU__MAPHO__34C8D9D1" FromRole="PHONGCHIEU" ToRole="LICHCHIEU" />
         </EntityType>
         <EntityType Name="VE">
           <Key>
@@ -611,10 +618,10 @@
           <Property Name="MAVE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MALICHCHIEU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="STTGHE" Type="Int32" />
-          <NavigationProperty Name="LICHCHIEU" Relationship="Self.FK__VE__MALICHCHIEU__1B0907CE" FromRole="VE" ToRole="LICHCHIEU" />
+          <NavigationProperty Name="LICHCHIEU" Relationship="Self.FK__VE__MALICHCHIEU__398D8EEE" FromRole="VE" ToRole="LICHCHIEU" />
           <NavigationProperty Name="HOADONs" Relationship="Self.CT_HOADON" FromRole="VE" ToRole="HOADON" />
         </EntityType>
-        <Association Name="FK__CT_BANGLU__MABAN__37A5467C">
+        <Association Name="FK__CT_BANGLU__MABAN__2C3393D0">
           <End Role="BANGLUONG" Type="Self.BANGLUONG" Multiplicity="1" />
           <End Role="CT_BANGLUONG" Type="Self.CT_BANGLUONG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -626,7 +633,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHLAMVIE__MACA__25869641">
+        <Association Name="FK__LICHLAMVIE__MACA__36B12243">
           <End Role="CALAM" Type="Self.CALAM" Multiplicity="0..1" />
           <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -638,7 +645,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NHANVIEN__MACHUC__1FCDBCEB">
+        <Association Name="FK__NHANVIEN__MACHUC__38996AB5">
           <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="0..1" />
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -650,7 +657,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_BANGLUO__MANV__38996AB5">
+        <Association Name="FK__CT_BANGLUO__MANV__2D27B809">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="CT_BANGLUONG" Type="Self.CT_BANGLUONG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -662,7 +669,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_PHIM__MAPHIM__145C0A3F">
+        <Association Name="FK__CT_PHIM__MAPHIM__300424B4">
           <End Role="PHIM" Type="Self.PHIM" Multiplicity="1" />
           <End Role="CT_PHIM" Type="Self.CT_PHIM" Multiplicity="*" />
           <ReferentialConstraint>
@@ -674,7 +681,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHCHIEU__173876EA">
+        <Association Name="FK__LICHCHIEU__33D4B598">
           <End Role="CT_PHIM" Type="Self.CT_PHIM" Multiplicity="0..1" />
           <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -688,7 +695,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOADON__MAKH__2F10007B">
+        <Association Name="FK__HOADON__MAKH__30F848ED">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -700,7 +707,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOADON__MANV__2E1BDC42">
+        <Association Name="FK__HOADON__MANV__31EC6D26">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -712,7 +719,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KHACHHANG__MALOA__2B3F6F97">
+        <Association Name="FK__KHACHHANG__MALOA__32E0915F">
           <End Role="LOAIKH" Type="Self.LOAIKH" Multiplicity="0..1" />
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -724,7 +731,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHCHIEU__MAPHO__182C9B23">
+        <Association Name="FK__LICHCHIEU__MAPHO__34C8D9D1">
           <End Role="PHONGCHIEU" Type="Self.PHONGCHIEU" Multiplicity="0..1" />
           <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -736,7 +743,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VE__MALICHCHIEU__1B0907CE">
+        <Association Name="FK__VE__MALICHCHIEU__398D8EEE">
           <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="0..1" />
           <End Role="VE" Type="Self.VE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -748,7 +755,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHLAMVI__MANGS__267ABA7A">
+        <Association Name="FK__LICHLAMVI__MANGS__35BCFE0A">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -760,7 +767,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHLAMVIE__MANV__24927208">
+        <Association Name="FK__LICHLAMVIE__MANV__37A5467C">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -791,55 +798,55 @@
           <EntitySet Name="PHIMs" EntityType="Self.PHIM" />
           <EntitySet Name="PHONGCHIEUx" EntityType="Self.PHONGCHIEU" />
           <EntitySet Name="VEs" EntityType="Self.VE" />
-          <AssociationSet Name="FK__CT_BANGLU__MABAN__37A5467C" Association="Self.FK__CT_BANGLU__MABAN__37A5467C">
+          <AssociationSet Name="FK__CT_BANGLU__MABAN__2C3393D0" Association="Self.FK__CT_BANGLU__MABAN__2C3393D0">
             <End Role="BANGLUONG" EntitySet="BANGLUONGs" />
             <End Role="CT_BANGLUONG" EntitySet="CT_BANGLUONG" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHLAMVIE__MACA__25869641" Association="Self.FK__LICHLAMVIE__MACA__25869641">
+          <AssociationSet Name="FK__LICHLAMVIE__MACA__36B12243" Association="Self.FK__LICHLAMVIE__MACA__36B12243">
             <End Role="CALAM" EntitySet="CALAMs" />
             <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIECs" />
           </AssociationSet>
-          <AssociationSet Name="FK__NHANVIEN__MACHUC__1FCDBCEB" Association="Self.FK__NHANVIEN__MACHUC__1FCDBCEB">
+          <AssociationSet Name="FK__NHANVIEN__MACHUC__38996AB5" Association="Self.FK__NHANVIEN__MACHUC__38996AB5">
             <End Role="CHUCVU" EntitySet="CHUCVUs" />
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_BANGLUO__MANV__38996AB5" Association="Self.FK__CT_BANGLUO__MANV__38996AB5">
+          <AssociationSet Name="FK__CT_BANGLUO__MANV__2D27B809" Association="Self.FK__CT_BANGLUO__MANV__2D27B809">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="CT_BANGLUONG" EntitySet="CT_BANGLUONG" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_PHIM__MAPHIM__145C0A3F" Association="Self.FK__CT_PHIM__MAPHIM__145C0A3F">
+          <AssociationSet Name="FK__CT_PHIM__MAPHIM__300424B4" Association="Self.FK__CT_PHIM__MAPHIM__300424B4">
             <End Role="PHIM" EntitySet="PHIMs" />
             <End Role="CT_PHIM" EntitySet="CT_PHIM" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHCHIEU__173876EA" Association="Self.FK__LICHCHIEU__173876EA">
+          <AssociationSet Name="FK__LICHCHIEU__33D4B598" Association="Self.FK__LICHCHIEU__33D4B598">
             <End Role="CT_PHIM" EntitySet="CT_PHIM" />
             <End Role="LICHCHIEU" EntitySet="LICHCHIEUx" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOADON__MAKH__2F10007B" Association="Self.FK__HOADON__MAKH__2F10007B">
+          <AssociationSet Name="FK__HOADON__MAKH__30F848ED" Association="Self.FK__HOADON__MAKH__30F848ED">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="HOADON" EntitySet="HOADONs" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOADON__MANV__2E1BDC42" Association="Self.FK__HOADON__MANV__2E1BDC42">
+          <AssociationSet Name="FK__HOADON__MANV__31EC6D26" Association="Self.FK__HOADON__MANV__31EC6D26">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="HOADON" EntitySet="HOADONs" />
           </AssociationSet>
-          <AssociationSet Name="FK__KHACHHANG__MALOA__2B3F6F97" Association="Self.FK__KHACHHANG__MALOA__2B3F6F97">
+          <AssociationSet Name="FK__KHACHHANG__MALOA__32E0915F" Association="Self.FK__KHACHHANG__MALOA__32E0915F">
             <End Role="LOAIKH" EntitySet="LOAIKHs" />
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHCHIEU__MAPHO__182C9B23" Association="Self.FK__LICHCHIEU__MAPHO__182C9B23">
+          <AssociationSet Name="FK__LICHCHIEU__MAPHO__34C8D9D1" Association="Self.FK__LICHCHIEU__MAPHO__34C8D9D1">
             <End Role="PHONGCHIEU" EntitySet="PHONGCHIEUx" />
             <End Role="LICHCHIEU" EntitySet="LICHCHIEUx" />
           </AssociationSet>
-          <AssociationSet Name="FK__VE__MALICHCHIEU__1B0907CE" Association="Self.FK__VE__MALICHCHIEU__1B0907CE">
+          <AssociationSet Name="FK__VE__MALICHCHIEU__398D8EEE" Association="Self.FK__VE__MALICHCHIEU__398D8EEE">
             <End Role="LICHCHIEU" EntitySet="LICHCHIEUx" />
             <End Role="VE" EntitySet="VEs" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHLAMVI__MANGS__267ABA7A" Association="Self.FK__LICHLAMVI__MANGS__267ABA7A">
+          <AssociationSet Name="FK__LICHLAMVI__MANGS__35BCFE0A" Association="Self.FK__LICHLAMVI__MANGS__35BCFE0A">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIECs" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHLAMVIE__MANV__24927208" Association="Self.FK__LICHLAMVIE__MANV__24927208">
+          <AssociationSet Name="FK__LICHLAMVIE__MANV__37A5467C" Association="Self.FK__LICHLAMVIE__MANV__37A5467C">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIECs" />
           </AssociationSet>
@@ -970,7 +977,6 @@
           <EntitySetMapping Name="NHANVIENs">
             <EntityTypeMapping TypeName="QuanLyCinemaModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
-                <ScalarProperty Name="AVARTA" ColumnName="AVARTA" />
                 <ScalarProperty Name="MANV" ColumnName="MANV" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
@@ -983,6 +989,7 @@
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
                 <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="AVARTA" ColumnName="AVARTA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

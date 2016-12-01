@@ -117,7 +117,6 @@
     <EntitySetMapping Name="NHANVIENs">
       <EntityTypeMapping TypeName="QuanLyCinemaModel.NHANVIEN">
         <MappingFragment StoreEntitySet="NHANVIEN">
-          <ScalarProperty Name="AVARTA" ColumnName="AVARTA" />
           <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
@@ -130,6 +129,7 @@
           <ScalarProperty Name="SDT" ColumnName="SDT" />
           <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
           <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+          <ScalarProperty Name="AVARTA" ColumnName="AVARTA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

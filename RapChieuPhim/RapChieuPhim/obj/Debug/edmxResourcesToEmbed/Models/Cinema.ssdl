@@ -155,6 +155,12 @@
     <Property Name="SOGHE" Type="int" />
     <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="THAMSO">
+          <Property Name="TIENVON" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="GIAVE" Type="int" />
+        </EntityType>-->
   <EntityType Name="VE">
     <Key>
       <PropertyRef Name="MAVE" />
@@ -163,7 +169,7 @@
     <Property Name="MALICHCHIEU" Type="varchar" MaxLength="20" />
     <Property Name="STTGHE" Type="int" />
   </EntityType>
-  <Association Name="FK__CT_BANGLU__MABAN__37A5467C">
+  <Association Name="FK__CT_BANGLU__MABAN__2C3393D0">
     <End Role="BANGLUONG" Type="Self.BANGLUONG" Multiplicity="1" />
     <End Role="CT_BANGLUONG" Type="Self.CT_BANGLUONG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -175,7 +181,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CT_BANGLUO__MANV__38996AB5">
+  <Association Name="FK__CT_BANGLUO__MANV__2D27B809">
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
     <End Role="CT_BANGLUONG" Type="Self.CT_BANGLUONG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -187,7 +193,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CT_HOADON__MAHD__31EC6D26">
+  <Association Name="FK__CT_HOADON__MAHD__2E1BDC42">
     <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
     <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
     <ReferentialConstraint>
@@ -199,7 +205,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CT_HOADON__MAVE__32E0915F">
+  <Association Name="FK__CT_HOADON__MAVE__2F10007B">
     <End Role="VE" Type="Self.VE" Multiplicity="1" />
     <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
     <ReferentialConstraint>
@@ -211,7 +217,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CT_PHIM__MAPHIM__145C0A3F">
+  <Association Name="FK__CT_PHIM__MAPHIM__300424B4">
     <End Role="PHIM" Type="Self.PHIM" Multiplicity="1" />
     <End Role="CT_PHIM" Type="Self.CT_PHIM" Multiplicity="*" />
     <ReferentialConstraint>
@@ -223,7 +229,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__HOADON__MAKH__2F10007B">
+  <Association Name="FK__HOADON__MAKH__30F848ED">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
     <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
     <ReferentialConstraint>
@@ -235,7 +241,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__HOADON__MANV__2E1BDC42">
+  <Association Name="FK__HOADON__MANV__31EC6D26">
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
     <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
     <ReferentialConstraint>
@@ -247,7 +253,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__KHACHHANG__MALOA__2B3F6F97">
+  <Association Name="FK__KHACHHANG__MALOA__32E0915F">
     <End Role="LOAIKH" Type="Self.LOAIKH" Multiplicity="0..1" />
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -259,7 +265,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHCHIEU__173876EA">
+  <Association Name="FK__LICHCHIEU__33D4B598">
     <End Role="CT_PHIM" Type="Self.CT_PHIM" Multiplicity="0..1" />
     <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="*" />
     <ReferentialConstraint>
@@ -273,7 +279,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHCHIEU__MAPHO__182C9B23">
+  <Association Name="FK__LICHCHIEU__MAPHO__34C8D9D1">
     <End Role="PHONGCHIEU" Type="Self.PHONGCHIEU" Multiplicity="0..1" />
     <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="*" />
     <ReferentialConstraint>
@@ -285,7 +291,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHLAMVI__MANGS__267ABA7A">
+  <Association Name="FK__LICHLAMVI__MANGS__35BCFE0A">
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
     <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
     <ReferentialConstraint>
@@ -297,7 +303,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHLAMVIE__MACA__25869641">
+  <Association Name="FK__LICHLAMVIE__MACA__36B12243">
     <End Role="CALAM" Type="Self.CALAM" Multiplicity="0..1" />
     <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
     <ReferentialConstraint>
@@ -309,7 +315,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LICHLAMVIE__MANV__24927208">
+  <Association Name="FK__LICHLAMVIE__MANV__37A5467C">
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
     <End Role="LICHLAMVIEC" Type="Self.LICHLAMVIEC" Multiplicity="*" />
     <ReferentialConstraint>
@@ -321,7 +327,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NHANVIEN__MACHUC__1FCDBCEB">
+  <Association Name="FK__NHANVIEN__MACHUC__38996AB5">
     <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="0..1" />
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
     <ReferentialConstraint>
@@ -333,7 +339,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__VE__MALICHCHIEU__1B0907CE">
+  <Association Name="FK__VE__MALICHCHIEU__398D8EEE">
     <End Role="LICHCHIEU" Type="Self.LICHCHIEU" Multiplicity="0..1" />
     <End Role="VE" Type="Self.VE" Multiplicity="*" />
     <ReferentialConstraint>
@@ -361,63 +367,63 @@
     <EntitySet Name="PHIM" EntityType="Self.PHIM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PHONGCHIEU" EntityType="Self.PHONGCHIEU" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VE" EntityType="Self.VE" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__CT_BANGLU__MABAN__37A5467C" Association="Self.FK__CT_BANGLU__MABAN__37A5467C">
+    <AssociationSet Name="FK__CT_BANGLU__MABAN__2C3393D0" Association="Self.FK__CT_BANGLU__MABAN__2C3393D0">
       <End Role="BANGLUONG" EntitySet="BANGLUONG" />
       <End Role="CT_BANGLUONG" EntitySet="CT_BANGLUONG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CT_BANGLUO__MANV__38996AB5" Association="Self.FK__CT_BANGLUO__MANV__38996AB5">
+    <AssociationSet Name="FK__CT_BANGLUO__MANV__2D27B809" Association="Self.FK__CT_BANGLUO__MANV__2D27B809">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="CT_BANGLUONG" EntitySet="CT_BANGLUONG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CT_HOADON__MAHD__31EC6D26" Association="Self.FK__CT_HOADON__MAHD__31EC6D26">
+    <AssociationSet Name="FK__CT_HOADON__MAHD__2E1BDC42" Association="Self.FK__CT_HOADON__MAHD__2E1BDC42">
       <End Role="HOADON" EntitySet="HOADON" />
       <End Role="CT_HOADON" EntitySet="CT_HOADON" />
     </AssociationSet>
-    <AssociationSet Name="FK__CT_HOADON__MAVE__32E0915F" Association="Self.FK__CT_HOADON__MAVE__32E0915F">
+    <AssociationSet Name="FK__CT_HOADON__MAVE__2F10007B" Association="Self.FK__CT_HOADON__MAVE__2F10007B">
       <End Role="VE" EntitySet="VE" />
       <End Role="CT_HOADON" EntitySet="CT_HOADON" />
     </AssociationSet>
-    <AssociationSet Name="FK__CT_PHIM__MAPHIM__145C0A3F" Association="Self.FK__CT_PHIM__MAPHIM__145C0A3F">
+    <AssociationSet Name="FK__CT_PHIM__MAPHIM__300424B4" Association="Self.FK__CT_PHIM__MAPHIM__300424B4">
       <End Role="PHIM" EntitySet="PHIM" />
       <End Role="CT_PHIM" EntitySet="CT_PHIM" />
     </AssociationSet>
-    <AssociationSet Name="FK__HOADON__MAKH__2F10007B" Association="Self.FK__HOADON__MAKH__2F10007B">
+    <AssociationSet Name="FK__HOADON__MAKH__30F848ED" Association="Self.FK__HOADON__MAKH__30F848ED">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="HOADON" EntitySet="HOADON" />
     </AssociationSet>
-    <AssociationSet Name="FK__HOADON__MANV__2E1BDC42" Association="Self.FK__HOADON__MANV__2E1BDC42">
+    <AssociationSet Name="FK__HOADON__MANV__31EC6D26" Association="Self.FK__HOADON__MANV__31EC6D26">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="HOADON" EntitySet="HOADON" />
     </AssociationSet>
-    <AssociationSet Name="FK__KHACHHANG__MALOA__2B3F6F97" Association="Self.FK__KHACHHANG__MALOA__2B3F6F97">
+    <AssociationSet Name="FK__KHACHHANG__MALOA__32E0915F" Association="Self.FK__KHACHHANG__MALOA__32E0915F">
       <End Role="LOAIKH" EntitySet="LOAIKH" />
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__LICHCHIEU__173876EA" Association="Self.FK__LICHCHIEU__173876EA">
+    <AssociationSet Name="FK__LICHCHIEU__33D4B598" Association="Self.FK__LICHCHIEU__33D4B598">
       <End Role="CT_PHIM" EntitySet="CT_PHIM" />
       <End Role="LICHCHIEU" EntitySet="LICHCHIEU" />
     </AssociationSet>
-    <AssociationSet Name="FK__LICHCHIEU__MAPHO__182C9B23" Association="Self.FK__LICHCHIEU__MAPHO__182C9B23">
+    <AssociationSet Name="FK__LICHCHIEU__MAPHO__34C8D9D1" Association="Self.FK__LICHCHIEU__MAPHO__34C8D9D1">
       <End Role="PHONGCHIEU" EntitySet="PHONGCHIEU" />
       <End Role="LICHCHIEU" EntitySet="LICHCHIEU" />
     </AssociationSet>
-    <AssociationSet Name="FK__LICHLAMVI__MANGS__267ABA7A" Association="Self.FK__LICHLAMVI__MANGS__267ABA7A">
+    <AssociationSet Name="FK__LICHLAMVI__MANGS__35BCFE0A" Association="Self.FK__LICHLAMVI__MANGS__35BCFE0A">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIEC" />
     </AssociationSet>
-    <AssociationSet Name="FK__LICHLAMVIE__MACA__25869641" Association="Self.FK__LICHLAMVIE__MACA__25869641">
+    <AssociationSet Name="FK__LICHLAMVIE__MACA__36B12243" Association="Self.FK__LICHLAMVIE__MACA__36B12243">
       <End Role="CALAM" EntitySet="CALAM" />
       <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIEC" />
     </AssociationSet>
-    <AssociationSet Name="FK__LICHLAMVIE__MANV__24927208" Association="Self.FK__LICHLAMVIE__MANV__24927208">
+    <AssociationSet Name="FK__LICHLAMVIE__MANV__37A5467C" Association="Self.FK__LICHLAMVIE__MANV__37A5467C">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="LICHLAMVIEC" EntitySet="LICHLAMVIEC" />
     </AssociationSet>
-    <AssociationSet Name="FK__NHANVIEN__MACHUC__1FCDBCEB" Association="Self.FK__NHANVIEN__MACHUC__1FCDBCEB">
+    <AssociationSet Name="FK__NHANVIEN__MACHUC__38996AB5" Association="Self.FK__NHANVIEN__MACHUC__38996AB5">
       <End Role="CHUCVU" EntitySet="CHUCVU" />
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
     </AssociationSet>
-    <AssociationSet Name="FK__VE__MALICHCHIEU__1B0907CE" Association="Self.FK__VE__MALICHCHIEU__1B0907CE">
+    <AssociationSet Name="FK__VE__MALICHCHIEU__398D8EEE" Association="Self.FK__VE__MALICHCHIEU__398D8EEE">
       <End Role="LICHCHIEU" EntitySet="LICHCHIEU" />
       <End Role="VE" EntitySet="VE" />
     </AssociationSet>
