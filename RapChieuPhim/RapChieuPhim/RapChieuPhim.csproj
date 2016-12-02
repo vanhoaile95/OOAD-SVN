@@ -188,6 +188,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BanVeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -229,6 +230,7 @@
     <Compile Include="Models\KHACHHANG.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KhachHang\JoinTable.cs" />
     <Compile Include="Models\LICHCHIEU.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>
@@ -472,6 +474,8 @@
     <Content Include="Views\Home\LoginTextPartial.cshtml" />
     <Content Include="Views\BanVe\Index.cshtml" />
     <Content Include="Views\BanVe\LoadGhe.cshtml" />
+    <Content Include="Views\KhachHang\Index.cshtml" />
+    <Content Include="Views\KhachHang\LoadKhachHang.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
