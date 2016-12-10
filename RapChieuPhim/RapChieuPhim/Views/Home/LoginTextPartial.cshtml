@@ -1,68 +1,118 @@
 ﻿<style>
-    ul.dropdownlogin {
-        min-width: 30%; /* Set width of the dropdown */
-        display: none;
-        position: absolute;
-        z-index: 999;
-        right: auto;
+
+    .sidenav {
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 0;
+        right: 0;
+        background-color: #111; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     }
 
-    li:hover ul.dropdownlogin {
-        display: block; /* Display the dropdown */
-    }
-
-    li ul.dropdownlogin li {
-        display: block;
-    }
-
-    ul.dropdownlogin li {
-        background: #ffffff;
-    }
-
-    #dropdownitem {
-        background: #ffffff;
-        color: black;
-        text-transform: none;
-    }
-
-
-        #dropdownitem:hover {
-            color: #ff0000;
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
         }
+
+            .sidenav a:hover, .offcanvas a:focus {
+                color: #f1f1f1;
+            }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+
+ 
 </style>
 
 
 @{
     HttpCookie ck = Request.Cookies["TenDangNhap"];
     var nv = Session["User"] as RapChieuPhim.Models.NHANVIEN;
-
+ 
+  
+    
     //Nếu đã có cookie
     if (nv != null && ck != null)
     {
         //Load thông tin User
         string[] names = nv.HOTEN.Split(' ');
-        <li>@names.Last()</li>
+
 
         //Load ảnh từ database dạng byte , convert sang định dạng string ảnh
+
         if (nv.AVARTA != null)
         {
             var base64 = Convert.ToBase64String(nv.AVARTA);
             var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-
-
-            <li><img class="img-circle" src="@imgsrc" height="40" width="40" /></li>
+            <img id="avarta" class="img-circle" src="@string.Format("data:image/jpg;base64,{0}",Convert.ToBase64String(nv.AVARTA) )" height="50" width="50" style="cursor: pointer; float:right " onclick="openNav()" />
         }
-        <li>
-            <a href="@Url.Action("Index", new {delete = "Yes" })">Logout <b class="caret"></b></a>
-            <ul class="dropdownlogin">
-                <li><a href="#" id="dropdownitem">Thông tin chi tiết</a></li>
-                <li><a href="@Url.Action("ChangePassword","Home")" id="dropdownitem">Đổi mật khẩu</a></li>
-            </ul>
+        else
+        {
+            <img id="avarta" class="img-circle" src="~/Images/user.jpg" height="50" width="50" style="cursor: pointer; float:right " onclick="openNav()" />
+        }
 
-        </li>
 
+
+
+
+
+
+
+  <div id="mySidenav" class="sidenav">
+  
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a style="color: #f1f1f1; background-color: #FF8D1B">@names.Last()</a>
+  <a href="@Url.Action("Detail","Home")">Chi tiết</a>
+      <a href="@Url.Action("ChangePassword","Home")">Đổi mật khẩu</a>
+      <a href="@Url.Action("Index", new {delete = "Yes" })">Đăng xuất</a>
+
+</div>
+
+<!-- Use any element to open the sidenav -->
+    
+        
      
-        var nhanvien = Session["User"] as RapChieuPhim.Models.NHANVIEN;
+    
+
+
+    <script>
+        $('#avarta').click(function () {
+            if ($('.dropdownlogin').css('display') == 'none')
+                $('.dropdownlogin').css('display', 'block');
+            else
+                $('.dropdownlogin').css('display', 'none');
+        });
+
+        /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "280px";
+     
+        }
+
+        /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            
+        }
+
+
+    </script>
+     
+        
     
     
    

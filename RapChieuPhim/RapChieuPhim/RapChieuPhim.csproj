@@ -55,6 +55,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -476,6 +477,7 @@
     <Content Include="Views\BanVe\LoadGhe.cshtml" />
     <Content Include="Views\KhachHang\Index.cshtml" />
     <Content Include="Views\KhachHang\LoadKhachHang.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

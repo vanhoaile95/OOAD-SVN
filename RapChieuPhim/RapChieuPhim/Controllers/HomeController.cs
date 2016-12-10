@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using RapChieuPhim.Models;
 using BusinessTier;
 namespace RapChieuPhim.Controllers
@@ -78,8 +79,48 @@ namespace RapChieuPhim.Controllers
 
             return View();
         }
+        [HttpGet]
+        public ActionResult Detail()
+          {
+
+              return View(Session["User"] as NHANVIEN);
+          }
+        [HttpPost]
+        public ActionResult Detail(NHANVIEN nv, HttpPostedFileBase FileName = null)
+        {
+            if (FileName != null && FileName.ContentLength > 0)
+            {
+                
+                    // extract only the fielname
+                    var fileName = Path.GetFileName(FileName.FileName);
+                    // store the file inside ~Images folder
+                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    FileName.SaveAs(path);
 
 
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
+                
+            }
+            try
+            {
+               
+                    string MANV = (Session["User"] as NHANVIEN).MANV;
+                    new HomeBS().UpdateUser(nv, MANV);
+                    Session["User"] = new QuanLyCinemaEntities().NHANVIENs.SingleOrDefault(n => n.MANV == MANV);
+
+                    return View(Session["User"] as NHANVIEN);  
+            }
+            catch
+            {
+                return View(Session["User"] as NHANVIEN);
+            }
+
+            
+        }
+      
 
         public void XoaCookie()
         {

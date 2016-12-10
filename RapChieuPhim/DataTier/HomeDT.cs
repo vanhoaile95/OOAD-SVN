@@ -17,11 +17,28 @@ namespace DataTier
             db = new QuanLyCinemaEntities();
             NHANVIEN nv = db.NHANVIENs.SingleOrDefault(n => n.MANV == nvtemp.MANV);
             nv.PASSWORD = nvtemp.PASSWORD;
-            db.Entry(nv).State = System.Data.EntityState.Modified;
-            db.SaveChanges();
+          
+                db.Entry(nv).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
+          
+           
+        }
+        public void UpdateUser(NHANVIEN nvtemp,string MANV)
+        {
+            db = new QuanLyCinemaEntities();
+            NHANVIEN nv = db.NHANVIENs.SingleOrDefault(n => n.MANV == MANV);
+            nv.HOTEN = nvtemp.HOTEN;
+            nv.NGAYSINH = nvtemp.NGAYSINH;
+            nv.GIOITINH = nvtemp.GIOITINH;
+            nv.CMND = nvtemp.CMND;
+            nv.EMAIL = nvtemp.EMAIL;
+            nv.SDT = nvtemp.SDT;
+            nv.DIACHI = nvtemp.DIACHI;
+           
+                db.Entry(nv).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
             
-
-            
+          
         }
       
     

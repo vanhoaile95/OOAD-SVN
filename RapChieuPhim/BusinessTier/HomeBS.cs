@@ -14,6 +14,10 @@ namespace BusinessTier
         {
             Db.DoiMatKhauUser( nv);
         }
-       
+     
+        public void UpdateUser(NHANVIEN nv,string MANV)
+        {
+            Db.UpdateUser(nv,MANV);
+        }
     }
 }
