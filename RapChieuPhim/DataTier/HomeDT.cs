@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using RapChieuPhim.Models;
-
+using System.IO;
 namespace DataTier
 {
     
@@ -23,7 +23,7 @@ namespace DataTier
           
            
         }
-        public void UpdateUser(NHANVIEN nvtemp,string MANV)
+        public void UpdateUser(NHANVIEN nvtemp,string MANV,string path)
         {
             db = new QuanLyCinemaEntities();
             NHANVIEN nv = db.NHANVIENs.SingleOrDefault(n => n.MANV == MANV);
@@ -34,7 +34,16 @@ namespace DataTier
             nv.EMAIL = nvtemp.EMAIL;
             nv.SDT = nvtemp.SDT;
             nv.DIACHI = nvtemp.DIACHI;
+
+            //Update ảnh xuống database
+            byte[] img = null;
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            img = br.ReadBytes((int)fs.Length); // File ảnh đc chuyển sang byte[] để lưu xuống database
+            nv.AVARTA = img;
            
+
+
                 db.Entry(nv).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
             

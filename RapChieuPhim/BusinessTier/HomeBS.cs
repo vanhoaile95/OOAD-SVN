@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Threading.Tasks;
 using DataTier;
 using RapChieuPhim.Models;
@@ -14,10 +15,10 @@ namespace BusinessTier
         {
             Db.DoiMatKhauUser( nv);
         }
-     
-        public void UpdateUser(NHANVIEN nv,string MANV)
+
+        public void UpdateUser(NHANVIEN nv, string MANV,string path)
         {
-            Db.UpdateUser(nv,MANV);
+            Db.UpdateUser(nv,MANV,path);
         }
     }
 }

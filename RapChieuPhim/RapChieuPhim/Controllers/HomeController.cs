@@ -10,8 +10,9 @@ namespace RapChieuPhim.Controllers
 {
     public class HomeController : Controller
     {
-        
-      
+      public static object PathIM = null;
+    
+     
         public ActionResult Index(string username,string password,string Email,string Phone,string delete)
         {
                 //Xóa cookie khi click Logout (truyền delete = 'yes' khi click Logout)
@@ -88,36 +89,42 @@ namespace RapChieuPhim.Controllers
         [HttpPost]
         public ActionResult Detail(NHANVIEN nv, HttpPostedFileBase FileName = null)
         {
+
+            var path = "";
             if (FileName != null && FileName.ContentLength > 0)
             {
-                
-                    // extract only the fielname
-                    var fileName = Path.GetFileName(FileName.FileName);
-                    // store the file inside ~Images folder
-                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    FileName.SaveAs(path);
+                //Get Path image
+                // extract only the fielname
+                var fileName = Path.GetFileName(FileName.FileName);
+                // Lưu the file inside ~Images folder
+                path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                FileName.SaveAs(path);
+
+               
 
 
+               
+            } 
+            
+                try
+                {
+                    //Update dữ liệu chi tiết user
+                    string MANV = (Session["User"] as NHANVIEN).MANV;
+                    new HomeBS().UpdateUser(nv, MANV,path);
+                    Session["User"] = new QuanLyCinemaEntities().NHANVIENs.SingleOrDefault(n => n.MANV == MANV);
+                    //Xóa ảnh từ ~Image folder
                     if (System.IO.File.Exists(path))
                     {
                         System.IO.File.Delete(path);
                     }
-                
-            }
-            try
-            {
-               
-                    string MANV = (Session["User"] as NHANVIEN).MANV;
-                    new HomeBS().UpdateUser(nv, MANV);
-                    Session["User"] = new QuanLyCinemaEntities().NHANVIENs.SingleOrDefault(n => n.MANV == MANV);
 
-                    return View(Session["User"] as NHANVIEN);  
-            }
-            catch
-            {
-                return View(Session["User"] as NHANVIEN);
-            }
-
+                    return View(Session["User"] as NHANVIEN);
+                }
+                catch
+                {
+                    return View(Session["User"] as NHANVIEN);
+                }
+            
             
         }
       
