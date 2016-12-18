@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
-using RapChieuPhim.Models;
 using System.IO;
+using DataEntityFramework;
 namespace DataTier
 {
-    
+
     public class HomeDT
     {
+        
         QuanLyCinemaEntities db = null;
-        public void DoiMatKhauUser( NHANVIEN nvtemp)
+        public void DoiMatKhauUser(NHANVIEN nvtemp)
         {
 
             db = new QuanLyCinemaEntities();
             NHANVIEN nv = db.NHANVIENs.SingleOrDefault(n => n.MANV == nvtemp.MANV);
             nv.PASSWORD = nvtemp.PASSWORD;
-          
-                db.Entry(nv).State = System.Data.EntityState.Modified;
-                db.SaveChanges();
-          
-           
+
+            db.Entry(nv).State = System.Data.EntityState.Modified;
+            db.SaveChanges();
+
+
         }
-        public void UpdateUser(NHANVIEN nvtemp,string MANV,string path)
+        public void UpdateUser(NHANVIEN nvtemp, string MANV, string path)
         {
             db = new QuanLyCinemaEntities();
             NHANVIEN nv = db.NHANVIENs.SingleOrDefault(n => n.MANV == MANV);
@@ -41,15 +42,15 @@ namespace DataTier
             BinaryReader br = new BinaryReader(fs);
             img = br.ReadBytes((int)fs.Length); // File ảnh đc chuyển sang byte[] để lưu xuống database
             nv.AVARTA = img;
-           
 
 
-                db.Entry(nv).State = System.Data.EntityState.Modified;
-                db.SaveChanges();
-            
-          
+
+            db.Entry(nv).State = System.Data.EntityState.Modified;
+            db.SaveChanges();
+
+
         }
-      
-    
+
+
     }
 }

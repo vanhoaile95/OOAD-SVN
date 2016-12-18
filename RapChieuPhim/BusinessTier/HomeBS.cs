@@ -5,20 +5,20 @@ using System.Text;
 using System.Web;
 using System.Threading.Tasks;
 using DataTier;
-using RapChieuPhim.Models;
+using DataEntityFramework;
 namespace BusinessTier
 {
     public class HomeBS
     {
         HomeDT Db = new HomeDT();
-        public void DoiMatKhauUser( NHANVIEN nv)
+        public void DoiMatKhauUser(NHANVIEN nv)
         {
-            Db.DoiMatKhauUser( nv);
+            Db.DoiMatKhauUser(nv);
         }
 
-        public void UpdateUser(NHANVIEN nv, string MANV,string path)
+        public void UpdateUser(NHANVIEN nv, string MANV, string path)
         {
-            Db.UpdateUser(nv,MANV,path);
+            Db.UpdateUser(nv, MANV, path);
         }
     }
 }

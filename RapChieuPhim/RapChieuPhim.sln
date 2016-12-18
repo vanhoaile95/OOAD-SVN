@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessTier", "BusinessTie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTier", "DataTier\DataTier.csproj", "{F95A862D-06A6-4796-BC45-7F8D5BABC9BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEntityFramework", "DataEntityFramework\DataEntityFramework.csproj", "{CBE9AC79-1AA8-400E-A5D7-D3BF58ACAED1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F95A862D-06A6-4796-BC45-7F8D5BABC9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F95A862D-06A6-4796-BC45-7F8D5BABC9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F95A862D-06A6-4796-BC45-7F8D5BABC9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBE9AC79-1AA8-400E-A5D7-D3BF58ACAED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBE9AC79-1AA8-400E-A5D7-D3BF58ACAED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBE9AC79-1AA8-400E-A5D7-D3BF58ACAED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBE9AC79-1AA8-400E-A5D7-D3BF58ACAED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -49,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RapChieuPhim\RapChieuPhim.csproj">
-      <Project>{0e2a115e-4f58-40e1-a0a8-a98503bd50d9}</Project>
-      <Name>RapChieuPhim</Name>
+    <ProjectReference Include="..\DataEntityFramework\DataEntityFramework.csproj">
+      <Project>{cbe9ac79-1aa8-400e-a5d7-d3bf58acaed1}</Project>
+      <Name>DataEntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

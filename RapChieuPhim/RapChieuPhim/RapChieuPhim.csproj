@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BusinessTier">
-      <HintPath>..\BusinessTier\bin\Debug\BusinessTier.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -190,69 +187,13 @@
     <Compile Include="Controllers\BanVeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\SapLichChieuController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BANGLUONG.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BanVe\JoinTable.cs" />
-    <Compile Include="Models\CALAM.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CHUCVU.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cinema.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cinema.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cinema.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cinema.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cinema.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CT_BANGLUONG.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CT_PHIM.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HOADON.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KHACHHANG.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\KhachHang\JoinTable.cs" />
-    <Compile Include="Models\LICHCHIEU.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LICHLAMVIEC.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LOAIKH.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NHANVIEN.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PHIM.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PHONGCHIEU.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VE.cs">
-      <DependentUpon>Cinema.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +262,7 @@
     <Content Include="css\medile.css" />
     <Content Include="css\single.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\timepicki.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -411,23 +353,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <EntityDeploy Include="Models\Cinema.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Cinema.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Cinema.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Cinema.edmx</DependentUpon>
-      <LastGenOutput>Cinema.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Cinema.edmx.diagram">
-      <DependentUpon>Cinema.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Cinema.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Cinema.edmx</DependentUpon>
-      <LastGenOutput>Cinema.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -455,19 +380,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -478,13 +390,26 @@
     <Content Include="Views\KhachHang\Index.cshtml" />
     <Content Include="Views\KhachHang\LoadKhachHang.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\SapLichChieu\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
+      <Project>{20f0be36-dfa5-4f90-93c0-b964f594d244}</Project>
+      <Name>BusinessTier</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataEntityFramework\DataEntityFramework.csproj">
+      <Project>{cbe9ac79-1aa8-400e-a5d7-d3bf58acaed1}</Project>
+      <Name>DataEntityFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

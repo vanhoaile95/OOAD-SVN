@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System;
-using RapChieuPhim.Models;
+using DataEntityFramework;
 using RapChieuPhim.Models.KhachHang;
 
 namespace RapChieuPhim.Controllers

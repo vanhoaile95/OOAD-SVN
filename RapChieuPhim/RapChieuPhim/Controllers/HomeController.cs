@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-using RapChieuPhim.Models;
+using DataEntityFramework;
 using BusinessTier;
 namespace RapChieuPhim.Controllers
 {
@@ -25,6 +25,7 @@ namespace RapChieuPhim.Controllers
                 //Tạo cookie khi Login
                 if (username != null || password != null || Email != null || Phone != null)
                 {
+                    
                     QuanLyCinemaEntities data = new QuanLyCinemaEntities();
                     NHANVIEN nv = data.NHANVIENs.SingleOrDefault(n => n.MANV == username && n.PASSWORD == password);
                     if (nv != null)  // Nếu login thành công (Get đc dữ liệu của nv từ database)

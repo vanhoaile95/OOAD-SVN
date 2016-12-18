@@ -44,13 +44,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataEntityFramework\DataEntityFramework.csproj">
+      <Project>{cbe9ac79-1aa8-400e-a5d7-d3bf58acaed1}</Project>
+      <Name>DataEntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataTier\DataTier.csproj">
       <Project>{f95a862d-06a6-4796-bc45-7f8d5babc9ba}</Project>
       <Name>DataTier</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RapChieuPhim\RapChieuPhim.csproj">
-      <Project>{0e2a115e-4f58-40e1-a0a8-a98503bd50d9}</Project>
-      <Name>RapChieuPhim</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

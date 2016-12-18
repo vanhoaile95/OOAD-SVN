@@ -4,7 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
-using RapChieuPhim.Models;
+using DataEntityFramework;
 
 namespace RapChieuPhim.Filters
 {
@@ -25,6 +25,7 @@ namespace RapChieuPhim.Filters
         {
             public SimpleMembershipInitializer()
             {
+                
                 Database.SetInitializer<QuanLyCinemaEntities>(null);
 
                 try
