@@ -78,7 +78,7 @@
       <a style="color: #f1f1f1; background-color: #FF8D1B">@names.Last()</a>
   <a href="@Url.Action("Detail","Home")">Chi tiết</a>
       <a href="@Url.Action("ChangePassword","Home")">Đổi mật khẩu</a>
-      <a href="@Url.Action("Index", new {delete = "Yes" })">Đăng xuất</a>
+      <a href="@Url.Action("Index","Home", new {delete = "Yes" })">Đăng xuất</a>
 
 </div>
 
@@ -126,7 +126,7 @@
     {
         <li><i class="fa fa-phone" aria-hidden="true"></i> (08) 080 808 08</li>
         <li><a data-toggle="modal" data-target="#myModal" id="loginbutton">Login</a></li>
-
+     
 
     }
 }

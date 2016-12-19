@@ -354,6 +354,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="js\timepicki.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -391,6 +392,7 @@
     <Content Include="Views\KhachHang\LoadKhachHang.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\SapLichChieu\Index.cshtml" />
+    <Content Include="Views\Home\LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
