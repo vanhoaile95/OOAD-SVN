@@ -13,8 +13,10 @@ namespace RapChieuPhim.Controllers
       public static object PathIM = null;
     
      
-        public ActionResult Index(string username,string password,string Email,string Phone,string delete)
+        
+        public ActionResult Index(string username,string password,string Email,string Phone,string delete,string ChuaLogin)
         {
+                ViewBag.ChuaLogin = ChuaLogin;
                 //Xóa cookie khi click Logout (truyền delete = 'yes' khi click Logout)
                 if (delete == "Yes")
                 {
@@ -128,7 +130,9 @@ namespace RapChieuPhim.Controllers
             
             
         }
-      
+
+
+     
 
         public void XoaCookie()
         {

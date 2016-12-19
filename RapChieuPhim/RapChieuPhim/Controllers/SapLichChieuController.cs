@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataEntityFramework;
-using RapChieuPhim.Models.BanVe;
+
 namespace RapChieuPhim.Controllers
 {
     public class SapLichChieuController : Controller

@@ -12,4 +12,8 @@
    @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
 }
 
-
+@if (ViewBag.ChuaLogin == "true")
+{ 
+<h3 style="text-align:center;color:red">Bạn không có quyền truy cập trang này</h3>
+<h3 style="text-align:center;color:red">Vui lòng Login để truy cập</h3>
+}
