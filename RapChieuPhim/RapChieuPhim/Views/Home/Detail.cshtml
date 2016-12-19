@@ -1,0 +1,195 @@
+﻿
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LoginText{
+    @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
+}
+
+@model DataEntityFramework.NHANVIEN
+
+@using (Html.BeginForm("Detail", "Home", FormMethod.Post, new {  enctype = "multipart/form-data"  }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+    <fieldset class="container">
+        <legend style="text-align:center" class="bg-info"><b>Thông tin Nhân Viên</b></legend>
+       
+       
+
+        
+       @{
+            
+    var nv = Session["User"] as DataEntityFramework.NHANVIEN;
+             <br style="clear:right"/>
+          
+    <div>
+        @if (nv.AVARTA != null)
+        {<img class="img-rounded" src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(nv.AVARTA))" height="300" width="300" style="float:right;position:relative;cursor:pointer" />}
+        else
+        { <img class="img-rounded" src="~/Images/user.jpg"  height="300" width="300" style="float:right;position:relative;cursor:pointer" />}                                                                                                                                                                                                       
+        <b id="DoiAnh" style="position:absolute;right:0;margin-right:5.5cm;margin-top:4cm;cursor:pointer"  >Đổi ảnh khác</b>
+        <input id="myFile" type="file" accept="image/*"name="FileName" onchange="readURL(this)"/>
+    </div>
+            
+            <script>
+                $('#DoiAnh').toggle();
+                $('#myFile').toggle();
+
+                $('.img-rounded,#DoiAnh').mouseenter(function () {
+                    $('.img-rounded').animate({ opacity: '0.5' });
+                    $('#DoiAnh').toggle();
+                });
+
+                $('.img-rounded,#DoiAnh').mouseleave(function (){
+                    $(this).animate({ opacity: '1' }); $('#DoiAnh').toggle();
+                });
+                $('.img-rounded,#DoiAnh').click(function () {
+                    $('#myFile').trigger('click');
+                });
+
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('.img-rounded')
+                                .attr('src', e.target.result)
+                          
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+       
+                }
+
+              
+            </script>
+          
+
+         
+           
+           
+        }
+       
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.MANV)
+                @Html.TextBoxFor(model => model.MANV, new { @class = "form-control", @disabled = true }) 
+                
+            </div>
+        </div>
+      
+      
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.HOTEN, new { @style = "float:left" }) 
+                <p style="color:red;float:left">*</p>
+                @Html.TextBoxFor(model => model.HOTEN, new { @class = "form-control", @required = true })
+            </div>
+        </div>
+
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.NGAYSINH)
+                @Html.TextBoxFor(model => model.NGAYSINH, "{0:dd-MM-yyyy}", new { @id = "ngaysinh", @class = "form-control", @type = "date", @Value = Model.NGAYSINH.Value.ToString("yyyy-MM-dd") })
+            </div>
+        </div>
+        
+       
+
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.GIOITINH)
+                <br />
+                @Html.RadioButtonFor(x => x.GIOITINH, "Nam")
+                Nam
+                @Html.RadioButtonFor(x => x.GIOITINH, "Nữ")
+                Nữ
+              
+            </div>
+        </div>
+    
+     
+     
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                
+                    @Html.LabelFor(model => model.CMND, new {@style="float:left" })
+                    <p style="color:red;float:left">*</p>
+             
+                @Html.TextBoxFor(model => model.CMND, new {@pattern=".{9,}" ,@title = "Tối thiểu 9 số", @class = "form-control", @required = true, @maxlength = "11", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+            </div>
+        </div>
+
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.EMAIL, new { @style = "float:left" })
+                <p style="color:red;float:left">*</p>
+                @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", @required = true })
+                @Html.ValidationMessageFor(model => model.EMAIL, null, new { @style = "color:red;font-style:italic;font-size:12px" })
+                
+            </div>
+        </div>
+     
+
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.SDT, new { @style = "float:left" })
+                <p style="color:red;float:left">*</p>
+                @Html.TextBoxFor(model => model.SDT, new {@pattern=".{10,}" ,@title = "Tối thiểu 10 số", @class = "form-control", @required = true, @maxlength = "11", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+            </div>
+        </div>
+
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.DIACHI)
+                @Html.TextBoxFor(model => model.DIACHI, new { @class = "form-control" })
+               
+            </div>
+        </div>
+
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.NGAYVAOLAM)
+                @Html.TextBoxFor(model => model.NGAYVAOLAM, "{0:dd-MM-yyyy}", new { @class = "form-control", @disabled = true })
+            </div>
+        </div>
+     
+        
+        <br style="clear: left;" />
+        <div class="editor-field">
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.TINHTRANG)
+                @Html.TextBoxFor(model => model.TINHTRANG, new { @class = "form-control", @disabled = true })
+            </div>
+        </div>
+
+        <br style="clear: left;" />
+        <br style="clear: left;" />
+        <hr />
+        <div class="editor-field" style="float:left">
+            <div class="col-xs-6">
+                <input id="submit" type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+          
+         </div>
+
+</fieldset>
+}
+
+
+
+

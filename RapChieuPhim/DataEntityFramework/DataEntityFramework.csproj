@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CBE9AC79-1AA8-400E-A5D7-D3BF58ACAED1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataEntityFramework</RootNamespace>
+    <AssemblyName>DataEntityFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BANGLUONG.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CALAM.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CHUCVU.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cinema.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cinema.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cinema.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cinema.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cinema.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CT_BANGLUONG.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CT_PHIM.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HOADON.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KHACHHANG.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LICHCHIEU.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LICHLAMVIEC.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOAIKH.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHANVIEN.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PHIM.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PHONGCHIEU.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VE.cs">
+      <DependentUpon>Cinema.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Cinema.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Cinema.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Cinema.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Cinema.edmx</DependentUpon>
+      <LastGenOutput>Cinema.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Cinema.edmx.diagram">
+      <DependentUpon>Cinema.edmx</DependentUpon>
+    </None>
+    <None Include="Cinema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Cinema.edmx</DependentUpon>
+      <LastGenOutput>Cinema.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

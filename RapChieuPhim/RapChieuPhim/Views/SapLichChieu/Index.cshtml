@@ -1,0 +1,97 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LoginText{
+    @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
+}
+@section Login{
+    @Html.Partial("~/Views/Home/LoginPartial.cshtml");
+}
+
+@{
+    var TenPhim = ViewBag.TenPhim as List <DataEntityFramework.PHIM>;
+    var PhongChieu = ViewBag.PhongChieu as List<DataEntityFramework.PHONGCHIEU>;
+   
+}
+<h2 style="text-align:center"class="bg-info" >Sắp lịch chiếu phim</h2>
+<div class="container">
+    <div class="col-xs-5">
+        <label>Tên phim </label>
+        <select class="form-control">
+            @foreach(var item in TenPhim)
+            {
+                 <option>@item.TENPHIM</option>
+            }
+         
+        </select>
+    </div>
+
+    <br style="clear: left;" />
+    <div class="col-xs-5">
+        <label>Phiên bản</label>
+        <select class="form-control">
+            <option>Phụ đề</option>
+            <option>Lồng tiếng</option>
+        </select>
+    </div>
+
+    <br style="clear: left;" />
+    <div class="col-xs-5">
+        <label>Phòng chiếu</label>
+        <select class="form-control">
+            @foreach (var item in PhongChieu)
+            {
+                <option>@item.TENPHONGCHIEU</option>
+            }
+        </select>
+    </div>
+
+    <br style="clear: left;" />
+    
+
+    @using (Html.BeginForm("Index", "SapLichChieu", FormMethod.Get))
+    {
+       
+        <div class="col-xs-5">
+         <label>Ngày chiếu</label>
+            @if (ViewBag.NgayChieu != null)
+            {
+              <input type="date" class="form-control" name="NgayChieu" id="NgayChieu" value="@ViewBag.NgayChieu.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />    
+            }
+            else
+            { 
+            <input type="date" class="form-control" name="NgayChieu" id="NgayChieu" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            }
+        </div>
+        <input type="submit" hidden id="submit"/>
+    }
+    <script>
+      
+        $(document).ready(function () {
+            $('#NgayChieu').change(function () {
+                $('#submit').click();
+            });
+           
+        });
+    </script>
+
+    <br style="clear: left;" />
+    <div class="col-xs-5">
+        <label>Giờ chiếu</label>
+        <input id="timepicker1" type="text" name="timepicker1"  class="form-control"/>
+    </div>
+    </div>
+
+
+
+
+<link href="~/css/timepicki.css" rel="stylesheet" />
+<script src="js/timepicki.js"></script>
+<script>
+    $('#timepicker1').timepicki();
+</script>
+
