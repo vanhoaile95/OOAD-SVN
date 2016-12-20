@@ -16,7 +16,7 @@ namespace RapChieuPhim.Controllers
         
         public ActionResult Index(string username,string password,string Email,string Phone,string delete,string ChuaLogin)
         {
-                ViewBag.ChuaLogin = ChuaLogin;
+            ViewBag.ChuaLogin = ChuaLogin;
                 //Xóa cookie khi click Logout (truyền delete = 'yes' khi click Logout)
                 if (delete == "Yes")
                 {
