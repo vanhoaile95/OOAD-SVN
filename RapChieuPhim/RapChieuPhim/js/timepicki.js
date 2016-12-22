@@ -250,8 +250,10 @@
 				// default is we will use the current time
 				} else {
 					d = new Date();
-					ti = d.getHours();
-					mi = d.getMinutes();
+				    //ti = d.getHours();
+					ti = 7;
+				    //mi = d.getMinutes();
+					mi = 0;
 					mer = "AM";
 					if (12 < ti  && settings.show_meridian) {
 						ti -= 12;
@@ -333,7 +335,10 @@
 							change_time(null, 'next');
 						}
 					} else {
-						cur_mins = cur_mins + step_size;
+					    if (cur_mins % 5 != 0)
+					    { cur_mins = cur_mins + (5 - (cur_mins % 5)) }
+					    else
+					    { cur_mins = cur_mins + step_size };
 						if (cur_mins < 10) {
 							ele_next.find("." + cur_cli + " .mi_tx input").val("0" + cur_mins);
 						} else {
@@ -347,7 +352,10 @@
 							change_time(null, 'prev');
 						}
 					} else {
-						cur_mins = cur_mins - step_size;
+					    if (cur_mins % 5 != 0)
+					    { cur_mins = cur_mins - (cur_mins % 5) }
+					    else
+					    { cur_mins = cur_mins - step_size };
 						if (cur_mins < 10) {
 							ele_next.find("." + cur_cli + " .mi_tx input").val("0" + cur_mins);
 						} else {

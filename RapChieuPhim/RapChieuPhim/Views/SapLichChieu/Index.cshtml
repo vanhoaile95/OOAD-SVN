@@ -13,29 +13,58 @@
 @{
     var TenPhim = ViewBag.TenPhim as List <DataEntityFramework.PHIM>;
     var PhongChieu = ViewBag.PhongChieu as List<DataEntityFramework.PHONGCHIEU>;
+    var PhienBan = ViewBag.PhienBan as List<DataEntityFramework.CT_PHIM>;
    
 }
 <h2 style="text-align:center"class="bg-info" >Sắp lịch chiếu phim</h2>
+@using (Html.BeginForm("Index", "SapLichChieu", FormMethod.Get))
+{
 <div class="container">
+
     <div class="col-xs-5">
         <label>Tên phim </label>
-        <select class="form-control">
-            @foreach(var item in TenPhim)
-            {
-                 <option>@item.TENPHIM</option>
-            }
+        <select class="form-control" id="TenPhim" name="TenPhim" >
+            
+             @foreach(var item in TenPhim)
+               {
+                if (ViewBag.PhienBan != null)
+                    {
+                        if (ViewBag.TenPhimDaChon == item.TENPHIM)
+                        {<option selected>@item.TENPHIM</option>}
+                        else
+                        {<option>@item.TENPHIM</option>}                                              
+                    }
+                else
+                {
+                    <option>@item.TENPHIM</option>
+                }
+               
+               }
          
+                  
+             
+            
         </select>
     </div>
+    
+    
 
     <br style="clear: left;" />
-    <div class="col-xs-5">
+
+    <div class="col-xs-5" >
         <label>Phiên bản</label>
-        <select class="form-control">
-            <option>Phụ đề</option>
-            <option>Lồng tiếng</option>
+        <select class="form-control" >
+            @if (ViewBag.PhienBan != null)
+            {
+                foreach (var item in PhienBan)
+                {
+                    <option>@item.PHIENBAN</option>
+                }
+            }
+            
         </select>
     </div>
+    
 
     <br style="clear: left;" />
     <div class="col-xs-5">
@@ -51,8 +80,7 @@
     <br style="clear: left;" />
     
 
-    @using (Html.BeginForm("Index", "SapLichChieu", FormMethod.Get))
-    {
+   
        
         <div class="col-xs-5">
          <label>Ngày chiếu</label>
@@ -65,12 +93,15 @@
             <input type="date" class="form-control" name="NgayChieu" id="NgayChieu" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
             }
         </div>
-        <input type="submit" hidden id="submit"/>
-    }
+       
+   <input type="submit" hidden id="submit" />
     <script>
       
         $(document).ready(function () {
             $('#NgayChieu').change(function () {
+                $('#submit').click();
+            });
+            $('#TenPhim').change(function () {
                 $('#submit').click();
             });
            
@@ -82,8 +113,9 @@
         <label>Giờ chiếu</label>
         <input id="timepicker1" type="text" name="timepicker1"  class="form-control"/>
     </div>
-    </div>
 
+    </div>
+}
 
 
 
@@ -92,8 +124,8 @@
 <script>
     $('#timepicker1').timepicki({
         show_meridian: false,
-        min_hour_value: 0,
-        max_hour_value: 23,
+        min_hour_value: 7,
+        max_hour_value: 22,
         step_size_minutes: 5,
         overflow_minutes: true,
         increase_direction: 'up',
