@@ -49,6 +49,7 @@
     <Compile Include="BANGLUONG.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>
+    <Compile Include="BanVeJoinTable.cs" />
     <Compile Include="CALAM.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>
