@@ -6,8 +6,33 @@ using System.Web.Mvc;
 using System.IO;
 using DataEntityFramework;
 using BusinessTier;
+using System.Text;
+using System.Security.Cryptography;
 namespace RapChieuPhim.Controllers
 {
+    public static class Encryptor
+    {
+        public static string MD5Hash(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //compute hash from the bytes of text
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+
+            //get hash result after compute it
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //change it into 2 hexadecimal digits
+                //for each byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
+        }
+    }// Hash password
     public class HomeController : Controller
     {
       public static object PathIM = null;
@@ -27,7 +52,7 @@ namespace RapChieuPhim.Controllers
                 //Tạo cookie khi Login
                 if (username != null || password != null || Email != null || Phone != null)
                 {
-                    
+                    password = Encryptor.MD5Hash(password);
                     QuanLyCinemaEntities data = new QuanLyCinemaEntities();
                     NHANVIEN nv = data.NHANVIENs.SingleOrDefault(n => n.MANV == username && n.PASSWORD == password);
                     if (nv != null)  // Nếu login thành công (Get đc dữ liệu của nv từ database)
@@ -57,7 +82,8 @@ namespace RapChieuPhim.Controllers
                 {
                     var nv = Session["User"] as NHANVIEN;
 
-
+                    current_password = Encryptor.MD5Hash(current_password);
+                    new_password = Encryptor.MD5Hash(new_password);
                     if (current_password == nv.PASSWORD)
                     {
 
