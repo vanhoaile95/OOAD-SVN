@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<DataEntityFramework.BanVeJoinTable>
+
+@{
     ViewBag.Title = "LoadGhe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,4 +9,225 @@
     @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
 }
 
-<h2>LoadGhe test SVN eret</h2>
+<div>
+    <br />
+    <h1 style="color:navy; margin-top:0.5cm " class="text-center">
+        Sơ đồ phòng chiếu
+    </h1>
+    <br />
+</div>
+
+
+@* Bảng thông tin phim *@
+<div style="border-style:solid; float:left; margin-left:1cm; margin-top:0.5cm; border-color:blue">
+    <br />
+    @foreach (var item in Model)
+    {
+        string tenphim = "";
+        if (item.TENPHIM.Length > 15)
+        {
+            tenphim = item.TENPHIM.Substring(0, 14) + "..";
+        }
+        else
+        {
+            tenphim = item.TENPHIM;
+        }
+        <div style="margin-left:0.25cm; margin-right:0.25cm">
+            <h4>Phim: @tenphim.</h4>
+            <h4 style="margin-top:0.25cm">Phiên bản: @item.PHIENBAN.</h4>
+            <h4 style="margin-top:0.25cm">@item.TENPHONGCHIEU.</h4>
+
+            <h4 style="margin-top:0.25cm">Ngày chiếu: @string.Format("{0:dd/MM/yyyy}", item.NGAYCHIEU).</h4>
+            <h4 style="margin-top:0.25cm">Giờ bắt đầu: @item.GIOBATDAU.</h4>
+            <h4 style="margin-top:0.25cm">Giờ kết thúc: @item.GIOKETTHUC.</h4>
+        </div>
+
+        break; // vì sẽ bị trùng dữ liệu do lặp nhiều lần khi lấy STTGHE
+    }
+    <br />
+</div>
+
+
+@* Bảng thông tin ghế *@
+<div style="border-style:solid; float:right; margin-right:0.5cm; margin-top:0.5cm; border-color:red">
+    <div style="margin-left:0.25cm; margin-right:0.25cm; margin-top:0.5cm; margin-bottom:0.25cm">
+
+
+        <h4 style="margin-top:0.25cm">
+            Mã KH :
+            <input type="text" class="text-center" value="" style="width:3cm; color:black" placeholder="KHxxx" />
+        </h4>
+
+        <h4 style="margin-top:0.25cm;">Số lượng ghế: 100</h4>
+
+        @{
+            int count = 0;
+            foreach (var item in Model)
+            {
+                if (item.STTGHE != 0)
+                {
+                    count++;
+                }
+            }
+            count = 100 - count;
+
+            <h4 style="margin-top:0.25cm">
+                SL ghế còn trống: @count
+            </h4>
+
+        }
+
+        <h4 style="margin-top:0.25cm">
+            SL ghế đã chọn :
+            <input id="txtChonGhe" type="text" class="text-center" value="0" style="width:1cm; color:red" readonly />
+        </h4>
+
+        <h4 style="margin-top: 0.25cm; color:blue">Giá vé: 70,000 VNĐ</h4>
+
+        <h4 style="margin-top:0.25cm">
+            Tổng :
+            <input id="txtTongTien" type="text" class="text-center" value="0" style="width:2.5cm; color:red" readonly />
+            VNĐ
+        </h4>
+
+    </div>
+
+    @* Bị ẩn đi *@
+    <div class="text-center">
+        <a id="btnThanhToan" style="font-size:large; margin-bottom:0.25cm" class="btn btn-danger disabled">Đã thanh toán</a>
+    </div>
+</div>
+
+@* Vẽ màn hình chiếu phim *@
+
+<div style="border-style:solid; margin-left:8cm; margin-right:7cm; margin-top:0.5cm; background-color:lightcyan">
+    <br />
+    <h3 class="text-center">Màn hình chiếu phim</h3>
+    <br />
+</div>
+
+
+@* vẽ hình cửa vào *@
+<div style="border-style:solid; float:right; margin-right:1.2cm; margin-top:0.5cm; background-color:lightgreen">
+    <h3 style="margin-left:0.25cm; margin-right:0.25cm">Cửa vào</h3>
+</div>
+
+
+@* Load ghế ngồi *@
+<div style="margin-top:2cm; margin-left:8cm; margin-bottom:3cm">
+    <table style="border-collapse:separate; border-spacing:30px; border-color:green" border="3">
+        @{
+            int countGHE = 0; // đếm các ghế đã được mua trong lịch chiếu này
+            bool checkGHE = false; // kiểm tra xem cái ghế này có phải là ghế đã được mua hay ko
+
+            foreach (var item in Model)
+            {
+                if (item.STTGHE != 0) // có dữ liệu ghế, != 0 vì nếu ko có ghế nào thì STT = 0
+                {
+                    countGHE++;
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                <tr>
+                    @for (int j = i * 10 + 1; j <= 10 * (i + 1); j++)
+                    {
+                        // j là số thứ tự ghế ngồi
+                        checkGHE = false;
+
+                        if (countGHE > 0) // mã lịch chiếu này đã có ghế được mua
+                        {
+                            foreach (var item in Model)
+                            {
+                                if (j == item.STTGHE) // nếu ghế hiện tại là ghế đã được mua thì load màu xanh
+                                {
+                                    <td>
+                                        <a style="background-color:lime; color:black" class="btn btn-block">@j</a>
+                                    </td>
+                                    checkGHE = true; // xác nhận rằng ghế này đã được mua
+                                    countGHE--; // giảm số lượng ghế đã được mua đi, để tránh phải kiểm tra dư thừa
+                                    break;
+                                }
+                            }
+                        }
+
+
+                        if (checkGHE == false) // ghế này chưa có ai mua
+                        {
+
+                            if (j <= 50) // ghế thường
+                            {
+                                <td>
+                                    <a id="@j" onclick="ChangeColor(@j,'txtChonGhe','txtTongTien')" style="color: black; background-color: lightgray" class="btn btn-block">@j</a>
+                                </td>
+                            }
+                            else // ghế VIP
+                            {
+                                <td>
+                                    <a id="@j" onclick="ChangeColor(@j,'txtChonGhe','txtTongTien')" class="btn btn-block" style="color:black; ">@j</a>
+                                </td>
+                            }
+                        }
+                    }
+                </tr>
+            }
+
+
+        }
+
+    </table>
+</div>
+
+@* Vẽ cửa thoát hiểm *@
+<div style="border-style:solid; float:right; margin-right:7cm; margin-top:-2cm; background-color:lightgreen">
+    <h3 style="margin-left:0.25cm; margin-right:0.25cm; margin-top:0.1cm">Cửa thoát hiểm</h3>
+</div>
+
+
+<script type="text/javascript">
+    var Giave = 70000;
+    function ChangeColor (IDGhe, IDtxtChonGhe, IDtxtTongTien) // xử lý khi click vào 1 ghế ngồi
+    {
+
+        if (document.getElementById(IDGhe).style.backgroundColor != "red") {
+
+            document.getElementById(IDGhe).style.backgroundColor = "red";
+
+            document.getElementById(IDtxtChonGhe).value++; // tăng giá trị cho ô textbox Số Ghê Chọn
+
+        }
+        else {
+            if (IDGhe <= 50) {
+
+                document.getElementById(IDGhe).style.backgroundColor = "lightgray";
+
+            }
+            else document.getElementById(IDGhe).style.backgroundColor = "white";
+
+            document.getElementById(IDtxtChonGhe).value--; // giảm giá trị cho ô textbox Số Ghê Chọn
+        }
+
+        // tăng giá trị cho ô textbox Tổng tiền
+        document.getElementById(IDtxtTongTien).value = (document.getElementById(IDtxtChonGhe).value * Giave).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        // xét rằng nếu ko chọn được ghế nào thì ẩn button Thanh toán đi
+        if (document.getElementById(IDtxtChonGhe).value > 0) // đã chọn dc ít nhất 1 ghế
+        {
+            $("#btnThanhToan").removeClass("disabled");
+        }
+        else // không chọn được ghế nào
+        {
+            $("#btnThanhToan").addClass("disabled");
+        }
+
+    }
+
+</script>
+
+
+
+
+
+
+
