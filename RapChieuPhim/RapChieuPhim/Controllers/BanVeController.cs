@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataEntityFramework;
-using RapChieuPhim.Models.BanVe;
+using BusinessTier;
+using PagedList; // sử dung để phân trang
 
 namespace RapChieuPhim.Controllers
 {
@@ -13,30 +14,23 @@ namespace RapChieuPhim.Controllers
         //
         // GET: /BanVe/
         QuanLyCinemaEntities db = new QuanLyCinemaEntities();
-        public ActionResult Index()
+        BanVeBS BanVe = new BanVeBS();
+        public ActionResult Index(int Page = 1, int PageSize = 10)
         {
-            var list = from a in db.LICHCHIEUx
-                       join b in db.PHIMs on a.MAPHIM equals b.MAPHIM
-                       join c in db.PHONGCHIEUx on a.MAPHONGCHIEU equals c.MAPHONGCHIEU
-                       select new JoinTable
-                       {
-                           MALICHCHIEU = a.MALICHCHIEU,
-                           TENPHIM = b.TENPHIM,
-                           PHIENBAN = a.PHIENBAN,
-                           TENPHONGCHIEU = c.TENPHONGCHIEU,
-                           NGAYCHIEU = a.NGAYCHIEU,
-                           GIOBATDAU = a.GIOBATDAU,
-                           GIOKETTHUC = a.GIOKETTHUC,
-                           TINHTRANG = a.TINHTRANG,
-                       };
+            var list = BanVe.getAll_LichChieu(Page,PageSize);
+            return View(list);
+            // hàm phân trang ko chấp nhận dữ liệu bị chuyển thành .ToList(), mà tất cả phải chuyển qua kiêu IEnumrable
+            // Page : mặc định trang đầu tiên là 1
+            // PageSize : là số phần tử trong 1 trang
+        }
+
+
+        public ActionResult LoadGhe(string MaLichChieu)
+        {
+            var list = BanVe.getInfo_LichChieu(MaLichChieu);
             return View(list.ToList());
         }
 
-
-        public ActionResult LoadGhe()
-        {
-            return View();
-        }
 
     }
 }
