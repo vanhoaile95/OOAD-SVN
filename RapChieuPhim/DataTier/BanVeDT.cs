@@ -29,7 +29,7 @@ namespace DataTier
                            GIOKETTHUC = a.GIOKETTHUC.Replace(",", " giờ "),
                            TINHTRANG = a.TINHTRANG,
                        };
-            return list.OrderBy(x=>x.NGAYCHIEU).ToPagedList(Page,PageSize);
+            return list.OrderByDescending(x=>x.NGAYCHIEU).ToPagedList(Page,PageSize);
         }
 
         public List<BanVeJoinTable> getInfo_LichChieu(string MaLichChieu)
