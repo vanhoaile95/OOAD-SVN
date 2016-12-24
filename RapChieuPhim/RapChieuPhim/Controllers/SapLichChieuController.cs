@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataEntityFramework;
-
+using BusinessTier;
 namespace RapChieuPhim.Controllers
 {
     public class SapLichChieuController : Controller
@@ -12,14 +12,14 @@ namespace RapChieuPhim.Controllers
         //
         // GET: /SapLichChieu/
         QuanLyCinemaEntities db = null;
-        public string _GetFirstNameFilm = null;
-        public ActionResult Index(DateTime? NgayChieu ,string TenPhim /*Tên phim đã chọn*/  )
+        
+        public ActionResult Index(DateTime? NgayChieu ,string TenPhim /*Tên phim đã chọn*/ )
         {
             db = new QuanLyCinemaEntities();
+
             //Gán TenPhim = Tên Phim mặc định đầu tiên trong database, chỉ 1 lần
-            if (TenPhim == null && _GetFirstNameFilm == null)
+            if (TenPhim == null)
             {
-                _GetFirstNameFilm = db.PHIMs.First().TENPHIM;
                 TenPhim = db.PHIMs.First().TENPHIM;
             }
 
@@ -40,9 +40,19 @@ namespace RapChieuPhim.Controllers
            
             
           
-            return View();
+           
+           return View();
 
            
+        }
+     [HttpPost]
+        public ActionResult Index(string _TenPhim,string PhienBan,string PhongChieu,DateTime? _NgayChieu) // Thêm giờ chiếu)
+        {
+        
+            new SapLichChieuBS().Insert(_TenPhim,PhienBan,PhongChieu,_NgayChieu);
+            
+
+            return RedirectToAction("Index", new {NgayChieu =  _NgayChieu,TenPhim = _TenPhim});
         }
 
     }
