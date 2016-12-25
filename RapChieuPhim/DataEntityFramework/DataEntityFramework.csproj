@@ -83,6 +83,7 @@
     <Compile Include="KHACHHANG.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhachHangJoinTable.cs" />
     <Compile Include="LICHCHIEU.cs">
       <DependentUpon>Cinema.tt</DependentUpon>
     </Compile>

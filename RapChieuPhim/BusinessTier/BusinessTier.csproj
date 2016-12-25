@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BanVeBS.cs" />
     <Compile Include="HomeBS.cs" />
+    <Compile Include="KhachHangBS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SapLichChieuBS.cs" />
   </ItemGroup>

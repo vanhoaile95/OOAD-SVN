@@ -1,4 +1,5 @@
-﻿@model List<RapChieuPhim.Models.KhachHang.JoinTable>
+﻿@model PagedList.IPagedList<DataEntityFramework.KhachHangJoinTable>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -14,41 +15,96 @@
     <div>
         <br />
         <h2 style="color:navy; font-size:xx-large " class="text-center">
-            Danh sách Khánh hàng
+                Danh sách Khánh hàng
         </h2>
         <br />
     </div>
 
-    <div class="x_content">
-        <table id="datatable" class="table table-striped table-bordered ">
+    <div>
+        <table id="content-table" class="table table-striped table-bordered ">
             <thead>
-                <tr>
-                    <th style="font-size :medium;" class="text-center"> </th>
-                    <th style="font-size :medium;" class="text-center sorting_asc dataTable" aria-sort="ascending">Họ và tên</th>
-                    <th style="font-size :medium;" class="text-center">Điểm tích lũy</th>
-                    <th style="font-size :medium;" class="text-center">Ngày sinh</th>
-                    <th style="font-size :medium;" class="text-center">Ngày đăng ký</th>
-                    <th style="font-size :medium;" class="text-center">CMND</th>
-                    <th style="font-size :medium;" class="text-center">Số điện thoại</th>
-                    <th style="font-size :medium;" class="text-center">Địa chỉ</th>
+                <tr style="font-size:x-large">
+                    <th class="Makh" style="text-align:center">
+                        Mã KH <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Makh', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Makh', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="Hoten" style="text-align:center">
+                        Họ và tên <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Hoten', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Hoten', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="Maloai" style="text-align:center">
+                        Loại Khách Hàng <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Maloai', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Maloai', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="Batdau" style="text-align:center">
+                        Điểm tích lũy <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Diemtichluy', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Diemtichluy', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="Ngaydk" style="text-align:center">
+                        Ngày đăng ký <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Ngaydk', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Ngaydk', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="Sodt" style="text-align:center">
+                        Số điện thoại <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Sodt', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Sodt', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="text-center">Chi Tiết</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td> <a href="@Url.Action("LoadKhachHang", "KhachHang")" class="btn btn-success">Chọn</a> </td>
-                        <td style="font-size:large;" class="text-center">@item.HOTEN</td>
-                        <td style="font-size:large;" class="text-center">@item.DIEMTICHLUY</td>
-                        <td style="font-size:large;" class="text-center">@string.Format("{0:dd/MM/yyyy}", @item.NGAYSINH)</td>
-                        <td style="font-size:large;" class="text-center">@string.Format("{0:dd/MM/yyyy}", @item.NGAYDK)</td>
-                        <td style="font-size:large;" class="text-center">@item.CMND</td>
-                        <td style="font-size:large;" class="text-center">@item.SDT</td>
-                        <td style="font-size:large;" class="text-center">@item.DIACHI</td>
-                    </tr>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr class="text-center">
+                            <td style="font-size:large; color:black;" class="Makh">@item.MAKH</td>
+                            <td style="font-size: large; color: black;" class="Hoten">@item.HOTEN</td>
+                            <td style="font-size: large; color: black;" class="Maloai">@item.MALOAI</td>
+                            <td style="font-size: large; color: black;" class="Diemtichluy">@item.DIEMTICHLUY</td>
+                            <td style="font-size: large; color: black;" class="Ngaydk">@string.Format("{0:dd/MM/yyyy}", @item.NGAYDK)</td>
+                            <td style="font-size: large; color: black;" class="Sodt">@item.SDT</td>
+                            <td class="text-center"> <a href="@Url.Action("Detail", "KhachHang", new {MAKH = @item.MAKH})" class="btn btn-success">Chọn</a> </td>
+                        </tr>
+                    }
                 }
             <tbody>
         </table>
+        <div class="text-center">
+            @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }));
+        </div>
+
     </div>
 
-}
+
+                    }
+
+
+
+<script type="text/javascript">
+ // sắp xếp tăng giảm
+    function sort(ascending, columnClassName, tableId) {
+        var tbody = document.getElementById(tableId).getElementsByTagName(
+                "tbody")[0];
+        var rows = tbody.getElementsByTagName("tr");
+
+        var unsorted = true;
+
+        while (unsorted) {
+            unsorted = false
+
+            for (var r = 0; r < rows.length - 1; r++) {
+                var row = rows[r];
+                var nextRow = rows[r + 1];
+
+                var value = row.getElementsByClassName(columnClassName)[0].innerHTML;
+                var nextValue = nextRow.getElementsByClassName(columnClassName)[0].innerHTML;
+
+                value = value.replace(',', '.'); // in case a comma is used in float number
+                nextValue = nextValue.replace(',', '.');
+
+                if (!isNaN(value)) {
+                    value = parseFloat(value);
+                    nextValue = parseFloat(nextValue);
+                }
+
+                if (ascending ? value > nextValue : value < nextValue) {
+                    tbody.insertBefore(nextRow, row);
+                    unsorted = true;
+                }
+            }
+        }
+    };
+</script>

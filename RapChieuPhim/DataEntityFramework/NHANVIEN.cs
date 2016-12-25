@@ -42,7 +42,7 @@ namespace DataEntityFramework
         public string SDT { get; set; }
         [DisplayName("Địa chỉ")]
         public string DIACHI { get; set; }
-            [DisplayName("Tình trạng")]
+        [DisplayName("Tình trạng")]
         public string TINHTRANG { get; set; }
         public byte[] AVARTA { get; set; }
     

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using DataEntityFramework;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace RapChieuPhim.Models.KhachHang
+namespace DataEntityFramework
 {
-    public class JoinTable
+    public class KhachHangJoinTable
     {
         public string MAKH { get; set; }
         public string MALOAI { get; set; }

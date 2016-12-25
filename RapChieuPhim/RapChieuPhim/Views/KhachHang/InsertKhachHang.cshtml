@@ -1,0 +1,108 @@
+﻿@model DataEntityFramework.KHACHHANG
+
+@{
+    ViewBag.Title = "InsertKhachHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LoginText{
+    @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
+}
+
+@using (Html.BeginForm("InsertKhachHang", "KhachHang", new { Model.MAKH }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="container">
+        @{
+            var khachhang = Model;
+            <h2 style="color:navy; font-size:xx-large " class="text-center">
+                Chi tiết khách hàng @khachhang.HOTEN
+            </h2>
+
+            <div class="text-center">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.MAKH)
+                    @Html.TextBoxFor(model => model.MAKH, new { @name = "makh", @class = "form-control", @disabled = true })
+                </div>
+            </div>
+
+            <br style="clear: right;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.HOTEN, new { @style = "float:left" })
+                    <p style="color:red;float:left">*</p>
+                    @Html.TextBoxFor(model => model.HOTEN, new { @class = "form-control", @required = true })
+                </div>
+            </div>
+
+            <br style="clear: left;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.MALOAI)
+                    @Html.TextBoxFor(model => model.MALOAI, new { @class = "form-control", @disabled = true })
+                </div>
+            </div>
+
+            <br style="clear: right;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.NGAYSINH)
+                    @Html.TextBoxFor(model => model.NGAYSINH, "{0:dd-MM-yyyy}", new { @id = "ngaysinh", @class = "form-control", @type = "date", @required = true, @Value = Model.NGAYSINH.Value.ToString("yyyy-MM-dd") })
+                </div>
+            </div>
+
+            <br style="clear: left;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.NGAYDK)
+                    @Html.TextBoxFor(model => model.NGAYDK, "{0:dd-MM-yyyy}", new { @id = "ngaydk", @class = "form-control", @type = "date", @required = true, @Value = Model.NGAYDK.Value.ToString("yyyy-MM-dd") })
+                </div>
+            </div>
+
+            <br style="clear: right;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.CMND, new { @style = "float:left" })
+                    <p style="color:red;float:left">*</p>
+                    @Html.TextBoxFor(model => model.CMND, new { @pattern = ".{9,}", @title = "Tối thiểu 9 số", @class = "form-control", @required = true, @maxlength = "13", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                </div>
+            </div>
+
+            <br style="clear: left;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.DIEMTICHLUY, new { @style = "float:left" })
+                    @Html.TextBoxFor(model => model.DIEMTICHLUY, new { @pattern = ".{0,}", @title = "Tối thiểu 0 số", @class = "form-control", @maxlength = "11", @disabled = true, @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                </div>
+            </div>
+
+            <br style="clear: right;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.SDT, new { @style = "float:left" })
+                    @Html.TextBoxFor(model => model.SDT, new { @pattern = ".{6,}", @title = "Tối thiểu 6 số", @class = "form-control", @required = true, @maxlength = "13", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                </div>
+            </div>
+
+            <br style="clear: right;" />
+            <div class="editor-field">
+                <div class="col-xs-6">
+                    @Html.LabelFor(model => model.DIACHI)
+                    @Html.TextBoxFor(model => model.DIACHI, new { @class = "form-control" })
+                </div>
+            </div>
+            <br style="clear: inherit;" />
+            <br style="clear: inherit;" />
+            <br style="clear: inherit;" />
+            <br style="clear: inherit;" />
+            <hr />
+            <div class="text-center">
+                <div class="col-xs-6">
+                    <input id="submit" type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+    </fieldset>
+}

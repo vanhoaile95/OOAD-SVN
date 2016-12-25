@@ -9,10 +9,9 @@
     @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
 }
 
-
 @model DataEntityFramework.NHANVIEN
 
-@using (Html.BeginForm("Detail", "Home", FormMethod.Post, new {  enctype = "multipart/form-data"  }))
+@using (Html.BeginForm("Detail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)

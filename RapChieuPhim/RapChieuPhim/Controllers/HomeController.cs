@@ -128,11 +128,6 @@ namespace RapChieuPhim.Controllers
                 // Lưu the file inside ~Images folder
                 path = Path.Combine(Server.MapPath("~/Images"), fileName);
                 FileName.SaveAs(path);
-
-               
-
-
-               
             } 
             
                 try
