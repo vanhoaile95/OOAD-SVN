@@ -266,6 +266,7 @@
     <Content Include="css\contactstyle.css" />
     <Content Include="css\faqstyle.css" />
     <Content Include="css\medile.css" />
+    <Content Include="css\SapLichChieu.css" />
     <Content Include="css\single.css" />
     <Content Include="css\style.css" />
     <Content Include="css\timepicki.css" />
@@ -360,6 +361,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="js\SapLichChieu.js" />
     <Content Include="js\timepicki.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

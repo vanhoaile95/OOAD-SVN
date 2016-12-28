@@ -33,17 +33,34 @@ namespace DataTier
                 LichChieu.MALICHCHIEU = "LC" + (int.Parse(Last_LichChieu[0]) + 1).ToString();
             }
         }
-        public void Insert(string _TenPhim,string PhienBan,string PhongChieu,DateTime? _NgayChieu)
+        public void Insert(string _TenPhim,string PhienBan,string PhongChieu,DateTime? _NgayChieu,DateTime? GioChieu)
         {
             db = new QuanLyCinemaEntities();
             LICHCHIEU temp = new LICHCHIEU();
             SetAuto_Ma(temp);
-            temp.MAPHIM = db.PHIMs.SingleOrDefault(maphim => maphim.TENPHIM == _TenPhim).MAPHIM;
+     
+            temp.MAPHIM = _TenPhim;
             temp.PHIENBAN = PhienBan;
             temp.MAPHONGCHIEU = PhongChieu;
             temp.NGAYCHIEU = _NgayChieu;
-            temp.GIOBATDAU = "5,30";
-            temp.GIOKETTHUC = "9,30";
+            if (GioChieu.Value.Minute == 0)
+                temp.GIOBATDAU = GioChieu.Value.Hour + "," + "00";
+            else
+                temp.GIOBATDAU = GioChieu.Value.Hour + "," + GioChieu.Value.Minute;
+
+            int? H = (db.PHIMs.SingleOrDefault(maphim => maphim.MAPHIM == _TenPhim).THOILUONG / 60) + GioChieu.Value.Hour;
+            int? M = (db.PHIMs.SingleOrDefault(maphim => maphim.MAPHIM == _TenPhim).THOILUONG % 60) + GioChieu.Value.Minute;
+            if (M >= 60)
+            {
+                H = H + M / 60;
+                M = M % 60;
+            }
+            if (H >= 24)
+            {
+                H = H - 24;
+            }
+            temp.GIOKETTHUC = H.ToString() + "," + M.ToString();
+
             temp.TINHTRANG = "Chờ duyệt";
             db.LICHCHIEUx.Add(temp);
             db.SaveChanges();

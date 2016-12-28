@@ -11,152 +11,492 @@
 
 
 @{
-    var TenPhim = ViewBag.TenPhim as List <DataEntityFramework.PHIM>;
     var PhongChieu = ViewBag.PhongChieu as List<DataEntityFramework.PHONGCHIEU>;
-    var PhienBan = ViewBag.PhienBan as List<DataEntityFramework.CT_PHIM>;
+    var PhongChieuDaChon = ViewBag.PhongChieuDaChon as string;
+
+    var NgayChieu = ViewBag.NgayChieu;
+    var NgayChieuDaChon = ViewBag.NgayChieuDaChon;
+
+    var LichChieuSang = ViewBag.LichChieuSang as List<DataEntityFramework.LICHCHIEU>;
+    var LichChieuChieu = ViewBag.LichChieuChieu as List<DataEntityFramework.LICHCHIEU>;
+    
+
+    var TenPhim = ViewBag.TenPhim as List<DataEntityFramework.PHIM>;
+    
+
+    var GioTrongSang = ViewBag.GioTrongSang as List<string>;
+    var NumberSang = ViewBag.NumberSang as List<string>;
+    var GioTrongChieu = ViewBag.GioTrongChieu as List<string>;
+    var NumberChieu = ViewBag.NumberChieu as List<string>;
+    
+        
+    
+    //var TenPhim = ViewBag.TenPhim as List <DataEntityFramework.PHIM>;
+   
+    //var PhienBan = ViewBag.PhienBan as List<DataEntityFramework.CT_PHIM>;
    
 }
 <h2 style="text-align:center"class="bg-info" >Sắp lịch chiếu phim</h2>
-@using (Html.BeginForm("Index", "SapLichChieu", FormMethod.Get))
-{
-<div class="container">
-
-    <div class="col-xs-5">
-        <label>Tên phim </label>
-        <select class="form-control" id="TenPhim" name="TenPhim" >
-            
-             @foreach(var item in TenPhim)
-               {
-                if (ViewBag.PhienBan != null)
-                    {
-                        if (ViewBag.TenPhimDaChon == item.TENPHIM)
-                        {<option selected>@item.TENPHIM</option>}
-                        else
-                        {<option>@item.TENPHIM</option>}                                              
-                    }
-                else
-                {
-                    <option>@item.TENPHIM</option>
-                }
-               
-               }
-         
-                  
-             
-            
-        </select>
-    </div>
-    
-    
-
-    <br style="clear: left;" />
-
-    <div class="col-xs-5" >
-        <label>Phiên bản</label>
-        <select class="form-control" id="PhienBan">
-            @if (ViewBag.PhienBan != null)
-            {
-                foreach (var item in PhienBan)
-                {
-                    <option>@item.PHIENBAN</option>
-                }
-            }
-            
-        </select>
-    </div>
-    
-
-    <br style="clear: left;" />
-    <div class="col-xs-5">
-        <label>Phòng chiếu</label>
-        <select class="form-control" id="PhongChieu">
-            @foreach (var item in PhongChieu)
-            {
-                <option value="@item.MAPHONGCHIEU">@item.TENPHONGCHIEU</option>
-            }
-        </select>
-    </div>
-
-    <br style="clear: left;" />
-    
-
-   
-       
-        <div class="col-xs-5">
-         <label>Ngày chiếu</label>
-            @if (ViewBag.NgayChieu != null)
-            {
-              <input type="date" class="form-control" name="NgayChieu" id="NgayChieu" value="@ViewBag.NgayChieu.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />    
-            }
-            else
-            { 
-            <input type="date" class="form-control" name="NgayChieu" id="NgayChieu" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
-            }
-        </div>
-       
-    <input type="submit" id="submit" hidden />
-    <script>
-      
-        $(document).ready(function () {
-            $('#NgayChieu').change(function () {
-                $('#submit').click();
-            });
-            $('#TenPhim').change(function () {
-                $('#submit').click();
-            });
-           
-        });
-    </script>
-
-    <br style="clear: left;" />
-    <div class="col-xs-5">
-        <label>Giờ chiếu</label>
-        <input id="timepicker1" type="text" name="timepicker1"  class="form-control"/>
-    </div>
-
-    
-    </div>
-    <hr />
-        
-   
-    
-    
-    
-}
-
 @using (Html.BeginForm("Index", "SapLichChieu", FormMethod.Post))
 {
+ 
+    
+    
+    
+<div class="container">
 
-    <input name="_TenPhim" id="_TenPhim" hidden />
-     <input name="PhienBan" id="_PhienBan" hidden />
-     <input name="PhongChieu" id="_PhongChieu" hidden />   
-     <input name="_NgayChieu" id="_NgayChieu" hidden />
-     <div class="container-fluid">
-        <input style="float:right" type="submit" id="submitPost" class="btn btn-primary" value="Thêm" />
+        <div class="table-responsive" style="float:left" onclick="">
+
+            <table class="table">
+                <thead>
+                    
+                    <tr>
+                        <th style="color:black" width="19%">
+                            
+                            <div class="col-xs-12">
+                                <label>Chọn phòng chiếu</label>
+                                <select class="form-control" id="_PhongChieu" name="_PhongChieu">
+                                    @foreach (var item in PhongChieu)
+                                    {
+                                        if (item.MAPHONGCHIEU == PhongChieuDaChon)
+                                        {<option value="@item.MAPHONGCHIEU" selected>@item.TENPHONGCHIEU</option>}
+                                        else
+                                        {<option value="@item.MAPHONGCHIEU">@item.TENPHONGCHIEU</option>}
+                                    }
+                                </select>
+                            </div>
+                          
+                        </th>
+                        <th style="color:black" width="19%">
+                            <div class="col-xs-12">
+                                <label>Ngày chiếu</label>
+                                @if (NgayChieu != null)
+                                {
+                                    <input type="date" class="form-control" name="_NgayChieu" id="_NgayChieu" value="@NgayChieu.ToString("yyyy-MM-dd")"  />
+                                }
+                               
+                            </div>
+                           
+                        </th>
+                        <th style="color:black" width="19%">
+                            <div class="col-xs-12">
+                                <label>Tình trạng</label>
+                                <select class="form-control">
+                                    @foreach (var item in PhongChieu)
+                                    {
+                                        if (item.MAPHONGCHIEU == PhongChieuDaChon)
+                                        {
+                                            <option value="@item.MAPHONGCHIEU" selected>@item.TENPHONGCHIEU</option>}
+                                        else
+                                        {
+                                            <option value="@item.MAPHONGCHIEU">@item.TENPHONGCHIEU</option>}
+                                    }
+                                </select>
+
+                            </div>
+                        </th>
+                        <th>
+                             <button class="btn btn-primary" style="float:right">
+                                 <i class="fa fa-search" aria-hidden="true"></i>
+                             </button>
+                        </th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        
+                            
+                            @foreach(var item in PhongChieu)
+                            {
+                                if (item.MAPHONGCHIEU == PhongChieuDaChon)
+                                {
+                                    <td style="color:black;font-weight:bold">@item.TENPHONGCHIEU</td>
+                                    break;
+                                }
+                            }
+                        
+                        <td style="color:black;font-weight:bold">@NgayChieu.ToString("dd-MM-yyyy")</td>
+                    </tr>
+                   
+                    
+                    <tr><td>Sáng</td></tr>
+                        <!--Time-->
+                    <tr style="text-align:center" id="SangTime">
+                                @foreach (var item in LichChieuSang)
+                                    {
+                                        string[] names = item.GIOBATDAU.Split(',');
+                                       
+                                        <td style="background-color:red;color:aqua" class="@int.Parse(names.First())" width="11%">@item.GIOBATDAU - @item.GIOKETTHUC</td>}
+                                    
+                    </tr>
+                        
+                         <!--Phim-->
+                    <tr style="text-align:center" id="SangPhim">
+                        @foreach (var item in LichChieuSang)
+                                {
+                                    foreach (var iitem in TenPhim)
+                                    {
+                                        string[] names = item.GIOBATDAU.Split(',');
+                                        if (item.MAPHIM == iitem.MAPHIM)
+                                        {
+                                            <td style="background-color:red;color:black" id="@int.Parse(names.First())">@iitem.TENPHIM - @item.PHIENBAN </td>
+                                            break;
+                                        }
+                                    }
+
+                                }
+                        
+                    </tr>
+                    
+                
+
+                    <tr><td>Chiều</td></tr>
+                    <!--Time-->
+                    <tr style="text-align:center" id="TimeChieu">
+                        @foreach (var item in LichChieuChieu)
+                        {
+                            string[] names = item.GIOBATDAU.Split(',');
+
+                            <td style="background-color:red;color:aqua" class="@int.Parse(names.First())" width="11%">@item.GIOBATDAU - @item.GIOKETTHUC</td>
+
+                        }
+                       
+                    </tr>
+
+                    <!--Phim-->
+                    <tr style="text-align:center" id="PhimChieu">
+                        @foreach (var item in LichChieuChieu)
+                        {
+                            foreach (var iitem in TenPhim)
+                            {
+                                string[] names = item.GIOBATDAU.Split(',');
+                                if (item.MAPHIM == iitem.MAPHIM )
+                                {
+                                    
+                                    <td style="background-color:red;color:black" id="@int.Parse(names.First())" >@iitem.TENPHIM - @item.PHIENBAN </td>
+                                    break;
+                                }
+                            }
+
+                        }
+
+                    </tr>
+
+                    
+
+                </tbody>
+                
+            </table>
+          
+            <script type="text/javascript">
+
+                //Xét giờ trống ở khoảng giữa các lịch
+                //Sáng
+                @for(int i = 0;i < GioTrongSang.Count;i++)
+                {
+                    <text>
+                        var newcolumn = $('<td class = "Time" style="background-color:green;color:aqua;cursor:pointer" width="11%" >' + '@GioTrongSang[i]' + '</td>');
+                        newcolumn.insertBefore('.' + '@NumberSang[i]');
+                        var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                        newcolumnn.insertBefore('#' + '@NumberSang[i]');
+                    </text>
+
+                }
+                //Chiều
+                    @for(int i = 0;i < GioTrongChieu.Count;i++)
+                {
+                    <text>
+                        var newcolumn = $('<td class = "Time" style="background-color:green;color:aqua;cursor:pointer"width="11%" >' + '@GioTrongChieu[i]' + '</td>');
+                        newcolumn.insertBefore('.' + '@NumberChieu[i]');
+                        var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                        newcolumnn.insertBefore('#' + '@NumberChieu[i]');
+                    </text>
+
+                    }
+
+
+                //Xét giờ trống 2 mép ngoài của lịch
+
+                //Sáng
+                @if (LichChieuSang.Count > 0)
+                { 
+    if (int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').First())  >= 7)
+    {
+        if (int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').First()) == 7)
+        {
+                    //Tính khoảng cách số phút
+                    int SoPhut = int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').Last());
+                    if  (SoPhut > 0) // Nếu giản cách hơn 0 phút
+                    { 
+                    <text>
+                        var newcolumn = $('<td class="Time" style="background-color:green;color:aqua;cursor:pointer"width="11%" >7,00 - 7,' + '@int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').Last())' + '</td>');
+                        newcolumn.insertBefore('.' + '@int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').First())');
+                        var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                        newcolumnn.insertBefore('#' + '@int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').First())');
+                    </text>
+                    }
+        }
+        else
+        {           //Tính khoảng cách
+                    <text>
+                    var newcolumn = $('<td class = "Time" style="background-color:green;color:aqua;cursor:pointer"width="11%">7,00 - ' + '@LichChieuSang[0].GIOBATDAU' + '</td>');
+                    newcolumn.insertBefore('.' + '@int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').First())');
+                    var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                    newcolumnn.insertBefore('#' + '@int.Parse(LichChieuSang[0].GIOBATDAU.Split(',').First())');
+                    </text>
+        }
+     }
+     
+
+                
+    if (int.Parse(LichChieuSang[LichChieuSang.Count - 1].GIOKETTHUC.Split(',').First())  < 12)
+     {
+                    <text>
+                var newcolumn = $('<td class = "Time" style="background-color:green;color:aqua;cursor:pointer"width="11%" >' + '@LichChieuSang[LichChieuSang.Count - 1].GIOKETTHUC' + '- 12,00</td>');
+                    newcolumn.insertAfter('.' + '@int.Parse(LichChieuSang[LichChieuSang.Count - 1].GIOBATDAU.Split(',').First())');
+                var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                    newcolumnn.insertAfter('#' + '@int.Parse(LichChieuSang[LichChieuSang.Count - 1].GIOBATDAU.Split(',').First())');
+                    </text>
+     }
+
+                }
+                else
+                {
+                <text>
+                $('#SangTime').append('<td class = "Time" style="background-color:green;color:aqua;cursor:pointer"width=20% >7,00-12,00</td>');
+                $('#SangPhim').append('<td style="background-color:green;color:black;" >Trống</td>');
+                </text>
+
+       
+                }
+
+     
+     //Chiều
+     @if (LichChieuChieu.Count > 0)
+     { 
+
+      if (int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').First())  >= 13)
+    {
+        if (int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').First()) == 13)
+        {
+                    //Tính khoảng cách số phút
+                    int SoPhut = int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').Last());
+                    if  (SoPhut > 0) // Nếu giản cách hơn 0 phút
+                    { 
+                    <text>
+                        var newcolumn = $('<td class = "Time" style="background-color:green;color:aqua;cursor:pointer"width="11%">13,00 - 13,' + '@int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').Last())' + '</td>');
+                        newcolumn.insertBefore('.' + '@int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').First())');
+                        var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                        newcolumnn.insertBefore('#' + '@int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').First())');
+                    </text>
+                    }
+        }
+        else
+        {           //Tính khoảng cách
+                    <text>
+                    var newcolumn = $('<td class ="Time" style="background-color:green;color:aqua;cursor:pointer"width="11%" >13,00 - ' + '@LichChieuChieu[0].GIOBATDAU' + '</td>');
+                    newcolumn.insertBefore('.' + '@int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').First())');
+                    var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                    newcolumnn.insertBefore('#' + '@int.Parse(LichChieuChieu[0].GIOBATDAU.Split(',').First())');
+                    </text>
+        }
+     }
+     
+
+                
+    if (int.Parse(LichChieuChieu[LichChieuChieu.Count - 1].GIOKETTHUC.Split(',').First())  < 22)
+     {
+                    <text>
+                    var newcolumn = $('<td class="Time" style="background-color:green;color:aqua;cursor:pointer"width="11%" >' + '@LichChieuChieu[LichChieuChieu.Count - 1].GIOKETTHUC' + '- 22,00</td>');
+                    newcolumn.insertAfter('.' + '@int.Parse(LichChieuChieu[LichChieuChieu.Count - 1].GIOBATDAU.Split(',').First())');
+                    var newcolumnn = $('<td style="background-color:green;color:black;">Trống</td>');
+                    newcolumnn.insertAfter('#' + '@int.Parse(LichChieuChieu[LichChieuChieu.Count - 1].GIOBATDAU.Split(',').First())');
+                </text>
+     }
+     
+     }
+     else
+     {
+                  <text>
+                $('#TimeChieu').append('<td class="Time" style="background-color:green;color:aqua;cursor:pointer"width=20% >13,00-22,00</td>');
+                $('#PhimChieu').append('<td style="background-color:green;color:black;">Trống</td>');
+                </text>
+
+       
+     }
+                $('td.Time').on('click', function () {
+                    
+                   
+                    var Content = this.textContent.split("-");
+                    var TimeBatDau = Content[0].split(",");
+                    
+                    var GioBatDau = TimeBatDau[0];
+                    var PhutBatDau = TimeBatDau[1];
+                    
+                    var GioKetThuc = Content[1].split(",")[0];
+                    var PhutKetThuc = Content[1].split(",")[1];
+                    
+
+                    modal.style.display = "block";
+
+                    //Xóa timepicker cũ
+                    $('#divGioChieu').remove();
+                    //Add timepicker mới để update time default
+                    var TimePicker = $('<div class = "col-xs-3" id ="divGioChieu" <label>Giờ chiếu</label> <input id = "timepicker1" type ="text" name = _GioChieu class= "form-control" /> </div> ');
+                    TimePicker.insertAfter('#divPhienBan');
+
+                    span.onclick = function () {
+                        modal.style.display = "none";
+
+
+
+
+                    }
+
+                    window.onclick = function (event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+
+                    $('#timepicker1').val(GioBatDau + ":" + PhutBatDau);
+                    $('#timepicker1').timepicki({
+                        show_meridian: false,
+                        min_hour_value: GioBatDau,
+                        max_hour_value: GioKetThuc,
+                        max_minute_value: PhutKetThuc,
+                        min_minute_value:PhutBatDau,
+                        step_size_minutes: 5,
+                        overflow_minutes: true,
+                        increase_direction: 'up',
+                        start_time: [GioBatDau, PhutBatDau]
+
+                    });
+
+                 
+
+                });
+
+             
+             
+
+
+            </script>
+          
+
+        </div>
+
+    
+ 
+    
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Thêm Lịch Chiếu</h2>
+            </div>
+            <div class="modal-body">
+                
+                <div class="col-xs-3">
+                    <label>Tên phim </label>
+                    <select class="form-control" id="_TenPhim" name="_TenPhim">
+                      
+                        @for(int i = 0;i < TenPhim.Count;i++)
+                        {
+                            if ( i == 0)
+                            {<option selected value="@TenPhim[i].MAPHIM">@TenPhim[i].TENPHIM</option>}
+                            else
+                            {<option value="@TenPhim[i].MAPHIM" >@TenPhim[i].TENPHIM</option> }                                                                 
+                        }
+                                   
+
+                    </select>
+                    @{
+                        var defaultPhim = TenPhim[0].MAPHIM; // Lấy phim đầu tiên
+                        List<DataEntityFramework.CT_PHIM> PhienBan = new DataEntityFramework.QuanLyCinemaEntities().CT_PHIM.SqlQuery("select * from CT_PHIM where MAPHIM = '" + defaultPhim + "'").ToList();
+                    }
+                  
+                    <script type="text/javascript">
+                        
+                        $('#_TenPhim').on('change', function () {
+                           
+                            $('#_PhienBan').empty();
+                            $.ajax({
+                                type: "POST",
+                                url: "/SapLichChieu/PhienBan",
+                                data: {TenPhim : $('#_TenPhim').val()},
+                                dataType: "json",
+                                success: function (data) {
+                                    for (i = 0; i < data.length; i++) {
+                                        $('#_PhienBan').append('<option>' + data[i]._PhienBan + '</option>')
+                                    }
+                                  
+                                }
+
+                            });
+                           
+                            
+                        });
+                        
+
+                        
+                    </script>
+
+                </div>
+
+               
+                <div class="col-xs-3" id="divPhienBan">
+                    <label>Phiên bản</label>
+                    <select class="form-control" id="_PhienBan" name="_PhienBan">
+                       @foreach(var item in PhienBan)
+                       {
+                           <option>@item.PHIENBAN</option>
+                       }
+
+                    </select>
+                </div>
+
+               
+                
+             
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" style="float:right;margin-top:0.5cm" name="Save">
+                    OK
+                </button>
+            </div>
+           
+        </div>
+
     </div>
-    <script>
-        $('#submitPost').click(function () {
-            $('#_TenPhim').val($('#TenPhim').val());
-            $('#_PhienBan').val($('#PhienBan').val());
-            $('#_PhongChieu').val($('#PhongChieu').val());
-            $('#_NgayChieu').val($('#NgayChieu').val());
-        });
-    </script>
+    
+
+
+     
+
+  
+
+
+</div>
+    
+  
+
+    <link href="~/css/timepicki.css" rel="stylesheet" />
+    <script src="js/timepicki.js"></script>
+    <script src="~/js/SapLichChieu.js"></script>
+    <link href="~/css/SapLichChieu.css" rel="stylesheet" />
+    
+    
+    
+
 }
 
 
 
-<link href="~/css/timepicki.css" rel="stylesheet" />
-<script src="js/timepicki.js"></script>
-<script>
-    $('#timepicker1').timepicki({
-        show_meridian: false,
-        min_hour_value: 7,
-        max_hour_value: 22,
-        step_size_minutes: 5,
-        overflow_minutes: true,
-        increase_direction: 'up',
-        disable_keyboard_mobile: true
-    });
-</script>
+
 

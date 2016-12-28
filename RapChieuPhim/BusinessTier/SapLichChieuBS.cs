@@ -11,10 +11,10 @@ namespace BusinessTier
   public  class SapLichChieuBS
     {
       SapLichChieuDT db = new SapLichChieuDT();
-        public void Insert(string _TenPhim, string PhienBan, string PhongChieu, DateTime? _NgayChieu)
+        public void Insert(string _TenPhim, string PhienBan, string PhongChieu, DateTime? _NgayChieu,DateTime? GioChieu)
         {
             
-            db.Insert(_TenPhim,PhienBan,PhongChieu,_NgayChieu);
+            db.Insert(_TenPhim,PhienBan,PhongChieu,_NgayChieu,GioChieu);
         }
     }
 }

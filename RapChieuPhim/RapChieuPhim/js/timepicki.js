@@ -19,6 +19,8 @@
 			custom_classes: '',
 			min_hour_value: 1,
 			max_hour_value: 12,
+			max_minute_value: 59,
+		    min_minute_value:0,
 			show_meridian: true,
 			step_size_hours: '1',
 			step_size_minutes: '1',
@@ -27,11 +29,11 @@
 			reset: false,
 			on_change: null
 		};
-
+        
 		var settings = $.extend({}, defaults, options);
 
 		return this.each(function() {
-
+            
 			var ele = $(this);
 			var ele_hei = ele.outerHeight();
 			ele_hei += 10;
@@ -207,7 +209,7 @@
 			}
 
 			function open_timepicki() {
-				set_date(settings.start_time);
+			    set_date(settings.start_time);
 				ele_next.fadeIn();
 				// focus on the first input and select its contents
 				var first_input = ele_next.find('input:visible').first();
@@ -229,37 +231,39 @@
 			function close_timepicki() {
 				ele_next.fadeOut();
 			}
-
+            
 			function set_date(start_time) {
 				var d, ti, mi, mer;
-
+                
 				// if a value was already picked we will remember that value
 				if (ele.is('[data-timepicki-tim]')) {
 					ti = Number(ele.attr('data-timepicki-tim'));
 					mi = Number(ele.attr('data-timepicki-mini'));
+					
 					if(settings.show_meridian){
 						mer = ele.attr('data-timepicki-meri');
 					}
 				// developer can specify a custom starting value
 				} else if (typeof start_time === 'object') {
 					ti = Number(start_time[0]);
-					mi = Number(start_time[1]);
+				    mi = Number(start_time[1]);
+				    
 					if(settings.show_meridian){
 						mer = start_time[2];
 					}
 				// default is we will use the current time
 				} else {
 					d = new Date();
-				    //ti = d.getHours();
-					ti = 7;
-				    //mi = d.getMinutes();
-					mi = 0;
+				    ti = d.getHours();
+				    mi = d.getMinutes();
 					mer = "AM";
 					if (12 < ti  && settings.show_meridian) {
 						ti -= 12;
 						mer = "PM";
 					}
 				}
+
+				
 
 				if (ti < 10) {
 					ele_next.find(".ti_tx input").val("0" + ti);
@@ -287,6 +291,15 @@
 				var ele_en = Number(settings.max_hour_value);
 				var step_size = Number(settings.step_size_hours);
 				if ((cur_ele && cur_ele.hasClass('action-next')) || direction === 'next') {
+				    if (cur_time + step_size == ele_en)
+				    {
+				        //Hoài
+				        ele_next.find("." + "mins" + " .mi_tx input").val(settings.max_minute_value);
+				    }
+				    if (cur_time + step_size == ele_st) {
+				        //Hoài
+				        ele_next.find("." + "mins" + " .mi_tx input").val(settings.min_minute_value);
+				    }
 					if (cur_time + step_size > ele_en) {
 						var min_value = ele_st;
 						if (min_value < 10) {
@@ -295,14 +308,33 @@
 							min_value = String(min_value);
 						}
 						ele_next.find("." + cur_cli + " .ti_tx input").val(min_value);
+						
+						    //Hoài
+						    ele_next.find("." + "mins" + " .mi_tx input").val(settings.min_minute_value);
+						
+						    
+						      
+						    
+                        
 					} else {
+
 						cur_time = cur_time + step_size;
 						if (cur_time < 10) {
 							cur_time = "0" + cur_time;
 						}
 						ele_next.find("." + cur_cli + " .ti_tx input").val(cur_time);
+                     
+
 					}
 				} else if ((cur_ele && cur_ele.hasClass('action-prev')) || direction === 'prev') {
+				    if (cur_time - step_size == ele_st) {
+				        //Hoài
+				        ele_next.find("." + "mins" + " .mi_tx input").val(settings.min_minute_value);
+				    }
+				    if (cur_time - step_size == ele_en) {
+				        //Hoài
+				        ele_next.find("." + "mins" + " .mi_tx input").val(settings.max_minute_value);
+				    }
 					var minValue = Number(settings.min_hour_value)
 					if (cur_time - step_size < minValue) {
 						var max_value = ele_en;
@@ -312,12 +344,20 @@
 							max_value = String(max_value);
 						}
 						ele_next.find("." + cur_cli + " .ti_tx input").val(max_value);
+
+					    //Hoài
+						
+						    ele_next.find("." + "mins" + " .mi_tx input").val(settings.max_minute_value);
+						
+						
 					} else {
 						cur_time = cur_time - step_size;
 						if (cur_time < 10) {
 							cur_time = "0" + cur_time;
 						}
 						ele_next.find("." + cur_cli + " .ti_tx input").val(cur_time);
+
+					   
 					}
 				}
 			}
@@ -325,16 +365,27 @@
 			function change_mins(cur_ele, direction) {
 				var cur_cli = "mins";
 				var cur_mins = Number(ele_next.find("." + cur_cli + " .mi_tx input").val());
+				var cur_time = Number(ele_next.find("." + "time" + " .ti_tx input").val());
 				var ele_st = 0;
 				var ele_en = 59;
+				
+				
 				var step_size = Number(settings.step_size_minutes);
 				if ((cur_ele && cur_ele.hasClass('action-next')) || direction === 'next') {
-					if (cur_mins + step_size > ele_en) {
+				 
+				if (cur_mins + step_size > ele_en && cur_time != settings.max_hour_value ) {
 						ele_next.find("." + cur_cli + " .mi_tx input").val("00");
 						if(settings.overflow_minutes){
 							change_time(null, 'next');
 						}
-					} else {
+				}else if (cur_mins + step_size >settings.max_minute_value  && cur_time == settings.max_hour_value)
+                    {
+				    ele_next.find("." + cur_cli + " .mi_tx input").val(settings.min_minute_value);
+				    if(settings.overflow_minutes){
+				        change_time(null, 'next');
+				    }
+				}
+				else {
 					    if (cur_mins % 5 != 0)
 					    { cur_mins = cur_mins + (5 - (cur_mins % 5)) }
 					    else
@@ -346,12 +397,22 @@
 						}
 					}
 				} else if ((cur_ele && cur_ele.hasClass('action-prev')) || direction === 'prev') {
-					if (cur_mins - step_size <= -1) {
+				    
+				   
+				    if (cur_mins - step_size <= -1 && settings.min_hour_value != cur_time) {
 						ele_next.find("." + cur_cli + " .mi_tx input").val(ele_en + 1 - step_size);
 						if(settings.overflow_minutes){
 							change_time(null, 'prev');
 						}
-					} else {
+				    }else if (cur_mins - step_size <= settings.min_minute_value && settings.min_hour_value == cur_time)
+				    {
+                        
+				        ele_next.find("." + cur_cli + " .mi_tx input").val(settings.max_minute_value );
+				        if (settings.overflow_minutes) {
+				            change_time(null, 'prev');
+				        }
+				    }
+				    else {
 					    if (cur_mins % 5 != 0)
 					    { cur_mins = cur_mins - (cur_mins % 5) }
 					    else
