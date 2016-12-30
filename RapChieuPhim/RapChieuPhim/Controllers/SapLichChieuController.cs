@@ -13,12 +13,20 @@ namespace RapChieuPhim.Controllers
         // GET: /SapLichChieu/
         QuanLyCinemaEntities db = null;
         [HttpGet]
-        public ActionResult Index(string PhongChieu,DateTime? NgayChieu)
+        public ActionResult Index(string PhongChieu,DateTime? NgayChieu,string TinhTrang,string Error)
         {
             db = new QuanLyCinemaEntities();
             
-            ViewBag.TenPhim = db.PHIMs.ToList(); // List Phim
 
+           
+            ViewBag.TenPhim = db.PHIMs.ToList(); // List Phim
+            
+         
+            //Combobox Tình trạng
+            if (TinhTrang == null)
+            { TinhTrang = "Chờ duyệt"; }
+            ViewBag.TinhTrang = new List<string> { "Chờ duyệt", "Chưa chiếu" }; 
+            ViewBag.TinhTrangDaChon = TinhTrang;
 
             //Combobox Phòng chiếu
             if (PhongChieu == null) //Set giá trị đầu tiên trong lần load lần tiên
@@ -38,7 +46,7 @@ namespace RapChieuPhim.Controllers
                 @"select * from LICHCHIEU where NGAYCHIEU ='" 
                 + NgayChieu.Value.Year + "-" 
                 + NgayChieu.Value.Month + "-"
-                + NgayChieu.Value.Day + "' and MAPHONGCHIEU = '"+ PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
+                + NgayChieu.Value.Day + "' and TINHTRANG = N'" + TinhTrang + "'and MAPHONGCHIEU = '"+ PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
 
             
 
@@ -129,7 +137,16 @@ namespace RapChieuPhim.Controllers
             
 
          
-           
+          //Error
+            if (Error != null)
+            {
+                ModelState.AddModelError(string.Empty, "Lỗi : Thời lượng phim quá dài so với khung giờ còn trống !");
+            }
+            else
+            {
+                foreach (var modelValue in ModelState.Values)
+                    modelValue.Errors.Clear();
+            }
             
           
            
@@ -138,15 +155,28 @@ namespace RapChieuPhim.Controllers
            
         }
          [HttpPost, ActionName("Index")]
-        public ActionResult Index(string _PhongChieu, DateTime? _NgayChieu, string _TenPhim, string _PhienBan, DateTime? _GioChieu,string Save)
+        public ActionResult Index(string _PhongChieu, DateTime? _NgayChieu, string _TenPhim, string _PhienBan, DateTime? _GioChieu,DateTime? _LimitTime,string Save,string Xoa,string _TinhTrang,string _DuyetPhim)
         {
-            if (Save != null)
+            if (Save != null) // Lưu mới lịch chiếu
             {
-                new SapLichChieuBS().Insert(_TenPhim,_PhienBan,_PhongChieu,_NgayChieu,_GioChieu);
-             
+                if (!new SapLichChieuBS().Insert(_TenPhim,_PhienBan,_PhongChieu,_NgayChieu,_GioChieu,_LimitTime))
+                {
+                    return RedirectToAction("Index", new { PhongChieu = _PhongChieu, NgayChieu = _NgayChieu ,Error = "Error",TinhTrang = _TinhTrang});
+                }
+                
             }
-          
-            return RedirectToAction("Index", new { PhongChieu = _PhongChieu, NgayChieu = _NgayChieu });
+             if (Xoa != null)// Xóa lịch chiếu
+             {
+                     new SapLichChieuBS().Xoa(_PhongChieu, _NgayChieu, Xoa);
+                 
+             }
+
+             if (_DuyetPhim != null) // Đổi lịch chiếu thành tình trạng : "Chưa chiếu"
+             {
+
+             }
+
+             return RedirectToAction("Index", new { PhongChieu = _PhongChieu, NgayChieu = _NgayChieu, TinhTrang = _TinhTrang });
         }
 
         [HttpPost]

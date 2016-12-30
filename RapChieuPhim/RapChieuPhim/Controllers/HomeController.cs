@@ -35,7 +35,7 @@ namespace RapChieuPhim.Controllers
     }// Hash password
     public class HomeController : Controller
     {
-      public static object PathIM = null;
+      
     
      
         

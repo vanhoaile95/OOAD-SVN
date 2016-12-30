@@ -33,7 +33,7 @@ namespace DataTier
                 LichChieu.MALICHCHIEU = "LC" + (int.Parse(Last_LichChieu[0]) + 1).ToString();
             }
         }
-        public void Insert(string _TenPhim,string PhienBan,string PhongChieu,DateTime? _NgayChieu,DateTime? GioChieu)
+        public bool Insert(string _TenPhim,string PhienBan,string PhongChieu,DateTime? _NgayChieu,DateTime? GioChieu,DateTime? LimitTime)
         {
             db = new QuanLyCinemaEntities();
             LICHCHIEU temp = new LICHCHIEU();
@@ -59,11 +59,50 @@ namespace DataTier
             {
                 H = H - 24;
             }
-            temp.GIOKETTHUC = H.ToString() + "," + M.ToString();
 
-            temp.TINHTRANG = "Chờ duyệt";
-            db.LICHCHIEUx.Add(temp);
-            db.SaveChanges();
+            if (H < LimitTime.Value.Hour)
+            {
+                if (M == 0)
+                temp.GIOKETTHUC = H.ToString() + "," + "00";
+                else
+                    temp.GIOKETTHUC = H.ToString() + "," + M.ToString();
+                temp.TINHTRANG = "Chờ duyệt";
+                db.LICHCHIEUx.Add(temp);
+                db.SaveChanges();
+                return true;
+            }
+            else if (H == LimitTime.Value.Hour)
+            {
+                if (M <= LimitTime.Value.Minute)
+                {
+                    if (M == 0)
+                        temp.GIOKETTHUC = H.ToString() + "," + "00";
+                    else
+                        temp.GIOKETTHUC = H.ToString() + "," + M.ToString();
+                    temp.TINHTRANG = "Chờ duyệt";
+                    db.LICHCHIEUx.Add(temp);
+                    db.SaveChanges();
+                    return true;
+
+                }
+                else
+                    return false;
+            }
+            else
+                return false;
+               
+            
+
+         
+        }
+       public void Xoa(string PhongChieu,DateTime? NgayChieu,string GioBatDau)
+        {
+           db  = new QuanLyCinemaEntities();
+     
+           var temp = db.LICHCHIEUx.SqlQuery("select * from LICHCHIEU where MAPHONGCHIEU = '" + PhongChieu + "' and Day(NGAYCHIEU) = '" + NgayChieu.Value.Day + "' and LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) = '" + GioBatDau.Trim() + "'").ToList();
+           LICHCHIEU tempp = temp[0] as LICHCHIEU;
+           db.LICHCHIEUx.Remove(tempp);
+           db.SaveChanges();
         }
     }
 }

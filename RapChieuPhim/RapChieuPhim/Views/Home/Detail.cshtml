@@ -98,7 +98,7 @@
         <div class="editor-field">
             <div class="col-xs-6">
                 @Html.LabelFor(model => model.NGAYSINH)
-                @Html.TextBoxFor(model => model.NGAYSINH, "{0:dd-MM-yyyy}", new { @id = "ngaysinh", @class = "form-control", @type = "date", @Value = Model.NGAYSINH.Value.ToString("yyyy-MM-dd") })
+                @Html.TextBoxFor(model => model.NGAYSINH, "{0:dd-MM-yyyy}", new { @id = "ngaysinh", @class = "form-control", @type = "date", @Value = Model.NGAYSINH.Value.ToString("yyyy-MM-dd"),@max = DateTime.Now.ToString("yyyy-MM-dd") })
             </div>
         </div>
         
