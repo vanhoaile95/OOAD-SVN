@@ -13,7 +13,7 @@ namespace RapChieuPhim.Controllers
         // GET: /SapLichChieu/
         QuanLyCinemaEntities db = null;
         [HttpGet]
-        public ActionResult Index(string PhongChieu,DateTime? NgayChieu,string TinhTrang,string Error)
+        public ActionResult Index(string PhongChieu,DateTime? NgayChieu,string TinhTrang,string Error,string Duyet)
         {
             db = new QuanLyCinemaEntities();
             
@@ -48,7 +48,24 @@ namespace RapChieuPhim.Controllers
                 + NgayChieu.Value.Month + "-"
                 + NgayChieu.Value.Day + "' and TINHTRANG = N'" + TinhTrang + "'and MAPHONGCHIEU = '"+ PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
 
-            
+            //Duyệt phim thành "Chưa chiếu"
+            if (Duyet != null)
+            {
+                foreach(var item in LichChieu)
+                {
+                    item.TINHTRANG = "Chưa chiếu";
+                    db.Entry(item).State = System.Data.EntityState.Modified;
+                    db.SaveChanges();
+
+                
+                }
+               LichChieu = db.LICHCHIEUx.SqlQuery(
+               @"select * from LICHCHIEU where NGAYCHIEU ='"
+               + NgayChieu.Value.Year + "-"
+               + NgayChieu.Value.Month + "-"
+               + NgayChieu.Value.Day + "' and TINHTRANG = N'" + "Chưa chiếu" + "'and MAPHONGCHIEU = '" + PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
+                ViewBag.TinhTrangDaChon = "Chưa chiếu";
+            }
 
             
 
@@ -173,7 +190,7 @@ namespace RapChieuPhim.Controllers
 
              if (_DuyetPhim != null) // Đổi lịch chiếu thành tình trạng : "Chưa chiếu"
              {
-
+                 return RedirectToAction("Index", new { PhongChieu = _PhongChieu, NgayChieu = _NgayChieu, TinhTrang = _TinhTrang,Duyet = "OK" });
              }
 
              return RedirectToAction("Index", new { PhongChieu = _PhongChieu, NgayChieu = _NgayChieu, TinhTrang = _TinhTrang });

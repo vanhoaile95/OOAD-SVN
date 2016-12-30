@@ -53,7 +53,7 @@
     @Html.ValidationSummary(false, "", new { @class = "text-danger", @style = "float:left" })
         <div class="table-responsive" style="float:left" >
 
-            <table class="table">
+            <table class="table" >
                 <thead>
                     
                     <tr>
@@ -117,13 +117,13 @@
                             {
                                 if (item.MAPHONGCHIEU == PhongChieuDaChon)
                                 {
-                                    <td style="color:black;font-weight:bold">@item.TENPHONGCHIEU</td>
+                                    <td class="text" style="color:black;font-weight:bold">@item.TENPHONGCHIEU</td>
                                     break;
                                 }
                             }
                         
-                        <td style="color:black;font-weight:bold">@NgayChieu.ToString("dd-MM-yyyy")</td>
-                        <td style="color:black;font-weight:bold">Tình trạng : @TinhTrangDaChon</td>
+                        <td class="text" style="color:black;font-weight:bold">@NgayChieu.ToString("dd-MM-yyyy")</td>
+                        <td class="text" style="color:black;font-weight:bold">Tình trạng : @TinhTrangDaChon</td>
                     </tr>
                    
                     
@@ -214,6 +214,11 @@
             <button id="DuyetPhim" name="_DuyetPhim" style="float:right" class="btn btn-primary" >Cho bán vé</button>
 
             <script type="text/javascript">
+
+                
+              
+
+                //Show hoac Hide button
                 @if(TinhTrangDaChon == "Chờ duyệt")
                 {
                     <text>
@@ -364,75 +369,81 @@
 
        
      }
-                
-                //Time có lịch click
-                $('td').on('click', function () {
-                    if ($(this).attr('class') != "Time")    
-                    {
-                        var Content = this.textContent.split("-");
-                        var TimeBatDau = Content[0].split(",");
-                        $('#Xoa').val(TimeBatDau[0].toString());
-                        $('#Xoa').click();
-                    }
-                });
+               if ('@TinhTrangDaChon' == "Chờ duyệt")
+               {
+                   
 
-                //Time trống click
-                $('td.Time').on('click', function () {
+                    //Time có lịch click
+                    $('td').on('click', function () {
+                        if ($(this).attr('class') != "Time" && $(this).attr('class') != "text")
+                        {
+                            var Content = this.textContent.split("-");
+                            var TimeBatDau = Content[0].split(",");
+                            $('#Xoa').val(TimeBatDau[0].toString());
+                            $('#Xoa').click();
+                        }
+                    });
+                    
+
+
+               
+                    //Time trống click
+                    $('td.Time').on('click', function () {
                     
                    
-                    var Content = this.textContent.split("-");
-                    var TimeBatDau = Content[0].split(",");
+                        var Content = this.textContent.split("-");
+                        var TimeBatDau = Content[0].split(",");
                     
-                    var GioBatDau = TimeBatDau[0];
-                    var PhutBatDau = TimeBatDau[1];
+                        var GioBatDau = TimeBatDau[0];
+                        var PhutBatDau = TimeBatDau[1];
                     
-                    var GioKetThuc = Content[1].split(",")[0];
-                    var PhutKetThuc = Content[1].split(",")[1].substr(0,2); // Bỏ từ tooltip phía sau
+                        var GioKetThuc = Content[1].split(",")[0];
+                        var PhutKetThuc = Content[1].split(",")[1].substr(0,2); // Bỏ từ tooltip phía sau
                     
                     
-                    $('#_LimitTime').val(GioKetThuc + ":" + PhutKetThuc);
+                        $('#_LimitTime').val(GioKetThuc + ":" + PhutKetThuc);
 
-                    modal.style.display = "block";
+                        modal.style.display = "block";
 
-                    //Xóa timepicker cũ
-                    $('#divGioChieu').remove();
-                    //Add timepicker mới để update time default
-                    var TimePicker = $('<div class = "col-xs-3" id ="divGioChieu" <label>Giờ chiếu</label> <input id = "timepicker1" type ="text" name = _GioChieu class= "form-control" /> </div> ');
-                    TimePicker.insertAfter('#divPhienBan');
+                        //Xóa timepicker cũ
+                        $('#divGioChieu').remove();
+                        //Add timepicker mới để update time default
+                        var TimePicker = $('<div class = "col-xs-3" id ="divGioChieu" <label>Giờ chiếu</label> <input id = "timepicker1" type ="text" name = _GioChieu class= "form-control" /> </div> ');
+                        TimePicker.insertAfter('#divPhienBan');
 
-                    span.onclick = function () {
-                        modal.style.display = "none";
-
-
-
-
-                    }
-
-                    window.onclick = function (event) {
-                        if (event.target == modal) {
+                        span.onclick = function () {
                             modal.style.display = "none";
+
+
+
+
                         }
-                    }
 
-                    $('#timepicker1').val(GioBatDau + ":" + PhutBatDau);
-                    $('#timepicker1').timepicki({
-                        show_meridian: false,
-                        min_hour_value: GioBatDau,
-                        max_hour_value: GioKetThuc,
-                        max_minute_value: PhutKetThuc,
-                        min_minute_value:PhutBatDau,
-                        step_size_minutes: 5,
-                        overflow_minutes: true,
-                        increase_direction: 'up',
-                        start_time: [GioBatDau, PhutBatDau]
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
 
-                    });
+                        $('#timepicker1').val(GioBatDau + ":" + PhutBatDau);
+                        $('#timepicker1').timepicki({
+                            show_meridian: false,
+                            min_hour_value: GioBatDau,
+                            max_hour_value: GioKetThuc,
+                            max_minute_value: PhutKetThuc,
+                            min_minute_value:PhutBatDau,
+                            step_size_minutes: 5,
+                            overflow_minutes: true,
+                            increase_direction: 'up',
+                            start_time: [GioBatDau, PhutBatDau]
+
+                        });
 
                  
-
-                });
-
-             
+                    });
+                         
+                        }
+                    
              
 
 
