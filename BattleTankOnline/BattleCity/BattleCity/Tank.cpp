@@ -51,6 +51,10 @@ void Tank::InitRect()
 	SpriteRect = TextureRectManager::GetInstance()->GetTankRECT(CurrentTankType, CurrentTankColor);
 	Size = P(52,52);
 }
+RECT Tank::TankRECT()
+{
+	return SpriteRect[6];
+}
 void Tank::Update()
 {
 	Collide.Reset();
@@ -141,26 +145,43 @@ bool Tank::HandlerCollision(Collision collision)
 
 bool Tank::HandlerBulletCollision(Collision collision, int tankid, int tanktype)
 {
-	if (TankID != tankid)
+	if (ShieldTime > 0) return false;
+
+	if ((tankid + TankID) % 2 != 0)
 	{
 		if (Helper::Offline())
 		{
-			HP -= 1;
+			Mission* Current = (Mission*) Global::Instance()->MissionManager->CurrentScene;
+			HP -= Current->Tanks[tankid]->Bullet->Damage;
+			ShieldTime = ConfigsManager::Instance()->GetIntConfig(ConfigName::DAMAGE_SHIELD_TIME);
 			if (HP <= 0)
 			{
 				GameScore::Instance()->SinglePlayerInfo->Kill[tanktype] += 1;
-				HP = ConfigsManager::Instance()->GetIntConfig(ConfigName::TANK_HP);
 				Position = InitPoint;
+
+				Mission* Current = (Mission*) Global::Instance()->MissionManager->CurrentScene;
+				Current->Tanks[tankid]->Exp += Bounty;
+				Current->Tanks[tankid]->CheckAndUpgrade();
+
+				ChangeType(CurrentTankType);
+
+				if (tankid < Helper::MaxClient())
+				{
+					GameScore::Instance()->MulTiplayerInfo[tankid]->Kill += 1;
+					Current->MultiplayerHud->TankInfo[tankid]->Kill->UpdateValue(GameScore::Instance()->MulTiplayerInfo[tankid]->Kill);
+				}
+				if (TankID < Helper::MaxClient())
+				{
+					GameScore::Instance()->MulTiplayerInfo[TankID]->Death += 1;
+					Current->MultiplayerHud->TankInfo[TankID]->Death->UpdateValue(GameScore::Instance()->MulTiplayerInfo[TankID]->Death);
+				}
+				ShieldTime = ConfigsManager::Instance()->GetIntConfig(ConfigName::INIT_SHIELD_TIME);
 			}
 		}
 		else
 		{
-			//GameScore::Instance()->MulTiplayerInfo[tankid]->Kill += 1;
-			//GameScore::Instance()->MulTiplayerInfo[TankID]->Death += 1;
+
 		}
-
-
-
 	}
 
 	return true;
@@ -253,8 +274,8 @@ int Tank::Controll(P pos,string msg, int ping)
 
 		if (killerid < Helper::MaxClient())
 		{
-			Current->MultiplayerHud->TankInfo[killerid]->Kill->UpdateValue(GameScore::Instance()->MulTiplayerInfo[killerid]->Kill);
 			GameScore::Instance()->MulTiplayerInfo[killerid]->Kill += 1;
+			Current->MultiplayerHud->TankInfo[killerid]->Kill->UpdateValue(GameScore::Instance()->MulTiplayerInfo[killerid]->Kill);
 		}
 		if (TankID < Helper::MaxClient())
 		{
@@ -279,7 +300,8 @@ int Tank::Controll(string msg)
 	vector<string> decode = StringHelper::split(msg, "|");
 	if (!decode[0].compare("1")) // Move
 	{
-		if (Helper::GetPing() < 200)
+		//if (Helper::GetPing() < 200)
+		if (Helper::Offline())
 		{
 			dir = (Direction) atoi(decode[1].c_str());
 			switch (dir)
@@ -304,7 +326,8 @@ int Tank::Controll(string msg)
 	}
 	else if (!decode[0].compare("0"))  // stop
 	{
-		if (Helper::GetPing() < 200)
+		//if (Helper::GetPing() < 200)
+		if (Helper::Offline())
 		{
 			dir = (Direction) atoi(decode[1].c_str());
 			switch (dir)

@@ -38,6 +38,7 @@ void Mission::Init()
 			Base2 = j->second;
 		}
 	}
+
 	MultiplayerHud = new MultiPlayerHud();
 	if (!Helper::Offline())
 	{
@@ -45,9 +46,8 @@ void Mission::Init()
 	}
 	else
 	{
-		MultiplayerHud->Init();
+		MultiplayerHud->InitOffline();
 	}
-
 	InitBorderAndTank();
 	//EffectManager::GetInstance()->GetDeltaTime(&_GameTime->_DeltaTime);
 	Camera::GetInstance()->VPX = 0;
@@ -84,7 +84,6 @@ void Mission::InitBorderAndTank()
 		{
 			Tanks[i] = new AITank(InitPointB[i / 2], BObjectName::PLAYER2,i);
 		}
-
 		if (Helper::Offline() && Tanks[i]->TankID != Helper::GetTankID())
 		{
 			Tanks[i]->EnableAIMode();
@@ -235,6 +234,19 @@ void Mission::ServerGameLogicUpdate()
 	}
 
 }
+void Mission::CheckWinGame(int id)
+{
+	if (Base1->ID == id)
+	{
+		GameScore::Instance()->WinState = 1;
+		Value = WinGameMode;
+	}
+	else if (Base2->ID == id)
+	{
+		GameScore::Instance()->WinState = 2;
+		Value = WinGameMode;
+	}
+}
 void Mission::UpdateWorld()
 {
 	ServerGameLogicUpdate();
@@ -314,12 +326,17 @@ void Mission::RenderFrame()
 			i->second->Draw();
 	}
 	//EffectManager::GetInstance()->Draw();
-	
-	if (!Helper::Offline())
-	{
-		MultiplayerHud->RenderFrame();
-	}
+	MultiplayerHud->RenderFrame();
 
+}
+RECT* Mission::GetTankRECT()
+{
+	RECT* tankrect = new RECT[4];
+	for (int i = 0; i < ClientManager::Instance()->MaxClient; i++)
+	{
+		tankrect[i] = Tanks[i]->TankRECT();
+	}
+	return tankrect;
 }
 Mission::~Mission()
 {

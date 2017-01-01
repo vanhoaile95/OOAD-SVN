@@ -1,5 +1,6 @@
 #include "GameScore.h"
-//#include "EffectManager.h"
+#include <d3d9.h>
+#include <d3dx9.h>
 
 GameScore* GameScore::_instance = NULL;
 

@@ -33,10 +33,9 @@ void UIMutiplayerTankInfo::Draw()
 		Bar->Draw();
 	}
 }
-
 void UIMutiplayerTankInfo::UpdateInfo(int uid, int tid)
 {
-	if (uid == Helper::GetUID())
+	if ((tid == 0 && Helper::Offline()) || (!Helper::Offline() && uid == Helper::GetUID()))
 	{
 		UIDInfo->CurrentColor = Color::Yellow;
 		Kill->CurrentColor = Color::Yellow;
@@ -55,6 +54,7 @@ void UIMutiplayerTankInfo::UpdateInfo(int uid, int tid)
 		UIDInfo->UpdateValue(uid);
 	else
 		UIDInfo->UpdateValue(0);
+
 	UID = uid;
 	TankIndex = tid;
 	switch (TankIndex)

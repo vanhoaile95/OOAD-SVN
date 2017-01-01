@@ -39,5 +39,6 @@ public:
 	virtual int Controll(string msg);
 	virtual void Draw();
 	virtual void InitRect();
+	RECT TankRECT();
 };
 #endif //TANK_H

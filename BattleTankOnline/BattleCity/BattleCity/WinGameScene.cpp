@@ -20,7 +20,7 @@ void WinGameScene::OnKeyDown(int KeyCode)
 		//ActiveChild->HandlerKey(ControlKey::UpKey);
 	}
 }
-void WinGameScene::Init()
+void WinGameScene::Init(RECT* TankRect)
 {
 	UI::Init();
 
@@ -30,7 +30,7 @@ void WinGameScene::Init()
 	Child.push_back(WhiteTeamWin);
 
 	MultiplayerHud = new MultiPlayerHud();
-	MultiplayerHud->Init();
+	MultiplayerHud->Init(TankRect);
 
 	/*if (ActiveChild == NULL)
 		ActiveChild = new UISelectButton(P(462, 636), BObjectName::UI_BACK_MAIN_MENU_BTN, SelectedValue::MainMenuMode, true);

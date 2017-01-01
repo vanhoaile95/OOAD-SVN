@@ -38,7 +38,6 @@ public:
 	TankBattleInfo* MulTiplayerInfo[4];
 	MissionInfo* SinglePlayerInfo;
 	int TotalScore = 0;
-
 	int WinState = 1;
 public:
 	static GameScore* Instance();

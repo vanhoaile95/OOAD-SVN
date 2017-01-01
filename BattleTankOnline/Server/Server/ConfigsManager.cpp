@@ -1,5 +1,6 @@
 #include "ConfigsManager.h"
 
+
 ConfigsManager* ConfigsManager::_instance = 0;
 ConfigsManager* ConfigsManager::Instance()
 {

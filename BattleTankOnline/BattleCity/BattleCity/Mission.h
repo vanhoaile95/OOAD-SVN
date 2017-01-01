@@ -45,6 +45,8 @@ public:
 	virtual void OnKeyUp(int KeyCode);
 	virtual void ServerGameLogicUpdate();
 
+	void CheckWinGame(int id);
+	RECT * GetTankRECT();
 	~Mission();
 };
 

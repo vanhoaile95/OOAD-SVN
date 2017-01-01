@@ -1,4 +1,5 @@
 #include "StaticObject.h"
+#include "Global.h"
 
 StaticObject::StaticObject(P pos,BObjectName name): Object(pos,name)
 {
@@ -85,6 +86,9 @@ bool StaticObject::HandlerBulletCollision(Collision collision, int tankid, int t
 			{
 				IsDisappear = true;
 				enableCollision = false;
+
+				Mission* Current = (Mission*) Global::Instance()->MissionManager->CurrentScene;
+				Current->CheckWinGame(ID);
 			}
 		}
 	}

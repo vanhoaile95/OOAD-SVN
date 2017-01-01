@@ -13,7 +13,7 @@ public:
 	MultiPlayerHud* MultiplayerHud;
 	UIObject * WhiteTeamWin, *GreenTeamWin;
 public:
-	virtual void Init();
+	virtual void Init(RECT* TankRect);
 	virtual void UpdateData();
 	virtual void RenderFrame();
 	virtual void UpdateWorld();

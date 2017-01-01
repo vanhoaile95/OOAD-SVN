@@ -41,6 +41,7 @@ void MissionManager::OnKeyDown(int KeyCode)
 			}
 			else if (CurrentState == GameState::WinGameStateScene)
 			{
+
 			}
 		}
 		else if (KeyCode == DIK_F1 && CurrentState != GameState::MainMenuScene)
@@ -107,7 +108,8 @@ void MissionManager::UpdateWorld()
 	CurrentScene->UpdateWorld();
 	if (CurrentScene->Value == SelectedValue::WinGameMode)
 	{
-		Control(GameState::WinGameStateScene);
+		Mission* current = (Mission*) CurrentScene;
+		GotoWinGameStateScene(GameState::WinGameStateScene, current->GetTankRECT());
 	}
 }
 void MissionManager::RenderFrame()
@@ -148,4 +150,13 @@ void MissionManager::GotoScene(GameState State)
 	CurrentScene = _listScene.find(State)->second;
 	CurrentScene->Init();
 	CurrentScene->UpdateData();
+}
+void MissionManager::GotoWinGameStateScene(GameState State,RECT* TankRECT)
+{
+	CurrentState = State;
+	CurrentScene = _listScene.find(State)->second;
+	WinGameScene* WinScene = (WinGameScene*) CurrentScene;
+	WinScene->Init(TankRECT);
+	CurrentScene->UpdateData();
+
 }

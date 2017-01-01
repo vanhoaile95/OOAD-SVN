@@ -34,7 +34,6 @@ public:
 
 	static ConfigsManager* Instance();
 	void InitConfigs();
-
 	float GetTankConfig(int tanktype, TankConfigName var_name);
 	int GetIntConfig(ConfigName var_name);
 	string GetStringConfig(ConfigName var_name);

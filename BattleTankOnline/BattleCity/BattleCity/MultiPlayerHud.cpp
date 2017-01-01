@@ -16,11 +16,24 @@ void MultiPlayerHud::Init()
 	for (int i = 0; i  < ConfigsManager::Instance()->GetIntConfig(MAX_CLIENT_IN_GAME); i++)
 	{
 		TankInfo[i] = new UIMutiplayerTankInfo(P(100 + 295*i,300), -1, i, true);
-		if(Helper::GetClientInfo(i) != NULL)
+		if(!Helper::Offline())
 			TankInfo[i]->UpdateInfo(Helper::GetClientInfo(i)->UID, Helper::GetClientInfo(i)->TankID);
+		else
+			TankInfo[i]->UpdateInfo(i,i);
 		Child.push_back(TankInfo[i]);
 	}
 	UpdateInfo();
+}
+void MultiPlayerHud::InitOffline()
+{
+	UI::Init();
+
+	for (int i = 0; i < ConfigsManager::Instance()->GetIntConfig(MAX_CLIENT_IN_GAME); i++)
+	{
+		TankInfo[i] = new UIMutiplayerTankInfo(P(950, 100 + 180 * i), -1, i, true);
+		TankInfo[i]->UpdateInfo(i, i);
+		Child.push_back(TankInfo[i]);
+	}
 }
 
 void MultiPlayerHud::Init(ClientInf* clientinf[])
@@ -45,6 +58,17 @@ void MultiPlayerHud::Init(ClientInf* clientinf [],RECT* TankRect)
 		Child.push_back(TankInfo[i]);
 		TankInfo[i]->UpdateTankRECT(TankRect[i]);
 	}
+}
+void MultiPlayerHud::Init(RECT * TankRect)
+{
+	for (int i = 0; i < ConfigsManager::Instance()->GetIntConfig(MAX_CLIENT_IN_GAME); i++)
+	{
+		TankInfo[i] = new UIMutiplayerTankInfo(P(100 + 295 * i, 300), -1, i, true);
+		TankInfo[i]->UpdateInfo(i, i);
+		Child.push_back(TankInfo[i]);
+		TankInfo[i]->UpdateTankRECT(TankRect[i]);
+	}
+	UpdateInfo();
 }
 void MultiPlayerHud::UpdateInfo()
 {

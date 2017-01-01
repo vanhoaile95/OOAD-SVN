@@ -39,6 +39,7 @@ public:
 
 	virtual void Control(GameState State);
 	void GotoScene(GameState State);
+	void GotoWinGameStateScene(GameState State, RECT * TankRECT);
 
 	void ProcessInput();
 	void OnKeyDown(int KeyCode);

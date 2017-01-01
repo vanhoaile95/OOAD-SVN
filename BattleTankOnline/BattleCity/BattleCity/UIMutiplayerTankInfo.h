@@ -21,7 +21,6 @@ public:
 	virtual void ReverseYAxis();
 
 	virtual void Draw();
-
 	void UpdateInfo(int uid, int tid);
 	void UpdateKillDeath(int kill, int death);
 	void UpdateTankRECT(RECT tankrect);
