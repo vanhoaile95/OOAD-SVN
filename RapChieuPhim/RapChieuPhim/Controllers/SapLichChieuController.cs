@@ -38,7 +38,7 @@ namespace RapChieuPhim.Controllers
             if (NgayChieu == null)
             {NgayChieu = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));}
             ViewBag.NgayChieu = NgayChieu;
-            ViewBag.NgayChieuDaChon = NgayChieu;
+          
 
 
             //Load Table Lịch chiếu
