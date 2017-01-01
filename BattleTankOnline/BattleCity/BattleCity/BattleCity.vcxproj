@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E1631B55-42CE-4674-BA1D-6CF1852980F7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MarioGame</RootNamespace>
+    <ProjectName>BattleCity</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;MARKUP_STL;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <BrowseInformation>true</BrowseInformation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;dsound.lib;winmm.lib;dxerr.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;MARKUP_STL;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;dsound.lib;winmm.lib;dxerr.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AITank.cpp" />
+    <ClCompile Include="Algorithm.cpp" />
+    <ClCompile Include="BorderObject.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ClientInfo.cpp" />
+    <ClCompile Include="ClientManager.cpp" />
+    <ClCompile Include="ClientTankManager.cpp" />
+    <ClCompile Include="ClientTimeManager.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="ConfigsManager.cpp" />
+    <ClCompile Include="DirectXGame.cpp" />
+    <ClCompile Include="DirectXWindows.cpp" />
+    <ClCompile Include="DSUTIL.CPP" />
+    <ClCompile Include="dxaudio.cpp" />
+    <ClCompile Include="DynamicObject.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameInfor.cpp" />
+    <ClCompile Include="GameScore.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameStatusBar.cpp" />
+    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MissionManager.cpp" />
+    <ClCompile Include="MissionState.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Markup.cpp" />
+    <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="MultiPlayerHud.cpp" />
+    <ClCompile Include="MultiplayerMain.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="GameSound.cpp" />
+    <ClCompile Include="PointStruct.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ServerInfo.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StaticObject.cpp" />
+    <ClCompile Include="StringHelper.cpp" />
+    <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="TankBullet.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="TextureRectManager.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIClientInfo.cpp" />
+    <ClCompile Include="UIDigit.cpp" />
+    <ClCompile Include="UIMutiplayerTankInfo.cpp" />
+    <ClCompile Include="UIObject.cpp" />
+    <ClCompile Include="UISelectButton.cpp" />
+    <ClCompile Include="UIServerInfo.cpp" />
+    <ClCompile Include="WinGameScene.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AITank.h" />
+    <ClInclude Include="Algorithm.h" />
+    <ClInclude Include="BorderObject.h" />
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="Build.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="ClientInfo.h" />
+    <ClInclude Include="ClientManager.h" />
+    <ClInclude Include="ClientTankManager.h" />
+    <ClInclude Include="ClientTimeManager.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="ConfigEnumDefine.h" />
+    <ClInclude Include="ConfigsManager.h" />
+    <ClInclude Include="ControlKey.h" />
+    <ClInclude Include="DirectXGame.h" />
+    <ClInclude Include="DirectXWindows.h" />
+    <ClInclude Include="DSUTIL.H" />
+    <ClInclude Include="dxaudio.h" />
+    <ClInclude Include="DXUTIL.H" />
+    <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameInfor.h" />
+    <ClInclude Include="GameScore.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStatusBar.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="Helper.h" />
+    <ClInclude Include="LoadingScreen.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MissionState.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Markup.h" />
+    <ClInclude Include="Mission.h" />
+    <ClInclude Include="MissionManager.h" />
+    <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="MultiPlayerHud.h" />
+    <ClInclude Include="MultiplayerMain.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="GameSound.h" />
+    <ClInclude Include="PointStruct.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SelectedValue.h" />
+    <ClInclude Include="ServerInfo.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="StringHelper.h" />
+    <ClInclude Include="Tank.h" />
+    <ClInclude Include="TankBullet.h" />
+    <ClInclude Include="TankEnumDefine.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="TextureRectManager.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UIClientInfo.h" />
+    <ClInclude Include="UIDigit.h" />
+    <ClInclude Include="UIMutiplayerTankInfo.h" />
+    <ClInclude Include="UIObject.h" />
+    <ClInclude Include="UISelectButton.h" />
+    <ClInclude Include="UIServerInfo.h" />
+    <ClInclude Include="WinGameScene.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

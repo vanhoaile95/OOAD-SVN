@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\NetworkManager">
+      <UniqueIdentifier>{a3f5212d-be83-40f6-a11f-e81ad81c62d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NetworkManager">
+      <UniqueIdentifier>{0ddb2650-9f2a-457e-81bf-0e1f2d92ec06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ConfigManager">
+      <UniqueIdentifier>{9f2318ec-9f00-49c5-98e1-b3080c5c3fbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ConfigManager">
+      <UniqueIdentifier>{558150f9-5a27-46eb-a22a-7a40b7288d93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLogic">
+      <UniqueIdentifier>{4c3d831d-c6e5-4294-8a59-7d2e8c1c9162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameLogic">
+      <UniqueIdentifier>{84249a05-af31-46d2-8f83-4912b20070a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helper">
+      <UniqueIdentifier>{99bb3649-0b34-4c3a-acfc-59fe31280beb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{6d3e83c4-ba7a-464a-8dc3-4aa3fe397b26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLogic\Map">
+      <UniqueIdentifier>{0d08bb6d-653d-4973-b445-eb904893427f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameLogic\Map">
+      <UniqueIdentifier>{2eb7f3b3-ca07-49b0-bea2-49374a38fbdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameLogic\Object">
+      <UniqueIdentifier>{94c663af-db1d-4210-a10f-7fea6bc0face}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLogic\Object">
+      <UniqueIdentifier>{e60ba3a9-d4de-4e91-b56e-bc054f916c93}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ClientManager.cpp">
+      <Filter>Source Files\NetworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>Source Files\NetworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerManager.cpp">
+      <Filter>Source Files\NetworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigsManager.cpp">
+      <Filter>Source Files\ConfigManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerGameLogic.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Source Files\NetworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\BattleCity\BattleCity\StringHelper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerDataManager.cpp">
+      <Filter>Source Files\NetworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Markup.cpp">
+      <Filter>Source Files\GameLogic\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\GameLogic\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionManager.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockObject.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObject.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TankBullet.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScore.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfor.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="AITank.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\BattleCity\BattleCity\PointStruct.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientInfo.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerInfo.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="BorderObject.cpp">
+      <Filter>Source Files\GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTimeManager.cpp">
+      <Filter>Source Files\NetworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ClientManager.h">
+      <Filter>Header Files\NetworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Header Files\NetworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerManager.h">
+      <Filter>Header Files\NetworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigEnumDefine.h">
+      <Filter>Header Files\ConfigManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigsManager.h">
+      <Filter>Header Files\ConfigManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Header Files\NetworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\BattleCity\BattleCity\StringHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerDataManager.h">
+      <Filter>Header Files\NetworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\GameLogic\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Markup.h">
+      <Filter>Header Files\GameLogic\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Build.h">
+      <Filter>Header Files\GameLogic\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Header Files\GameLogic\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MissionManager.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockObject.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TankBullet.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TankEnumDefine.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlKey.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfor.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScore.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectedValue.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="AITank.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\BattleCity\BattleCity\PointStruct.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientInfo.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerInfo.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="BorderObject.h">
+      <Filter>Header Files\GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerTimeManager.h">
+      <Filter>Header Files\NetworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerGameLogic.h">
+      <Filter>Header Files\NetworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

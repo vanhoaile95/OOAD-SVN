@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\DirectXGame">
+      <UniqueIdentifier>{ae244f35-9842-4b51-862b-c6480b5b7de7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectXGame">
+      <UniqueIdentifier>{0a2ea226-9620-4eab-9e80-32acbbaa0b50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{cca8b010-055d-433d-9de2-1be153b93753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{3aa3c190-8616-4d13-8a88-08b11dae277f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\DynamicObject">
+      <UniqueIdentifier>{4e756d77-ed2b-4ef6-acd3-ea8125bdad11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\StaticObject">
+      <UniqueIdentifier>{8b10a290-68e5-4cdf-90ea-7a7c098d9bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\StaticObject">
+      <UniqueIdentifier>{f1710276-a8dd-497d-90ed-66b94502dfa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm">
+      <UniqueIdentifier>{59dde51d-f1ad-4657-8d90-a2d4fb3a08db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Algorithm">
+      <UniqueIdentifier>{6dc6bec7-ff0f-46c2-909d-7ff24343b964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm\Effects">
+      <UniqueIdentifier>{85f43cb2-0883-4cfc-a8a7-7cc17e77507b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Algorithm\Effects">
+      <UniqueIdentifier>{d8414c12-b233-47a8-9bec-93805c492b9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm\Collision">
+      <UniqueIdentifier>{e38182ff-33d4-4dc6-9e1d-75826cbfa4cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Algorithm\Collision">
+      <UniqueIdentifier>{88bcd9d4-ad8e-45f4-b807-f8086fb098d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mission">
+      <UniqueIdentifier>{793d040f-9528-4f45-b81f-dfd4a4bb6d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mission">
+      <UniqueIdentifier>{a9b78f76-b1f1-4644-b73a-1ed3cae5bcf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectXGame\Texture&amp;Sprite">
+      <UniqueIdentifier>{a2a62e32-e7a4-4274-ad07-44a52018e7f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DirectXGame\Texture&amp;Sprite">
+      <UniqueIdentifier>{57026292-4228-4626-b0c7-c4f154ab3940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mission\Map">
+      <UniqueIdentifier>{899afe13-109a-4cd2-9658-bf8518b4dc67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mission\Map">
+      <UniqueIdentifier>{21ebee2e-9b84-408b-ac74-f81dbb511a6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\DynamicObject\Enemy">
+      <UniqueIdentifier>{bd5407a0-effc-4951-9f69-77e8cb4dd89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DirectXGame\Sound">
+      <UniqueIdentifier>{8a49fe59-7bdb-4fac-8923-81b1e76588a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectXGame\Sound">
+      <UniqueIdentifier>{94827bd5-c34a-40d7-9af6-7db4e00adc62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ClientManager">
+      <UniqueIdentifier>{62679ca9-083a-4d0f-80c1-a640892b7951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\DynamicObject">
+      <UniqueIdentifier>{8335e980-d2e1-464a-8fff-2e0f2d5108fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\DynamicObject\Tank">
+      <UniqueIdentifier>{69048756-9035-4292-b35a-be29125f1535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\DynamicObject\Tank">
+      <UniqueIdentifier>{b26f9c29-5883-49bb-81e2-679e8be6992e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{1031c4bc-5a4a-48c8-9f57-135e74c9b048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helper">
+      <UniqueIdentifier>{bee2d67e-fb4f-44ae-a7dc-3e81e6952d21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ConfigManager">
+      <UniqueIdentifier>{cba4c73f-186e-4c41-acc5-ada02e996560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ConfigManager">
+      <UniqueIdentifier>{b1826ea3-6b20-4b8f-a2e2-2ec1c424e608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{e2de3fea-efb3-4058-a2b0-41436e19632c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{824dae9f-e41d-46f3-a2db-b7486e34e03d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm\ClientManager">
+      <UniqueIdentifier>{5fffcb42-fe3b-4a85-b80b-07608229bff9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXGame.cpp">
+      <Filter>Source Files\DirectXGame</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXWindows.cpp">
+      <Filter>Source Files\DirectXGame</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObject.cpp">
+      <Filter>Source Files\Object\StaticObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\Algorithm\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files\Algorithm\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission.cpp">
+      <Filter>Source Files\Mission</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\DirectXGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\DirectXGame\Texture&amp;Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files\DirectXGame\Texture&amp;Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Markup.cpp">
+      <Filter>Source Files\Mission\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Mission\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStatusBar.cpp">
+      <Filter>Source Files\Mission</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfor.cpp">
+      <Filter>Source Files\DirectXGame</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScore.cpp">
+      <Filter>Source Files\DirectXGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionState.cpp">
+      <Filter>Source Files\Mission</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dxaudio.cpp">
+      <Filter>Source Files\DirectXGame\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSound.cpp">
+      <Filter>Source Files\DirectXGame\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="DSUTIL.CPP">
+      <Filter>Source Files\DirectXGame\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureRectManager.cpp">
+      <Filter>Source Files\DirectXGame\Texture&amp;Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientTimeManager.cpp">
+      <Filter>Source Files\Algorithm\ClientManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="PointStruct.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>Source Files\Object\DynamicObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Source Files\Object\DynamicObject\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientManager.cpp">
+      <Filter>Source Files\Algorithm\ClientManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="StringHelper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigsManager.cpp">
+      <Filter>Source Files\ConfigManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\Mission</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObject.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScreen.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Source Files\Mission</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UISelectButton.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TankBullet.cpp">
+      <Filter>Source Files\Object\DynamicObject\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiplayerMain.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIDigit.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIServerInfo.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIClientInfo.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files\ConfigManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientTankManager.cpp">
+      <Filter>Source Files\Algorithm\ClientManager</Filter>
+    </ClCompile>
+    <ClCompile Include="AITank.cpp">
+      <Filter>Source Files\Object\DynamicObject\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="BorderObject.cpp">
+      <Filter>Source Files\Object\StaticObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionManager.cpp">
+      <Filter>Source Files\Mission</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiPlayerHud.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMutiplayerTankInfo.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="WinGameScene.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm.h">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXGame.h">
+      <Filter>Header Files\DirectXGame</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXWindows.h">
+      <Filter>Header Files\DirectXGame</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>Header Files\Object\StaticObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Algorithm\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Header Files\Algorithm\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission.h">
+      <Filter>Header Files\Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="MissionManager.h">
+      <Filter>Header Files\Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\DirectXGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\DirectXGame\Texture&amp;Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Header Files\DirectXGame\Texture&amp;Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\Mission\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Markup.h">
+      <Filter>Header Files\Mission\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Build.h">
+      <Filter>Header Files\Mission\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Header Files\Mission\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStatusBar.h">
+      <Filter>Header Files\Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScore.h">
+      <Filter>Header Files\DirectXGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MissionState.h">
+      <Filter>Header Files\Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="dxaudio.h">
+      <Filter>Header Files\DirectXGame\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="DSUTIL.H">
+      <Filter>Header Files\DirectXGame\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSound.h">
+      <Filter>Header Files\DirectXGame\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfor.h">
+      <Filter>Header Files\DirectXGame</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUTIL.H">
+      <Filter>Header Files\DirectXGame\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureRectManager.h">
+      <Filter>Header Files\DirectXGame\Texture&amp;Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientTimeManager.h">
+      <Filter>Header Files\ClientManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PointStruct.h">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>Header Files\Object\DynamicObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Header Files\Object\DynamicObject\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientManager.h">
+      <Filter>Header Files\ClientManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="StringHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigEnumDefine.h">
+      <Filter>Header Files\ConfigManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigsManager.h">
+      <Filter>Header Files\ConfigManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIObject.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScreen.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Header Files\Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UISelectButton.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlKey.h">
+      <Filter>Header Files\ClientManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectedValue.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TankEnumDefine.h">
+      <Filter>Header Files\Object\DynamicObject\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="TankBullet.h">
+      <Filter>Header Files\Object\DynamicObject\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiplayerMain.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIDigit.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerInfo.h">
+      <Filter>Header Files\ClientManager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIServerInfo.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIClientInfo.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientInfo.h">
+      <Filter>Header Files\ClientManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Header Files\ConfigManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientTankManager.h">
+      <Filter>Header Files\ClientManager</Filter>
+    </ClInclude>
+    <ClInclude Include="AITank.h">
+      <Filter>Header Files\Object\DynamicObject\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="BorderObject.h">
+      <Filter>Header Files\Object\StaticObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiPlayerHud.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMutiplayerTankInfo.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WinGameScene.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Width>1600</Width>
+  <Height>512</Height>
+  <Nodes>
+    <Node ID="1" X="0" Y="1600" Width="1600" Height="1600">
+      <GameObjects />
+    </Node>
+    <Node ID="9" X="0" Y="1600" Width="800" Height="800">
+      <GameObjects>
+        <GameObject ID="0" Type="1" X="224" Y="258" />
+        <GameObject ID="1" Type="7" X="480" Y="448" />
+        <GameObject ID="2" Type="7" X="0" Y="448" />
+      </GameObjects>
+    </Node>
+    <Node ID="10" X="800" Y="1600" Width="800" Height="800">
+      <GameObjects>
+        <GameObject ID="0" Type="1" X="224" Y="258" />
+      </GameObjects>
+    </Node>
+    <Node ID="11" X="0" Y="800" Width="800" Height="800">
+      <GameObjects>
+        <GameObject ID="0" Type="1" X="224" Y="258" />
+        <GameObject ID="1" Type="7" X="480" Y="448" />
+        <GameObject ID="2" Type="7" X="0" Y="448" />
+        <GameObject ID="3" Type="7" X="480" Y="1" />
+        <GameObject ID="4" Type="7" X="448" Y="1" />
+        <GameObject ID="5" Type="7" X="416" Y="1" />
+        <GameObject ID="6" Type="7" X="384" Y="1" />
+        <GameObject ID="7" Type="7" X="352" Y="1" />
+        <GameObject ID="8" Type="7" X="320" Y="1" />
+        <GameObject ID="9" Type="7" X="288" Y="1" />
+        <GameObject ID="10" Type="7" X="256" Y="1" />
+        <GameObject ID="11" Type="7" X="224" Y="1" />
+        <GameObject ID="12" Type="7" X="192" Y="1" />
+        <GameObject ID="13" Type="7" X="160" Y="1" />
+        <GameObject ID="14" Type="7" X="128" Y="1" />
+        <GameObject ID="15" Type="7" X="96" Y="1" />
+        <GameObject ID="16" Type="7" X="64" Y="1" />
+        <GameObject ID="17" Type="7" X="32" Y="1" />
+        <GameObject ID="18" Type="7" X="0" Y="1" />
+      </GameObjects>
+    </Node>
+    <Node ID="12" X="800" Y="800" Width="800" Height="800">
+      <GameObjects>
+        <GameObject ID="0" Type="1" X="224" Y="258" />
+      </GameObjects>
+    </Node>
+  </Nodes>
+</SaveData>
