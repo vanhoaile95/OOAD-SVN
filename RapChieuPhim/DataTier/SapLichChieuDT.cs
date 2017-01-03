@@ -33,7 +33,7 @@ namespace DataTier
                 LichChieu.MALICHCHIEU = "LC" + (int.Parse(Last_LichChieu[0]) + 1).ToString();
             }
         }
-        public bool Insert(string _TenPhim,string PhienBan,string PhongChieu,DateTime? _NgayChieu,DateTime? GioChieu,DateTime? LimitTime)
+        public bool Insert(string _TenPhim,string PhienBan,string PhongChieu,DateTime _NgayChieu,DateTime? GioChieu,DateTime? LimitTime)
         {
             db = new QuanLyCinemaEntities();
             LICHCHIEU temp = new LICHCHIEU();
