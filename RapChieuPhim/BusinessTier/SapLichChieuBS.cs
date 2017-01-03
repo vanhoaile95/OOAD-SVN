@@ -11,7 +11,7 @@ namespace BusinessTier
   public  class SapLichChieuBS
     {
       SapLichChieuDT db = new SapLichChieuDT();
-        public bool Insert(string _TenPhim, string PhienBan, string PhongChieu, DateTime? _NgayChieu,DateTime? GioChieu,DateTime? LimitTime)
+        public bool Insert(string _TenPhim, string PhienBan, string PhongChieu, DateTime _NgayChieu,DateTime? GioChieu,DateTime? LimitTime)
         {
             
             return db.Insert(_TenPhim,PhienBan,PhongChieu,_NgayChieu,GioChieu,LimitTime);
