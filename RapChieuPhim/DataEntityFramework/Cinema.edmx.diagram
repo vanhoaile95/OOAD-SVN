@@ -33,6 +33,7 @@
         <AssociationConnector Association="QuanLyCinemaModel.FK__LICHLAMVI__MANGS__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyCinemaModel.FK__LICHLAMVIE__MANV__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyCinemaModel.CT_HOADON" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyCinemaModel.THAMSO" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

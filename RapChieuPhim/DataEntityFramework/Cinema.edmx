@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyCinemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLyCinemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANGLUONG">
           <Key>
             <PropertyRef Name="MABANGLUONG" />
@@ -93,7 +93,7 @@
           <Property Name="MAPHIM" Type="varchar" MaxLength="20" />
           <Property Name="PHIENBAN" Type="nvarchar" MaxLength="50" />
           <Property Name="MAPHONGCHIEU" Type="varchar" MaxLength="20" />
-          <Property Name="NGAYCHIEU" Type="smalldatetime" />
+          <Property Name="NGAYCHIEU" Type="smalldatetime" Nullable="false" />
           <Property Name="GIOBATDAU" Type="varchar" MaxLength="20" />
           <Property Name="GIOKETTHUC" Type="varchar" MaxLength="20" />
           <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
@@ -160,19 +160,25 @@
           <Property Name="SOGHE" Type="int" />
           <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="THAMSO">
-          <Property Name="TIENVON" Type="decimal" Precision="18" Scale="0" />
+          <Key>
+            <PropertyRef Name="TIENVON" />
+          </Key>
+          <Property Name="TIENVON" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="GIAVE" Type="int" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="VE">
           <Key>
             <PropertyRef Name="MAVE" />
           </Key>
           <Property Name="MAVE" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="MALICHCHIEU" Type="varchar" MaxLength="20" />
-          <Property Name="STTGHE" Type="int" />
+          <Property Name="STTGHE" Type="int" Nullable="false" />
+          <Property Name="MAKH" Type="varchar" MaxLength="20" />
+          <Property Name="NGAYBAN" Type="smalldatetime" Nullable="false" />
+          <Property Name="MANVBAN" Type="varchar" MaxLength="20" />
+          <Property Name="GIAVE" Type="int" Nullable="false" />
+          <Property Name="TINHTRANG" Type="varchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK__CT_BANGLU__MABAN__2C3393D0">
           <End Role="BANGLUONG" Type="Self.BANGLUONG" Multiplicity="1" />
@@ -371,6 +377,7 @@ warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary k
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIM" EntityType="Self.PHIM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONGCHIEU" EntityType="Self.PHONGCHIEU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VE" EntityType="Self.VE" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__CT_BANGLU__MABAN__2C3393D0" Association="Self.FK__CT_BANGLU__MABAN__2C3393D0">
             <End Role="BANGLUONG" EntitySet="BANGLUONG" />
@@ -433,8 +440,7 @@ warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary k
             <End Role="VE" EntitySet="VE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyCinemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -530,7 +536,7 @@ warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary k
           <Property Name="MAPHIM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="PHIENBAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MAPHONGCHIEU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NGAYCHIEU" Type="DateTime" Precision="0" />
+          <Property Name="NGAYCHIEU" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="GIOBATDAU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="GIOKETTHUC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -617,9 +623,14 @@ warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary k
           </Key>
           <Property Name="MAVE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MALICHCHIEU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="STTGHE" Type="Int32" />
+          <Property Name="STTGHE" Type="Int32" Nullable="false" />
           <NavigationProperty Name="LICHCHIEU" Relationship="Self.FK__VE__MALICHCHIEU__398D8EEE" FromRole="VE" ToRole="LICHCHIEU" />
           <NavigationProperty Name="HOADONs" Relationship="Self.CT_HOADON" FromRole="VE" ToRole="HOADON" />
+          <Property Name="MAKH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYBAN" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MANVBAN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GIAVE" Type="Int32" Nullable="false" />
+          <Property Name="TINHTRANG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__CT_BANGLU__MABAN__2C3393D0">
           <End Role="BANGLUONG" Type="Self.BANGLUONG" Multiplicity="1" />
@@ -854,7 +865,15 @@ warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary k
             <End Role="HOADON" EntitySet="HOADONs" />
             <End Role="VE" EntitySet="VEs" />
           </AssociationSet>
+          <EntitySet Name="THAMSOes" EntityType="QuanLyCinemaModel.THAMSO" />
         </EntityContainer>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="TIENVON" />
+          </Key>
+          <Property Name="TIENVON" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="GIAVE" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1022,6 +1041,11 @@ warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary k
           <EntitySetMapping Name="VEs">
             <EntityTypeMapping TypeName="QuanLyCinemaModel.VE">
               <MappingFragment StoreEntitySet="VE">
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="GIAVE" ColumnName="GIAVE" />
+                <ScalarProperty Name="MANVBAN" ColumnName="MANVBAN" />
+                <ScalarProperty Name="NGAYBAN" ColumnName="NGAYBAN" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
                 <ScalarProperty Name="MAVE" ColumnName="MAVE" />
                 <ScalarProperty Name="MALICHCHIEU" ColumnName="MALICHCHIEU" />
                 <ScalarProperty Name="STTGHE" ColumnName="STTGHE" />
@@ -1036,6 +1060,14 @@ warning 6013: The table/view 'QuanLyCinema.dbo.THAMSO' does not have a primary k
               <ScalarProperty Name="MAVE" ColumnName="MAVE" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="THAMSOes">
+            <EntityTypeMapping TypeName="QuanLyCinemaModel.THAMSO">
+              <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="GIAVE" ColumnName="GIAVE" />
+                <ScalarProperty Name="TIENVON" ColumnName="TIENVON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

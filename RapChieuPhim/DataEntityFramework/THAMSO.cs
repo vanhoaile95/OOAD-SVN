@@ -15,28 +15,12 @@ namespace DataEntityFramework
 using System;
     using System.Collections.Generic;
     
-public partial class PHONGCHIEU
+public partial class THAMSO
 {
 
-    public PHONGCHIEU()
-    {
+    public decimal TIENVON { get; set; }
 
-        this.LICHCHIEUx = new HashSet<LICHCHIEU>();
-
-    }
-
-
-    public string MAPHONGCHIEU { get; set; }
-
-    public string TENPHONGCHIEU { get; set; }
-
-    public Nullable<int> SOGHE { get; set; }
-
-    public string TINHTRANG { get; set; }
-
-
-
-    public virtual ICollection<LICHCHIEU> LICHCHIEUx { get; set; }
+    public Nullable<int> GIAVE { get; set; }
 
 }
 

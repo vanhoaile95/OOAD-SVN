@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Collection\Tài liệu\Năm Tư\Phát triển app hướng đối tượng\GitHub\OOAD-SVN\trunk\RapChieuPhim\DataEntityFramework\Cinema.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Henry\Desktop\New folder\trunk\RapChieuPhim\DataEntityFramework\Cinema.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
