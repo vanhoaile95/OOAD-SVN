@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetVe" targetNamespace="http://tempuri.org/DataSetVe.xsd" xmlns:mstns="http://tempuri.org/DataSetVe.xsd" xmlns="http://tempuri.org/DataSetVe.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetVe" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetVe" msprop:Generator_UserDSName="DataSetVe">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Ve" msprop:Generator_TableClassName="VeDataTable" msprop:Generator_TableVarName="tableVe" msprop:Generator_TablePropName="Ve" msprop:Generator_RowDeletingName="VeRowDeleting" msprop:Generator_RowChangingName="VeRowChanging" msprop:Generator_RowEvHandlerName="VeRowChangeEventHandler" msprop:Generator_RowDeletedName="VeRowDeleted" msprop:Generator_UserTableName="Ve" msprop:Generator_RowChangedName="VeRowChanged" msprop:Generator_RowEvArgName="VeRowChangeEvent" msprop:Generator_RowClassName="VeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MaVe" msprop:Generator_ColumnVarNameInTable="columnMaVe" msprop:Generator_ColumnPropNameInRow="MaVe" msprop:Generator_ColumnPropNameInTable="MaVeColumn" msprop:Generator_UserColumnName="MaVe" type="xs:string" minOccurs="0" />
+              <xs:element name="MaLichChieu" msprop:Generator_ColumnVarNameInTable="columnMaLichChieu" msprop:Generator_ColumnPropNameInRow="MaLichChieu" msprop:Generator_ColumnPropNameInTable="MaLichChieuColumn" msprop:Generator_UserColumnName="MaLichChieu" type="xs:string" minOccurs="0" />
+              <xs:element name="STTGhe" msprop:Generator_ColumnVarNameInTable="columnSTTGhe" msprop:Generator_ColumnPropNameInRow="STTGhe" msprop:Generator_ColumnPropNameInTable="STTGheColumn" msprop:Generator_UserColumnName="STTGhe" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
