@@ -9,10 +9,13 @@ namespace DataEntityFramework
     public class BanVeJoinTable
     {
         public string MALICHCHIEU { get; set; }
+        public string HOTENNV { get; set; }
+        public string MAVE { get; set; }
         public string MAPHIM { get; set; }
         public string PHIENBAN { get; set; }
         public string MAPHONGCHIEU { get; set; }
         public Nullable<System.DateTime> NGAYCHIEU { get; set; }
+        public DateTime NGAYDUOCCHON { get; set; }
         public string GIOBATDAU { get; set; }
         public string GIOKETTHUC { get; set; }
         public string TINHTRANG { get; set; }
@@ -28,7 +31,20 @@ namespace DataEntityFramework
 
         public Nullable<int> STTGHE { get; set; }
 
+        public Nullable<int> SL_VE { get; set; }
+
+        public Nullable<int> SL_SUATCHIEU { get; set; }
+
+        public Nullable<int> THANHTIEN { get; set; }
+        public Nullable<float> TONGTIEN { get; set; }
+
         public string TENPHONGCHIEU { get; set; }
         public Nullable<int> SOGHE { get; set; }
+        public string MANVBAN { get; set; }
+
+        public string TENNVBAN { get; set; }
+
+        public int GIAVE { get; set; }
+        public Nullable<System.DateTime> NGAYBAN { get; set; }
     }
 }
