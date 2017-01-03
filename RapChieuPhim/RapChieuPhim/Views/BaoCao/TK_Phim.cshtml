@@ -1,0 +1,169 @@
+﻿@model PagedList.IPagedList<DataEntityFramework.BanVeJoinTable>
+@using PagedList.Mvc;
+@using DataEntityFramework;
+
+@{
+    ViewBag.Title = "TK_Phim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LoginText{
+    @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
+}
+
+
+@using (Html.BeginForm())
+{
+
+    QuanLyCinemaEntities db = new QuanLyCinemaEntities();
+
+    <div>
+        <br />
+        <h2 style="color:navy; font-size:xx-large; margin-top:0.5cm " class="text-center">
+            Thống kê theo phim.
+        </h2>
+        <br />
+    </div>
+
+    @* Hiển thị thông tin Tổng tiền *@
+    <div id="TongTien" style="margin-top:0.5cm; margin-left:3cm; color:red; ">
+        @{
+    float SumMoney = 0;
+    int SumVe = 0;
+
+    foreach (var item in Model)
+    {
+        SumMoney += Convert.ToSingle(item.THANHTIEN);
+        SumVe += Convert.ToInt32(item.SL_VE);
+    }
+    <h3 style="margin-bottom: 0.25cm; font-style:italic ">Tổng số vé bán: @SumVe</h3>
+            <h3 style="margin-bottom: 0.25cm; font-style: italic">Tổng tiền: @string.Format("{0:#,000}", SumMoney) VNĐ </h3>
+        }
+    </div>
+
+    @* Load bảng lịch chiếu *@
+    <div>
+        <table id="content-table" class="table table-striped table-bordered ">
+            <thead>
+                <tr style="font-size:x-large">
+                    <th class="Tenphim" style="text-align:center">
+                        Tên phim <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Tenphim', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Tenphim', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="Phienban" style="text-align:center">
+                        Phiên bản <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Phienban', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Phienban', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="SLVe" style="text-align:center">
+                        Số vé bán <a style="font-size:x-large; float:right" href="javascript:sort(true, 'SLVe', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'SLVe', 'content-table');">&#8681;</a>
+                    </th>
+                    <th class="ThanhTien" style="text-align:center">
+                        Thành tiền (VNĐ)<a style="font-size:x-large; float:right" href="javascript:sort(true, 'ThanhTien', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'ThanhTien', 'content-table');">&#8681;</a>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+    string tenphim = "";
+    foreach (var item in Model)
+    {
+        if (@item.TENPHIM.Length > 20)
+        {
+            tenphim = @item.TENPHIM.Substring(0, 19) + "..";
+        }
+        else
+        {
+            tenphim = @item.TENPHIM;
+        }
+
+        <tr class="text-center">
+            <td style="font-size:large; color:black;" class="Tenphim">@tenphim</td>
+            <td style="font-size: large; color: black;" class="Phienban">@item.PHIENBAN</td>
+            <td style="font-size: large; color: black;" class="SLVe">@item.SL_VE</td>
+            <td style="font-size: large; color: black;" class="ThanhTien">@string.Format("{0:#,000}", item.THANHTIEN)</td>
+        </tr>
+    }
+                }
+            <tbody>
+        </table>
+        <div id="PageNumber" class="text-center">
+            @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
+        </div>
+
+    </div>
+
+}
+
+
+}
+
+
+@* Thực hiện việc sắp xếp tăng dần *@
+<script type="text/javascript">
+    // sắp xếp tăng giảm
+    function sort(ascending, columnClassName, tableId) {
+        var tbody = document.getElementById(tableId).getElementsByTagName(
+                "tbody")[0];
+        var rows = tbody.getElementsByTagName("tr");
+
+        var unsorted = true;
+
+        while (unsorted) {
+            unsorted = false
+
+            for (var r = 0; r < rows.length - 1; r++) {
+                var row = rows[r];
+                var nextRow = rows[r + 1];
+
+                var value = row.getElementsByClassName(columnClassName)[0].innerHTML;
+                var nextValue = nextRow.getElementsByClassName(columnClassName)[0].innerHTML;
+
+                value = value.replace(',', '.'); // in case a comma is used in float number
+                nextValue = nextValue.replace(',', '.');
+
+                if (!isNaN(value)) {
+                    value = parseFloat(value);
+                    nextValue = parseFloat(nextValue);
+                }
+
+                if (ascending ? value > nextValue : value < nextValue) {
+                    tbody.insertBefore(nextRow, row);
+                    unsorted = true;
+                }
+            }
+        }
+    };
+</script>
+
+
+@* tạo 1 cái đồng hồ tăng giờ tự động *@
+<script>
+    // tạo 1 cái đồng hồ
+    $("#txt").ready(
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours(); // lấy giờ hiện tại
+        var m = today.getMinutes(); // lấy phút hiện tại
+        var s = today.getSeconds(); // lấy giây hiện tại
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML = "Hiện tại: " + h + " giờ : " + m + " phút : " + s;
+        var t = setTimeout(startTime, 500);
+        // hàm setTimeout sẽ gọi lại hàm startTime sau 500 milisecond
+    }
+    )
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i };  // chèn thêm sô "0", với các giây < 10
+        return i;
+    }
+</script>
+
+@* ẩn đi table các lịch chiếu, nếu click chọn 1 ngày khác trong Calendar *@
+<script>
+    function AnTable() {
+        $("#content-table").hide();
+        $("#PageNumber").hide();
+        $("#Thongbao").hide();
+        $("#btnExport").addClass("disabled");
+    }
+</script>
+

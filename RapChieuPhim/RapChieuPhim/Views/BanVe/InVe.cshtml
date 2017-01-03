@@ -1,0 +1,85 @@
+﻿@model List<DataEntityFramework.ReportVE>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "InVe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LoginText{
+    @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
+}
+
+
+
+@using (Html.BeginForm())
+{
+
+    <br />
+    <div>
+        <h1 id="title" style="color: navy; margin-top: 0.5cm;" class="text-center">
+            In vé
+        </h1>
+    </div>
+    <div>
+
+        <a id="btnFinish" style="font-size:x-large; float:right;margin-right:17cm; margin-top:1cm; margin-bottom:3cm" href="@Url.Action("Index", "BanVe")" class="btn btn-primary hidden">Quay lại</a>
+
+    </div>
+
+
+    int count = 0;
+    foreach (var item in Model)
+    {
+        count++;
+    }
+    <input id="MaxCount" type="text" value="@count" hidden />
+
+    <div class="container">
+        <table id="content-table" style="margin-left:5cm; width:20cm" class=" table table-striped">
+            <thead>
+                <tr style="font-size:x-large">
+                    <th class="Tenphim" style="text-align:center; width:8cm">Mã Vé </th>
+                    <th class="Phienban" style="text-align: center; width: 8cm">Số Ghế </th>
+                    <th class="text-center"> Chọn </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+    foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td id="@item.MAVE" style="font-size:large; color:black;">@item.MAVE</td>
+            <td id="@item.MAVE" style="font-size: large; color: black;">@item.STTGHE</td>
+            <td id="@item.MAVE" class="text-center"> <a onclick="AnButton(@item.MAVE)" href="@Url.Action("Export_Ve", "BanVe", new {MaVe = item.MAVE, GiaVe=90000 })" class="btn btn-primary">In vé</a> </td>
+        </tr>
+    }
+                }
+            <tbody>
+        </table>
+
+    </div>
+
+}
+
+
+<script type="text/javascript">
+
+    function AnButton(IDButton) // Ẩn button InVe sau mỗi lần In
+    {
+        document.getElementById("MaxCount").value--;
+        if (document.getElementById("MaxCount").value > 0)
+        {
+            $(IDButton).hide();
+        }
+        else // = 0
+        {
+            $(IDButton).hide();
+            $("#content-table").hide();
+            $("#listPage").hide();
+            $("#btnFinish").removeClass("hidden");
+            $("#title").text("Quay lại trang Danh sách lịch chiếu.");
+        }
+    }
+</script>

@@ -11,18 +11,22 @@
     @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
 }
 
+
 @using (Html.BeginForm())
 {
+
+    QuanLyCinemaEntities db = new QuanLyCinemaEntities();
+
     <div>
         <br />
         <h2 style="color:navy; font-size:xx-large; margin-top:0.5cm " class="text-center">
-            Danh sách lịch chiếu phim
+            Thống kê theo ngày chiếu.
         </h2>
         <br />
     </div>
 
     @* Hiển thị giờ, ở góc trái *@
-    <div style="margin-top:-1.75cm; margin-left:3cm; color:red; ">
+    <div style="margin-top:-1.75cm; margin-left:3cm; color:black; ">
         @{
     // Hiển thị ngày hiện tại
     <h4 style="margin-bottom:0.25cm">Hôm nay: @DateTime.Now.Date.ToString("dd/MM/yyyy")</h4>
@@ -32,16 +36,23 @@
         <h4 id="txt"></h4>
     </div>
 
-    @* Hiển thị thông tin của Nhân viên bán vé *@
-    <div style="margin-top:1.5cm; margin-left:3cm; color:green; ">
+    @* Hiển thị thông tin Tổng tiền *@
+    <div id="TongTien" style="margin-top:1.5cm; margin-left:3cm; color:red; ">
         @{
-    QuanLyCinemaEntities db = new QuanLyCinemaEntities();
-    var user = Session["User"] as NHANVIEN;
-    if (user != null)
+    float SumMoney = 0;
+    int SumSChieu = 0;
+    int SumVe = 0;
+    if (ViewBag.ThongBao != "NoData")
     {
-        var list = db.NHANVIENs.SingleOrDefault(x => x.MANV == user.MANV);
-        <h3 style="margin-bottom: 0.25cm; font-style:italic ">Mã nhân viên: @list.MANV </h3>
-            <h3 style="margin-bottom: 0.25cm; font-style: italic">Họ tên: @list.HOTEN </h3>
+        foreach (var item in Model)
+        {
+            SumMoney += Convert.ToSingle(item.THANHTIEN);
+            SumSChieu += Convert.ToInt32(item.SL_SUATCHIEU);
+            SumVe += Convert.ToInt32(item.SL_VE);
+        }
+        <h3 style="margin-bottom: 0.25cm; font-style:italic ">Tổng số suất chiếu: @SumSChieu suất</h3>
+            <h3 style="margin-bottom: 0.25cm; font-style:italic ">Tổng số vé bán: @SumVe</h3>
+            <h3 style="margin-bottom: 0.25cm; font-style: italic">Tổng tiền: @string.Format("{0:#,000}", SumMoney) VNĐ </h3>
     }
 
         }
@@ -52,9 +63,10 @@
         @{
 
     string Max = db.LICHCHIEUx.Max(x => x.NGAYCHIEU).ToString("yyyy-MM-dd");
+    string Min = db.LICHCHIEUx.Min(x => x.NGAYCHIEU).ToString("yyyy-MM-dd");
     /// cách chuyển định dạng ngày của C#
     string time = DateTime.Now.Date.ToString("yyyy-MM-dd");
-    string TimeClick = "";
+    string TimeClick = ""; // thời gian được chọn trong Calender
 
     <h4 style="margin-bottom: 0.25cm; font-style: italic"> Chọn ngày của lịch chiếu:</h4>
 
@@ -68,9 +80,10 @@
     }
 
     // muốn xét ngày cho nó, thì định dạng là "YYYY-MM-DD"
-    <input id="theDate" onchange="AnTable()" name="theDate" value="@TimeClick" min="@time" max="@Max" type="date" style="margin-bottom:1cm; color:black" class="text-center" />
+    <input id="theDate" onchange="AnTable()" name="theDate" value="@TimeClick" min="@Min" max="@Max" type="date" style="margin-bottom:1cm; color:black" class="text-center" />
 
             <input id="btnXemLich" value="Xem lịch" type="submit" class="btn btn-info" style="font-size:larger">
+
 
         }
     </div>
@@ -89,16 +102,16 @@
                         <th class="Phienban" style="text-align:center">
                             Phiên bản <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Phienban', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Phienban', 'content-table');">&#8681;</a>
                         </th>
-                        <th class="Batdau" style="text-align:center">
-                            Bắt đầu <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Batdau', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Batdau', 'content-table');">&#8681;</a>
+                        <th class="SLChieu" style="text-align:center">
+                            SL suất chiếu <a style="font-size:x-large; float:right" href="javascript:sort(true, 'SLChieu', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'SLChieu', 'content-table');">&#8681;</a>
                         </th>
-                        <th class="Ketthuc" style="text-align:center">
-                            Kết thúc <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Ketthuc', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Ketthuc', 'content-table');">&#8681;</a>
+                        <th class="SLVe" style="text-align:center">
+                            Số vé bán <a style="font-size:x-large; float:right" href="javascript:sort(true, 'SLVe', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'SLVe', 'content-table');">&#8681;</a>
                         </th>
-                        <th class="Phongchieu" style="text-align:center">
-                            Phòng <a style="font-size:x-large; float:right" href="javascript:sort(true, 'Phongchieu', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'Phongchieu', 'content-table');">&#8681;</a>
+                        <th class="ThanhTien" style="text-align:center">
+                            Thành tiền (VNĐ)<a style="font-size:x-large; float:right" href="javascript:sort(true, 'ThanhTien', 'content-table');">&#8679;</a> <a style="font-size:x-large; float:right" href="javascript:sort(false, 'ThanhTien', 'content-table');">&#8681;</a>
                         </th>
-                        <th class="text-center">Bán vé</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -106,9 +119,9 @@
         string tenphim = "";
         foreach (var item in Model)
         {
-            if (@item.TENPHIM.Length > 18)
+            if (@item.TENPHIM.Length > 20)
             {
-                tenphim = @item.TENPHIM.Substring(0, 17) + "..";
+                tenphim = @item.TENPHIM.Substring(0, 19) + "..";
             }
             else
             {
@@ -118,10 +131,9 @@
             <tr class="text-center">
                 <td style="font-size:large; color:black;" class="Tenphim">@tenphim</td>
                 <td style="font-size: large; color: black;" class="Phienban">@item.PHIENBAN</td>
-                <td style="font-size: large; color: black;" class="Batdau">@item.GIOBATDAU</td>
-                <td style="font-size: large; color: black;" class="Ketthuc">@item.GIOKETTHUC</td>
-                <td style="font-size: large; color: black;" class="Phongchieu">@item.TENPHONGCHIEU</td>
-                <td class="text-center"> <a href="@Url.Action("LoadGhe", "BanVe", new {@MaLichChieu = item.MALICHCHIEU })" class="btn btn-success">Chọn</a> </td>
+                <td style="font-size: large; color: black;" class="SLChieu">@item.SL_SUATCHIEU</td>
+                <td style="font-size: large; color: black;" class="SLVe">@item.SL_VE</td>
+                <td style="font-size: large; color: black;" class="ThanhTien">@string.Format("{0:#,000}", item.THANHTIEN)</td>
 
             </tr>
         }
@@ -129,21 +141,22 @@
                 <tbody>
             </table>
             <div id="PageNumber" class="text-center">
-                @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }));
+                @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
             </div>
 
         </div>
 
     }
+
     else
     {
         <h2 id="ThongBao" class="text-center" style="color:blue; margin-bottom:2cm;margin-top:2cm">
             Không có dữ liệu lịch chiếu !!!
         </h2>
+        <script>
+            $("#btnExport").addClass("disabled");
+        </script>
     }
-
-
-
 
 }
 
@@ -185,9 +198,10 @@
     };
 </script>
 
+
 @* tạo 1 cái đồng hồ tăng giờ tự động *@
 <script>
- // tạo 1 cái đồng hồ
+    // tạo 1 cái đồng hồ
     $("#txt").ready(
     function startTime() {
         var today = new Date();
@@ -213,5 +227,6 @@
         $("#content-table").hide();
         $("#PageNumber").hide();
         $("#Thongbao").hide();
+        $("#btnExport").addClass("disabled");
     }
 </script>

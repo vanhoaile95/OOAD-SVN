@@ -1,4 +1,5 @@
 ﻿@model List<DataEntityFramework.BanVeJoinTable>
+@using DataEntityFramework;
 
 @{
     ViewBag.Title = "LoadGhe";
@@ -9,58 +10,78 @@
     @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
 }
 
-<div>
-    <br />
-    <h1 style="color:navy; margin-top:0.5cm " class="text-center">
-        Sơ đồ phòng chiếu
-    </h1>
-    <br />
-</div>
+@if (ViewBag.ThongBao == "Đã chiếu")
+{
+    <h4 class="text-center" style="margin-bottom:0.5cm;margin-top:2cm; font-size:x-large; color:red">Phim đang được chiếu.</h4>
+    <h4 class="text-center" style="margin-bottom:1cm;margin-top:0.5cm; font-size:x-large; color:red">Đã hết thời gian bán vé.</h4>
+    <a class="btn btn-primary" style="font-size:larger; margin-left:17cm; margin-bottom:2cm" href="@Url.Action("Index","BanVe")">Quay lại</a>
+}
+else
+{
 
-
-@* Bảng thông tin phim *@
-<div style="border-style:solid; float:left; margin-left:1cm; margin-top:0.5cm; border-color:blue">
-    <br />
-    @foreach (var item in Model)
+    using (Html.BeginForm())
     {
-        string tenphim = "";
-        if (item.TENPHIM.Length > 15)
-        {
-            tenphim = item.TENPHIM.Substring(0, 14) + "..";
-        }
-        else
-        {
-            tenphim = item.TENPHIM;
-        }
-        <div style="margin-left:0.25cm; margin-right:0.25cm">
-            <h4>Phim: @tenphim.</h4>
-            <h4 style="margin-top:0.25cm">Phiên bản: @item.PHIENBAN.</h4>
-            <h4 style="margin-top:0.25cm">@item.TENPHONGCHIEU.</h4>
 
-            <h4 style="margin-top:0.25cm">Ngày chiếu: @string.Format("{0:dd/MM/yyyy}", item.NGAYCHIEU).</h4>
-            <h4 style="margin-top:0.25cm">Giờ bắt đầu: @item.GIOBATDAU.</h4>
-            <h4 style="margin-top:0.25cm">Giờ kết thúc: @item.GIOKETTHUC.</h4>
+        <div>
+            <br />
+            <h1 style="color:navy; margin-top:0.5cm " class="text-center">
+                Sơ đồ phòng chiếu
+            </h1>
+            <br />
         </div>
 
-        break; // vì sẽ bị trùng dữ liệu do lặp nhiều lần khi lấy STTGHE
-    }
-    <br />
-</div>
+
+        @* Bảng thông tin phim *@
+        <div style="border-style:solid; float:left; margin-left:0.5cm; margin-top:0.5cm; border-color:blue">
+            <br />
+            @foreach (var item in Model)
+            {
+                <input hidden name="tbMaLichChieu" value="@item.MALICHCHIEU" type="text" />
+
+                string tenphim = ""; // xử lí cắt bớt khi tên phim quá dài
+                if (item.TENPHIM.Length > 15)
+                {
+                    tenphim = item.TENPHIM.Substring(0, 14) + "..";
+                }
+                else
+                {
+                    tenphim = item.TENPHIM;
+                }
+                <div style="margin-left:0.25cm; margin-right:0.25cm">
+                    <h4>Phim: @tenphim.</h4> @* tên phim sau xử lý *@
+                    <h4 style="margin-top:0.25cm">Phiên bản: @item.PHIENBAN.</h4>
+                    <h4 style="margin-top:0.25cm">@item.TENPHONGCHIEU.</h4>
+
+                    <h4 style="margin-top:0.25cm">Ngày chiếu: @string.Format("{0:dd/MM/yyyy}", item.NGAYCHIEU).</h4>
+                    <h4 style="margin-top:0.25cm">Giờ bắt đầu: @item.GIOBATDAU.</h4>
+                    <h4 style="margin-top:0.25cm">Giờ kết thúc: @item.GIOKETTHUC.</h4>
+                </div>
+
+                break; // vì sẽ bị trùng dữ liệu do lặp nhiều lần khi lấy STTGHE
+            }
+            <br />
+        </div>
 
 
-@* Bảng thông tin ghế *@
-<div style="border-style:solid; float:right; margin-right:0.5cm; margin-top:0.5cm; border-color:red">
-    <div style="margin-left:0.25cm; margin-right:0.25cm; margin-top:0.5cm; margin-bottom:0.25cm">
+        @* Bảng thông tin ghế *@
+        <div style="border-style:solid; float:right; margin-right:0.5cm; margin-top:0.5cm; border-color:red">
+            <div style="margin-left:0.25cm; margin-right:0.25cm; margin-top:0.5cm; margin-bottom:0.25cm">
 
+                @* Xử lý thông tin MaKH khi mua vé *@
+                <h4 style="margin-top:0.25cm">
+                    Mã KH :
+                    <input id="txtMaKH" name="tbMaKH" onkeyup="CheckMaKH('txtMaKH')" type="text" class="text-center" value="" style="width:3cm; color:black" placeholder="KHxxx" />
+                </h4>
 
-        <h4 style="margin-top:0.25cm">
-            Mã KH :
-            <input type="text" class="text-center" value="" style="width:3cm; color:black" placeholder="KHxxx" />
-        </h4>
+                <small id="alertWrong" hidden style="color:red">(*) Mã KH không tồn tại.</small>
 
-        <h4 style="margin-top:0.25cm;">Số lượng ghế: 100</h4>
+                <h4 id="txtNameKH" hidden style="margin-top:0.25cm; color:deeppink"> </h4> @* ẩn đi chỉ khi nào nhập đúng mới cho hiện *@
+                <h4 id="txtCMNDKH" hidden style="margin-top:0.25cm; color:deeppink"> </h4> @* ẩn đi chỉ khi nào nhập đúng mới cho hiện *@
+                @* ------------------------------------------------------------------------------------ *@
 
-        @{
+                <h4 style="margin-top:0.25cm;">Số lượng ghế: 100</h4>
+
+                @{
             int count = 0;
             foreach (var item in Model)
             {
@@ -75,50 +96,63 @@
                 SL ghế còn trống: @count
             </h4>
 
-        }
+                }
 
-        <h4 style="margin-top:0.25cm">
-            SL ghế đã chọn :
-            <input id="txtChonGhe" type="text" class="text-center" value="0" style="width:1cm; color:red" readonly />
-        </h4>
+                <h4 style="margin-top:0.25cm">
+                    SL ghế đã chọn :
+                    <input id="txtChonGhe" type="text" class="text-center" value="0" style="width:1cm; color:red" readonly />
+                </h4>
 
-        <h4 style="margin-top: 0.25cm; color:blue">Giá vé: 70,000 VNĐ</h4>
+                <div>
+                    @{ // Load thông tin giá vé
 
-        <h4 style="margin-top:0.25cm">
-            Tổng :
-            <input id="txtTongTien" type="text" class="text-center" value="0" style="width:2.5cm; color:red" readonly />
-            VNĐ
-        </h4>
+            QuanLyCinemaEntities db = new QuanLyCinemaEntities();
+            foreach (var item in db.THAMSOes)
+            {
+                // cách thêm "," vào phần ngàn của C#
+                <h4 style="margin-top: 0.25cm; color:blue">Giá vé: @string.Format("{0:#,000}", item.GIAVE) VNĐ</h4>
+                break;
+            }
 
-    </div>
+                    }
+                </div>
 
-    @* Bị ẩn đi *@
-    <div class="text-center">
-        <a id="btnThanhToan" style="font-size:large; margin-bottom:0.25cm" class="btn btn-danger disabled">Đã thanh toán</a>
-    </div>
-</div>
+                <h4 style="margin-top:0.25cm">
+                    Tổng :
+                    <input id="txtTongTien" name="txtTongTien" type="text" class="text-center" value="0" style="width:2.5cm; color:red" readonly />
+                    VNĐ
+                </h4>
 
-@* Vẽ màn hình chiếu phim *@
+            </div>
 
-<div style="border-style:solid; margin-left:8cm; margin-right:7cm; margin-top:0.5cm; background-color:lightcyan">
-    <br />
-    <h3 class="text-center">Màn hình chiếu phim</h3>
-    <br />
-</div>
+            @* Bị enable đi *@
+            <div class="text-center">
+                @*<a id="btnThanhToan" type="submit" style="font-size:large; margin-bottom:0.25cm" class="btn btn-danger disabled">Đã thanh toán</a>*@
+                <input id="btnThanhToan" type="submit" value="Đã thanh toán" style="font-size:large; margin-bottom:0.25cm" class="btn btn-danger disabled">
+            </div>
+        </div>
+
+        @* Vẽ màn hình chiếu phim *@
+
+        <div style="border-style:solid; margin-left:8cm; margin-right:8cm; margin-top:0.5cm; background-color:lightcyan">
+            <br />
+            <h3 class="text-center">Màn hình chiếu phim</h3>
+            <br />
+        </div>
 
 
-@* vẽ hình cửa vào *@
-<div style="border-style:solid; float:right; margin-right:1.2cm; margin-top:0.5cm; background-color:lightgreen">
-    <h3 style="margin-left:0.25cm; margin-right:0.25cm">Cửa vào</h3>
-</div>
+        @* vẽ hình cửa vào *@
+        <div style="border-style:solid; float:right; margin-right:1.2cm; margin-top:0.5cm; background-color:lightgreen">
+            <h3 style="margin-left:0.25cm; margin-right:0.25cm">Cửa vào</h3>
+        </div>
 
 
-@* Load ghế ngồi *@
-<div style="margin-top:2cm; margin-left:8cm; margin-bottom:3cm">
-    <table style="border-collapse:separate; border-spacing:30px; border-color:green" border="3">
-        @{
+        @* Load ghế ngồi *@
+        <div style="margin-top:2cm; margin-left:7cm;margin-right:7cm; margin-bottom:3cm">
+            <table style="border-collapse:separate; border-spacing:30px; border-color:green" border="3">
+                @{
             int countGHE = 0; // đếm các ghế đã được mua trong lịch chiếu này
-            bool checkGHE = false; // kiểm tra xem cái ghế này có phải là ghế đã được mua hay ko
+            bool checkGHE = false; // kiểm tra xem khi load các ghế, thì cái ghế này có phải là ghế đã được mua hay ko
 
             foreach (var item in Model)
             {
@@ -128,6 +162,16 @@
                 }
             }
 
+            // Lấy GIAVE trong bảng THAMSO, để tính tiền
+            int? GiaVe = 0;
+            foreach (var item in db.THAMSOes)
+            {
+                GiaVe = item.GIAVE;
+            }
+            //////////////////////////////////////////////////////
+
+
+            // Load 100 ghế
             for (int i = 0; i < 10; i++)
             {
                 <tr>
@@ -159,13 +203,13 @@
                             if (j <= 50) // ghế thường
                             {
                                 <td>
-                                    <a id="@j" onclick="ChangeColor(@j,'txtChonGhe','txtTongTien')" style="color: black; background-color: lightgray" class="btn btn-block">@j</a>
+                                    <input id="@j" name="Ghe" readonly value="@j" onclick="ChangeColor(@j,@GiaVe)" style="color: black; background-color: lightgray" class="btn btn-block">
                                 </td>
                             }
                             else // ghế VIP
                             {
                                 <td>
-                                    <a id="@j" onclick="ChangeColor(@j,'txtChonGhe','txtTongTien')" class="btn btn-block" style="color:black; ">@j</a>
+                                    <input id="@j" name="Ghe" readonly value="@j" onclick="ChangeColor(@j,@GiaVe)" class="btn btn-block" style="color:black; " />
                                 </td>
                             }
                         }
@@ -174,27 +218,70 @@
             }
 
 
+                }
+
+            </table>
+        </div>
+
+        @* Vẽ cửa thoát hiểm *@
+        <div style="border-style:solid; float:right; margin-right:7cm; margin-top:-2cm; background-color:lightgreen">
+            <h3 style="margin-left:0.25cm; margin-right:0.25cm; margin-top:0.1cm">Cửa thoát hiểm</h3>
+        </div>
+
+        <div hidden>
+            @* ẩn cái table này đi *@
+            <table id="tableMaKH" class="table table-striped table-bordered ">
+                <thead>
+                    <tr>
+                        <th>
+                            MaKH
+                        </th>
+                        <th>
+                            HoTen
+                        </th>
+                        <th>
+                            CMND
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+        foreach (var item in db.KHACHHANGs)
+        {
+            <tr>
+                <td style="font-size:large; color:black;">@item.MAKH</td>
+                <td style="font-size:large; color:black;">@item.HOTEN</td>
+                <td style="font-size:large; color:black;">@item.CMND</td>
+            </tr>
         }
-
-    </table>
-</div>
-
-@* Vẽ cửa thoát hiểm *@
-<div style="border-style:solid; float:right; margin-right:7cm; margin-top:-2cm; background-color:lightgreen">
-    <h3 style="margin-left:0.25cm; margin-right:0.25cm; margin-top:0.1cm">Cửa thoát hiểm</h3>
-</div>
+                    }
+                <tbody>
+            </table>
+        </div>
 
 
+    }
+
+}
+
+@* Đoạn script này thực hiện:
+    + Chuyển màu ghế khi được click chọn
+    + Tự động tính tiền sau khi click Ghế, thêm "," xen vào các số lớn (cú pháp của Javascript)
+    + Đếm số lượng ghế mỗi khi bị click
+    + Ràng buộc button "Đã thanh toán"
+*@
 <script type="text/javascript">
-    var Giave = 70000;
-    function ChangeColor (IDGhe, IDtxtChonGhe, IDtxtTongTien) // xử lý khi click vào 1 ghế ngồi
+
+    function ChangeColor (IDGhe, GiaVe) // xử lý khi click vào 1 ghế ngồi
     {
 
         if (document.getElementById(IDGhe).style.backgroundColor != "red") {
 
             document.getElementById(IDGhe).style.backgroundColor = "red";
 
-            document.getElementById(IDtxtChonGhe).value++; // tăng giá trị cho ô textbox Số Ghê Chọn
+            document.getElementById(IDGhe).name = "gheChon";
+
+            document.getElementById('txtChonGhe').value++; // tăng giá trị cho ô textbox Số Ghê Chọn
 
         }
         else {
@@ -203,16 +290,21 @@
                 document.getElementById(IDGhe).style.backgroundColor = "lightgray";
 
             }
-            else document.getElementById(IDGhe).style.backgroundColor = "white";
+            else
+            {
+                document.getElementById(IDGhe).style.backgroundColor = "white";
+            }
 
-            document.getElementById(IDtxtChonGhe).value--; // giảm giá trị cho ô textbox Số Ghê Chọn
+            document.getElementById(IDGhe).name = "Ghe";
+
+            document.getElementById('txtChonGhe').value--; // giảm giá trị cho ô textbox Số Ghê Chọn
         }
 
-        // tăng giá trị cho ô textbox Tổng tiền
-        document.getElementById(IDtxtTongTien).value = (document.getElementById(IDtxtChonGhe).value * Giave).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        // tăng giá trị cho ô textbox Tổng tiền + Thêm dấu "," vào khoảng cách số
+        document.getElementById('txtTongTien').value = (document.getElementById('txtChonGhe').value * GiaVe).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         // xét rằng nếu ko chọn được ghế nào thì ẩn button Thanh toán đi
-        if (document.getElementById(IDtxtChonGhe).value > 0) // đã chọn dc ít nhất 1 ghế
+        if (document.getElementById('txtChonGhe').value > 0) // đã chọn dc ít nhất 1 ghế
         {
             $("#btnThanhToan").removeClass("disabled");
         }
@@ -226,8 +318,66 @@
 </script>
 
 
+@*
+    Xử lý tìm MaKH khi bán vé
+*@
+<script type="text/javascript">
 
+    function CheckMaKH ()
+    {
+        // lấy data của textbox MaKH
+        var txtMaKH = document.getElementById('txtMaKH').value;
 
+        // lấy data của table, table gồm 3 cột: cột{0} MaKH, cột{1} HoTen, cột{2} CMND
+        var table = document.getElementById('tableMaKH');
 
+        //lấy số dòng trong table
+        var rowLength = table.rows.length;
 
+        // lấy data của table, table gồm 3 cột: cột{0} MaKH, cột{1} HoTen, cột{2} CMND
+        for (i=0; i< rowLength; i++) // duyệt hết các hàng dữ liệu MaKH
+        {
+            // lấy data các cột ở mỗi hàng
+            var cell = table.rows.item(i).cells;
+
+            // dùng "innerHTML" để lấy được giá trị trong cell, nếu ko nó ra dữ liệu tầm xàm.
+            if (txtMaKH == cell.item(0).innerHTML) // Khi tìm ra MaKH trùng khớp với cái đã nhập trong Textbox
+            {
+                $("#alertWrong").hide(); // ẩn alert lỗi
+                $("#txtNameKH").show();
+                $("#txtNameKH").text("Tên: " + cell.item(1).innerHTML); // Show Tên KH
+                $("#txtCMNDKH").show();
+                $("#txtCMNDKH").text("CMND: " + cell.item(2).innerHTML); // Show CMND KH
+                if (document.getElementById("txtTongTien").value > "0")
+                {
+                    $("#btnThanhToan").removeClass("disabled"); // Nếu ko nhập gì thì hiện lại btnThanhToan
+                }
+                return; // THoát khỏi vòng lặp duyệt dữ liệu, nếu ko có "return" thì vẫn sẽ tiếp tục so sánh
+            }
+                // dùng "innerHTML" để lấy được giá trị trong cell, nếu ko nó ra dữ liệu tầm xàm.
+                // khi textbox MaKH ko giống với dữ liệu trong database
+            else if (txtMaKH != cell.item(0).innerHTML && txtMaKH.length != 0)
+            {
+                $("#alertWrong").show(); // Hiện thông báo alert
+                $("#btnThanhToan").addClass("disabled"); // Nếu nhập sai mã KH, thì ẩn đi btnThanhToan
+                $("#txtNameKH").hide(); // Ẩn Tên KH
+                $("#txtCMNDKH").hide(); // Ẩn CMND KH
+            }
+            else if (txtMaKH.length == 0) // dành cho TH: lỡ gỡ vào, rồi xoá không nhập nữa
+            {
+                $("#alertWrong").hide(); // ẩn alert lỗi
+                $("#txtNameKH").hide(); // Ẩn Tên KH
+                $("#txtCMNDKH").hide(); // Ẩn CMND KH
+
+                if (document.getElementById("txtTongTien").value > "0")
+                {
+                    $("#btnThanhToan").removeClass("disabled"); // Nếu ko nhập gì thì hiện lại btnThanhToan
+                }
+                return; // THoát khỏi vòng lặp duyệt dữ liệu, nếu ko có "return" thì vẫn sẽ tiếp tục so sánh
+            }
+
+        }
+    }
+
+</script>
 
