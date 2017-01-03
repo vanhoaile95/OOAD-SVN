@@ -172,7 +172,7 @@ namespace RapChieuPhim.Controllers
            
         }
          [HttpPost, ActionName("Index")]
-        public ActionResult Index(string _PhongChieu, DateTime? _NgayChieu, string _TenPhim, string _PhienBan, DateTime? _GioChieu,DateTime? _LimitTime,string Save,string Xoa,string _TinhTrang,string _DuyetPhim)
+        public ActionResult Index(string _PhongChieu, DateTime _NgayChieu, string _TenPhim, string _PhienBan, DateTime? _GioChieu,DateTime? _LimitTime,string Save,string Xoa,string _TinhTrang,string _DuyetPhim)
         {
             if (Save != null) // Lưu mới lịch chiếu
             {
