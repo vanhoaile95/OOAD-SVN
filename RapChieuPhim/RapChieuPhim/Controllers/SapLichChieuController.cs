@@ -49,22 +49,43 @@ namespace RapChieuPhim.Controllers
                 + NgayChieu.Value.Day + "' and TINHTRANG = N'" + TinhTrang + "'and MAPHONGCHIEU = '"+ PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
 
             //Duyệt phim thành "Chưa chiếu"
+         
+               List<LICHCHIEU> LichChieuDaCo = db.LICHCHIEUx.SqlQuery(
+                 @"select * from LICHCHIEU where NGAYCHIEU ='"
+                 + NgayChieu.Value.Year + "-"
+                 + NgayChieu.Value.Month + "-"
+                 + NgayChieu.Value.Day + "' and TINHTRANG = N'Chưa chiếu' and MAPHONGCHIEU = '" + PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
             if (Duyet != null)
             {
-                foreach(var item in LichChieu)
-                {
-                    item.TINHTRANG = "Chưa chiếu";
-                    db.Entry(item).State = System.Data.EntityState.Modified;
-                    db.SaveChanges();
+               
 
-                
+                if (LichChieuDaCo.Count == 0)
+                {
+
+                    foreach (var item in LichChieu)
+                    {
+                        item.TINHTRANG = "Chưa chiếu";
+                        db.Entry(item).State = System.Data.EntityState.Modified;
+                        db.SaveChanges();
+
+
+                    }
+                    LichChieu = db.LICHCHIEUx.SqlQuery(
+                    @"select * from LICHCHIEU where NGAYCHIEU ='"
+                    + NgayChieu.Value.Year + "-"
+                    + NgayChieu.Value.Month + "-"
+                    + NgayChieu.Value.Day + "' and TINHTRANG = N'" + "Chưa chiếu" + "'and MAPHONGCHIEU = '" + PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
+                    ViewBag.TinhTrangDaChon = "Chưa chiếu";
                 }
-               LichChieu = db.LICHCHIEUx.SqlQuery(
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Lỗi : Lịch này đã duyệt, không cho phép chỉnh sửa !");
+                    LichChieu = db.LICHCHIEUx.SqlQuery(
                @"select * from LICHCHIEU where NGAYCHIEU ='"
                + NgayChieu.Value.Year + "-"
                + NgayChieu.Value.Month + "-"
-               + NgayChieu.Value.Day + "' and TINHTRANG = N'" + "Chưa chiếu" + "'and MAPHONGCHIEU = '" + PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
-                ViewBag.TinhTrangDaChon = "Chưa chiếu";
+               + NgayChieu.Value.Day + "' and TINHTRANG = N'Chờ duyệt'and MAPHONGCHIEU = '" + PhongChieu + "' order by cast(LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) as int) ASC ").ToList();
+                }
             }
 
             
@@ -159,7 +180,7 @@ namespace RapChieuPhim.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Lỗi : Thời lượng phim quá dài so với khung giờ còn trống !");
             }
-            else
+            else if (LichChieuDaCo.Count == 0)
             {
                 foreach (var modelValue in ModelState.Values)
                     modelValue.Errors.Clear();

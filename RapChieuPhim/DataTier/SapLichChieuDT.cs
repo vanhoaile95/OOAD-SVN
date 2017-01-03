@@ -99,7 +99,7 @@ namespace DataTier
         {
            db  = new QuanLyCinemaEntities();
      
-           var temp = db.LICHCHIEUx.SqlQuery("select * from LICHCHIEU where MAPHONGCHIEU = '" + PhongChieu + "' and Day(NGAYCHIEU) = '" + NgayChieu.Value.Day + "' and LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) = '" + GioBatDau.Trim() + "'").ToList();
+           var temp = db.LICHCHIEUx.SqlQuery("select * from LICHCHIEU where TINHTRANG = N'Chờ duyệt' and MAPHONGCHIEU = '" + PhongChieu + "' and Day(NGAYCHIEU) = '" + NgayChieu.Value.Day + "' and LEFT(GIOBATDAU,LEN(GIOBATDAU) - 3) = '" + GioBatDau.Trim() + "'").ToList();
            LICHCHIEU tempp = temp[0] as LICHCHIEU;
            db.LICHCHIEUx.Remove(tempp);
            db.SaveChanges();
