@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BanVeDT.cs" />
+    <Compile Include="BaoCaoDT.cs" />
     <Compile Include="HomeDT.cs" />
     <Compile Include="KhachHangDT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
