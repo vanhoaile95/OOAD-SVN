@@ -37,12 +37,14 @@ namespace DataTier
             nv.DIACHI = nvtemp.DIACHI;
 
             //Update ảnh xuống database
-            byte[] img = null;
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
-            img = br.ReadBytes((int)fs.Length); // File ảnh đc chuyển sang byte[] để lưu xuống database
-            nv.AVARTA = img;
-
+            if (path.Length != 0)
+            {
+                byte[] img = null;
+                FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                img = br.ReadBytes((int)fs.Length); // File ảnh đc chuyển sang byte[] để lưu xuống database
+                nv.AVARTA = img;
+            }
 
 
             db.Entry(nv).State = System.Data.EntityState.Modified;

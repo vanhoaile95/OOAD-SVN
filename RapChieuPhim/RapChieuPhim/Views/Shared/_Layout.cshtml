@@ -41,7 +41,7 @@
     <div class="header">
         <div class="container">
             <div class="w3layouts_logo">
-                <a href="index.html"><h1>HC<span>Cinema</span></h1></a>
+                <a href="@Url.Action("Index","Home")"><h1>HC<span>Cinema</span></h1></a>
                 
             </div>
             <div class="w3_search">
@@ -65,26 +65,9 @@
     @RenderSection("Login", false)
     
     
-   
-    <!-- //bootstrap-pop-up -->
-   
-  
-    
-    @*<div class="general_social_icons">
-        <nav class="social">
-            <ul>
-                <li class="w3_facebook"><a href="https://www.facebook.com/HoaiLe.95" target="_blank">Facebook <i class="fa fa-facebook"></i></a></li>
-                
-            </ul>
-        </nav>
-    </div>*@
-   
+     
 
-    <script>
-        function Refresh() {
-            location.reload();
-        }
-    </script>
+  
 
     
 
@@ -101,20 +84,26 @@
                     </button>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                
-                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                @{
+                    var User = Session["User"] as DataEntityFramework.NHANVIEN;
+                    
+                }
+                @if (User != null)
+                { 
+                <div class="collapse navbar-collapse navbar-right" >
                     <nav>
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#" onclick="Refresh()">Trang chủ</a></li>
+                            <li class="active"><a href="@Url.Action("Index","Home")" >Trang chủ</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Phim <b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <li>
                                         <div class="col-md-5">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="genres.html">Thêm mới phim</a></li>
+                                           @if (User.MACHUCVU == "CV001")
+                                           { 
                                                 <li><a href=@Url.Action("Index","SapLichChieu")>Sắp lịch chiếu</a></li>
-                                                <li><a href="genres.html">Lịch chiếu phim</a></li>
+                                           }
                                                
                                             </ul>
                                         </div>
@@ -130,8 +119,10 @@
                                    <li>
                                        <div class="col-md-7">
                                            <ul class="multi-column-dropdown">
+                                               @if (User.MACHUCVU == "CV004" || User.MACHUCVU == "CV001")
+                                               { 
                                                <li><a href="@Url.Action("Index","BanVe")">Bán vé</a></li>
-                                         
+                                               }
                                            </ul>
                                        </div>
 
@@ -146,8 +137,11 @@
                                     <li>
                                         <div class="col-md-7">
                                             <ul class="multi-column-dropdown">
+                                                @if (User.MACHUCVU == "CV004" || User.MACHUCVU == "CV001")
+                                                { 
                                                 <li><a href="@Url.Action("InsertKhachHang","KhachHang")">Thêm mới</a></li>
                                                 <li><a href="@Url.Action("Index","KhachHang")">Xem danh sách</a></li>
+                                                }
                                             </ul>
                                         </div>
 
@@ -167,9 +161,12 @@
                                     <li>
                                         <div class="col-md-7">
                                             <ul class="multi-column-dropdown">
+                                                @if (User.MACHUCVU == "CV002" || User.MACHUCVU == "CV001")
+                                                { 
                                                 <li><a href="@Url.Action("Index","BaoCao")">Thống kê theo ngày chiếu</a></li>
                                                 <li><a href="@Url.Action("TK_NhanVien", "BaoCao")">Thống kê theo nhân viên bán vé</a></li>
                                                 <li><a href="@Url.Action("TK_Phim","BaoCao")">Thống kê theo phim</a></li>
+                                                }
                                             </ul>
                                         </div>
 
@@ -184,8 +181,8 @@
                                     <li>
                                         <div class="col-md-7">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="genres.html">Cập nhập giá vé</a></li>
-                                                <li><a href="genres.html">Tình trạng phòng chiếu</a></li>
+                                                @*<li><a href="genres.html">Cập nhập giá vé</a></li>
+                                                <li><a href="genres.html">Tình trạng phòng chiếu</a></li>*@
                                             
                                             </ul>
                                         </div>
@@ -199,6 +196,7 @@
                         </ul>
                     </nav>
                 </div>
+                }
             </nav>
         </div>
     </div>
@@ -213,24 +211,18 @@
                 <div class="col-md-6 w3ls_footer_grid_left">
                     <div class="w3ls_footer_grid_left1">
                         <h2>Nhóm 25</h2>
+                        <h2>Hệ thống quản lý rạp phim</h2>
                     </div>
                 </div>
                 <div class="col-md-6 w3ls_footer_grid_right">
-                    <a href="index.html"><h2>HC<span>Cinema</span></h2></a>
+                    <a href="@Url.Action("Index","Home")"><h2>HC<span>Cinema</span></h2></a>
                 </div>
                 <div class="clearfix"> </div>
             </div>
             <div class="col-md-5 w3ls_footer_grid1_left">
                 <p>&copy; 2016 HC Cinema. All rights reserved</p>
             </div>
-            <div class="col-md-7 w3ls_footer_grid1_right">
-                <ul>
-                    <li>
-                        <a href="genres.html">Movies</a>
-                    </li>
-                  
-                </ul>
-            </div>
+            
             <div class="clearfix"> </div>
         </div>
     </div>
