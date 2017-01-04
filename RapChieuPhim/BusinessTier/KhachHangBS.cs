@@ -19,6 +19,10 @@ namespace BusinessTier
         {
             Db.UpdateKhachHang(kh, MAKH);
         }
+        public void UpdateMaLoaiKH(string MAKH, string MALOAI)
+        {
+            Db.UpdateMaLoaiKH(MAKH, MALOAI);
+        }
         public void InsertKhachHang(KHACHHANG kh)
         {
             Db.InsertKhachHang(kh);

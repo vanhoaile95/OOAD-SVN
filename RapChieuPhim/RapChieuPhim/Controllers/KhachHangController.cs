@@ -13,20 +13,21 @@ namespace RapChieuPhim.Controllers
         //
         // GET: /KhanhHang/
         QuanLyCinemaEntities db = new QuanLyCinemaEntities();
-        KhachHangBS KhachHang = new KhachHangBS();
+        KhachHangBS KhachHangBS = new KhachHangBS();
         public ActionResult Index(int Page = 1, int PageSize = 10)
         {
-            var list = KhachHang.SelectAll_KhachHang(Page, PageSize);
+            CheckAndUpdateKhachHang();
+            var list = KhachHangBS.SelectAll_KhachHang(Page, PageSize);
             return View(list);
         }
 
         [HttpPost]
         [ActionName("Detail")]
-        public ActionResult DetailPost(KHACHHANG kh,string MAKH)
+        public ActionResult DetailPost(KHACHHANG kh, string MAKH)
         {
             try
             {
-                new KhachHangBS().UpdateKhachHang(kh, MAKH);
+                KhachHangBS.UpdateKhachHang(kh, MAKH);
             }
             catch
             {
@@ -39,13 +40,13 @@ namespace RapChieuPhim.Controllers
             return View(GetKhachHang(MAKH));
         }
 
-        public ActionResult InsertKhachHang(KHACHHANG kh,string MAKH)
+        public ActionResult InsertKhachHang(KHACHHANG kh, string MAKH)
         {
             return View(GetNextKhachHang());
         }
         [HttpPost]
         [ActionName("InsertKhachHang")]
-        public ActionResult InsertKhachHangPost(KHACHHANG kh,string MAKH)
+        public ActionResult InsertKhachHangPost(KHACHHANG kh, string MAKH)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace RapChieuPhim.Controllers
 
                 kh.MALOAI = listloaikh[0].MALOAI;
                 kh.DIEMTICHLUY = 0;
-                new KhachHangBS().InsertKhachHang(kh);
+                KhachHangBS.InsertKhachHang(kh);
             }
             catch
             {
@@ -68,13 +69,69 @@ namespace RapChieuPhim.Controllers
             return View(GetKhachHang(MAKH));
         }
 
-
         public KHACHHANG GetKhachHang(string MAKH)
         {
+            CheckAndUpdateKhachHang(MAKH);
             var kh = db.KHACHHANGs.SingleOrDefault(makh => makh.MAKH == MAKH);
             return kh;
         }
+        public void CheckAndUpdateKhachHang()
+        {
+            var list = from a in db.KHACHHANGs
+                       select new
+                       {
+                           MAKH = a.MAKH,
+                           DIEMTICHLUY = a.DIEMTICHLUY,
+                           MALOAI = a.MALOAI,
+                       };
 
+            var listloaikh = (from a in db.LOAIKHs
+                              select new
+                              {
+                                  MALOAI = a.MALOAI,
+                                  DIEM = a.DIEM,
+                              }).ToList();
+
+            foreach (var item in list)
+            {
+                if (item.DIEMTICHLUY > listloaikh[2].DIEM && !item.MALOAI.Equals(listloaikh[2].MALOAI))
+                {
+                    KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[2].MALOAI);
+                }
+                else if (item.DIEMTICHLUY > listloaikh[1].DIEM && !item.MALOAI.Equals(listloaikh[1].MALOAI))
+                {
+                    KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[1].MALOAI);
+                }
+                else if (!item.MALOAI.Equals(listloaikh[2].MALOAI))
+                {
+                    KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[0].MALOAI);
+                }
+            }
+        }
+        public void CheckAndUpdateKhachHang(string MAKH)
+        {
+            var item = db.KHACHHANGs.SingleOrDefault(makh => makh.MAKH == MAKH);
+            var listloaikh = (from a in db.LOAIKHs
+                              select new
+                              {
+                                  MALOAI = a.MALOAI,
+                                  DIEM = a.DIEM,
+                              }).ToList();
+
+            if (item.DIEMTICHLUY > listloaikh[2].DIEM && !item.MALOAI.Equals(listloaikh[2].MALOAI))
+            {
+                KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[2].MALOAI);
+            }
+            else if (item.DIEMTICHLUY > listloaikh[1].DIEM && !item.MALOAI.Equals(listloaikh[1].MALOAI))
+            {
+                KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[1].MALOAI);
+            }
+            else if (!item.MALOAI.Equals(listloaikh[2].MALOAI))
+            {
+                KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[0].MALOAI);
+            }
+
+        }
         public KHACHHANG GetNextKhachHang()
         {
             // Get KhachHang

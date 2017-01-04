@@ -12,44 +12,40 @@
 namespace DataEntityFramework
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class KHACHHANG
-{
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
-    public KHACHHANG()
+    public partial class KHACHHANG
     {
+        public KHACHHANG()
+        {
+            this.HOADONs = new HashSet<HOADON>();
+        }
+        [DisplayName("Mã khách hàng")]
+        public string MAKH { get; set; }
+        [DisplayName("Loại Khách Hàng")]
+        public string MALOAI { get; set; }
+        [DisplayName("Điểm tích lũy")]
+        public Nullable<int> DIEMTICHLUY { get; set; }
 
-        this.HOADONs = new HashSet<HOADON>();
+        [Required(ErrorMessage = "Họ tên không được để trống !!")]
+        [DisplayName("Họ tên")]
+        public string HOTEN { get; set; }
+        [DisplayName("Ngày sinh")]
+        public Nullable<System.DateTime> NGAYSINH { get; set; }
+        [DisplayName("Ngày đăng ký")]
+        public Nullable<System.DateTime> NGAYDK { get; set; }
+        [DisplayName("CMND")]
+        public string CMND { get; set; }
+        [DisplayName("SDT")]
+        public string SDT { get; set; }
+        [DisplayName("Địa chỉ")]
+        public string DIACHI { get; set; }
 
+        public virtual ICollection<HOADON> HOADONs { get; set; }
+        public virtual LOAIKH LOAIKH { get; set; }
     }
-
-
-    public string MAKH { get; set; }
-
-    public string MALOAI { get; set; }
-
-    public Nullable<int> DIEMTICHLUY { get; set; }
-
-    public string HOTEN { get; set; }
-
-    public Nullable<System.DateTime> NGAYSINH { get; set; }
-
-    public Nullable<System.DateTime> NGAYDK { get; set; }
-
-    public string CMND { get; set; }
-
-    public string SDT { get; set; }
-
-    public string DIACHI { get; set; }
-
-
-
-    public virtual ICollection<HOADON> HOADONs { get; set; }
-
-    public virtual LOAIKH LOAIKH { get; set; }
-
-}
 
 }

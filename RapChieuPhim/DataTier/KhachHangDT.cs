@@ -38,16 +38,20 @@ namespace DataTier
             KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.MAKH == MAKH);
             kh.HOTEN = khtemp.HOTEN;
             kh.NGAYSINH = khtemp.NGAYSINH;
-            kh.NGAYDK = khtemp.NGAYDK;
             kh.CMND = khtemp.CMND;
             kh.SDT = khtemp.SDT;
             kh.DIACHI = khtemp.DIACHI;
-            kh.DIEMTICHLUY = khtemp.DIEMTICHLUY;
 
             db.Entry(kh).State = System.Data.EntityState.Modified;
             db.SaveChanges();
         }
-
+        public void UpdateMaLoaiKH( string MAKH,string MALOAI)
+        {
+            KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.MAKH == MAKH);
+            kh.MALOAI = MALOAI;
+            db.Entry(kh).State = System.Data.EntityState.Modified;
+            db.SaveChanges();
+        }
         public void InsertKhachHang(KHACHHANG khtemp)
         {
             KHACHHANG kh = db.KHACHHANGs.Add(khtemp);

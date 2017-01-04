@@ -9,7 +9,7 @@
     @Html.Partial("~/Views/Home/LoginTextPartial.cshtml")
 }
 
-@using (Html.BeginForm("InsertKhachHang", "KhachHang", new { Model.MAKH }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("InsertKhachHang", "KhachHang", new { Model.MAKH , Model.MALOAI, Model.NGAYDK, Model.DIEMTICHLUY }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -18,10 +18,10 @@
         @{
             var khachhang = Model;
             <h2 style="color:navy; font-size:xx-large " class="text-center">
-                Chi tiết khách hàng @khachhang.HOTEN
+                Thêm mới khách hàng @khachhang.HOTEN
             </h2>
-
-            <div class="text-center">
+            <br style="clear: left;" />
+            <div class="editor-field">
                 <div class="col-xs-6">
                     @Html.LabelFor(model => model.MAKH)
                     @Html.TextBoxFor(model => model.MAKH, new { @name = "makh", @class = "form-control", @disabled = true })
@@ -57,7 +57,7 @@
             <div class="editor-field">
                 <div class="col-xs-6">
                     @Html.LabelFor(model => model.NGAYDK)
-                    @Html.TextBoxFor(model => model.NGAYDK, "{0:dd-MM-yyyy}", new { @id = "ngaydk", @class = "form-control", @type = "date", @required = true, @Value = Model.NGAYDK.Value.ToString("yyyy-MM-dd") })
+                    @Html.TextBoxFor(model => model.NGAYDK, "{0:dd-MM-yyyy}", new { @id = "ngaydk", @class = "form-control", @type = "date", @disabled = true, @Value = Model.NGAYDK.Value.ToString("yyyy-MM-dd") })
                 </div>
             </div>
 
