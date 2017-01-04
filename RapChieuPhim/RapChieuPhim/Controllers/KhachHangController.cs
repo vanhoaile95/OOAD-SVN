@@ -27,7 +27,27 @@ namespace RapChieuPhim.Controllers
         {
             try
             {
-                KhachHangBS.UpdateKhachHang(kh, MAKH);
+                // Check xem cmnd có trùng không
+                var list = from a in db.KHACHHANGs
+                           select new
+                           {
+                               MAKH = a.MAKH,
+                               CMND = a.CMND,
+                           };
+
+                ViewBag.CMND = "OK";
+                foreach (var item in list)
+                {
+                    if (item.CMND == kh.CMND && item.MAKH != kh.MAKH)
+                    {
+                        ViewBag.CMND = "CMND";
+                        break;
+                    }
+                }
+                if (ViewBag.CMND == "OK")
+                {
+                    KhachHangBS.UpdateKhachHang(kh, MAKH);
+                }
             }
             catch
             {
@@ -60,7 +80,29 @@ namespace RapChieuPhim.Controllers
 
                 kh.MALOAI = listloaikh[0].MALOAI;
                 kh.DIEMTICHLUY = 0;
-                KhachHangBS.InsertKhachHang(kh);
+
+
+                // Check xem cmnd có trùng không
+                var list = from a in db.KHACHHANGs
+                           select new
+                           {
+                               MAKH = a.MAKH,
+                               CMND = a.CMND,
+                           };
+
+                ViewBag.CMND = "OK";
+                foreach (var item in list)
+                {
+                    if (item.CMND == kh.CMND && item.MAKH != kh.MAKH)
+                    {
+                        ViewBag.CMND = "CMND";
+                        break;
+                    }
+                }
+                if (ViewBag.CMND == "OK")
+                {
+                    KhachHangBS.InsertKhachHang(kh);
+                }
             }
             catch
             {
@@ -110,27 +152,33 @@ namespace RapChieuPhim.Controllers
         }
         public void CheckAndUpdateKhachHang(string MAKH)
         {
-            var item = db.KHACHHANGs.SingleOrDefault(makh => makh.MAKH == MAKH);
-            var listloaikh = (from a in db.LOAIKHs
-                              select new
-                              {
-                                  MALOAI = a.MALOAI,
-                                  DIEM = a.DIEM,
-                              }).ToList();
+            try
+            {
+                var item = db.KHACHHANGs.SingleOrDefault(makh => makh.MAKH == MAKH);
+                var listloaikh = (from a in db.LOAIKHs
+                                  select new
+                                  {
+                                      MALOAI = a.MALOAI,
+                                      DIEM = a.DIEM,
+                                  }).ToList();
 
-            if (item.DIEMTICHLUY > listloaikh[2].DIEM && !item.MALOAI.Equals(listloaikh[2].MALOAI))
-            {
-                KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[2].MALOAI);
+                if (item.DIEMTICHLUY > listloaikh[2].DIEM && !item.MALOAI.Equals(listloaikh[2].MALOAI))
+                {
+                    KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[2].MALOAI);
+                }
+                else if (item.DIEMTICHLUY > listloaikh[1].DIEM && !item.MALOAI.Equals(listloaikh[1].MALOAI))
+                {
+                    KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[1].MALOAI);
+                }
+                else if (!item.MALOAI.Equals(listloaikh[2].MALOAI))
+                {
+                    KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[0].MALOAI);
+                }
             }
-            else if (item.DIEMTICHLUY > listloaikh[1].DIEM && !item.MALOAI.Equals(listloaikh[1].MALOAI))
+            catch
             {
-                KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[1].MALOAI);
-            }
-            else if (!item.MALOAI.Equals(listloaikh[2].MALOAI))
-            {
-                KhachHangBS.UpdateMaLoaiKH(item.MAKH, listloaikh[0].MALOAI);
-            }
 
+            }
         }
         public KHACHHANG GetNextKhachHang()
         {
@@ -179,6 +227,7 @@ namespace RapChieuPhim.Controllers
             kh.CMND = "";
             kh.SDT = "";
             kh.DIACHI = "";
+
             return kh;
         }
     }

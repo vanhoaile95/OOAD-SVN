@@ -20,6 +20,16 @@
             <h2 style="color:navy; font-size:xx-large " class="text-center">
                 Chi tiết khách hàng @khachhang.HOTEN
             </h2>
+            if (ViewBag.CMND == "CMND")
+            {
+                <h2 style="color:red; font-size:medium " class="text-center">
+                    Đã có lỗi xảy ra:
+                </h2>
+                <h2 style="color:red; font-size:medium " class="text-center">
+                    Số CMND không được trùng
+                </h2>
+            }
+
 
             <br style="vertical-align:middle;" />
             <div class="editor-field">
@@ -50,7 +60,7 @@
             <div class="editor-field">
                 <div class="col-xs-6">
                     @Html.LabelFor(model => model.NGAYSINH)
-                    @Html.TextBoxFor(model => model.NGAYSINH, "{0:dd-MM-yyyy}", new { @id = "ngaysinh", @class = "form-control", @type = "date", @required = true, @Value = Model.NGAYSINH.Value.ToString("yyyy-MM-dd") })
+                    @Html.TextBoxFor(model => model.NGAYSINH, "{0:dd-MM-yyyy}", new { @id = "ngaysinh", @class = "form-control", @type = "date", @required = true, @Value = Model.NGAYSINH.Value.ToString("yyyy-MM-dd"), @max = DateTime.Now.AddYears(-1).ToString("yyyy-MM-dd") })
                 </div>
             </div>
 
@@ -83,7 +93,8 @@
             <div class="editor-field">
                 <div class="col-xs-6">
                     @Html.LabelFor(model => model.SDT, new { @style = "float:left" })
-                    @Html.TextBoxFor(model => model.SDT, new { @pattern = ".{6,}", @title = "Tối thiểu 6 số", @class = "form-control", @required = true, @maxlength = "13", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                    <p style="color:red;float:left">*</p>
+                    @Html.TextBoxFor(model => model.SDT, new { @pattern = ".{6,}", @title = "Tối thiểu 6 số", @class = "form-control", @required = true, @maxlength = "11", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
                 </div>
             </div>
 
